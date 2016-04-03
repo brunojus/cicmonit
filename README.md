@@ -5,7 +5,7 @@ Esse Trabalho tem o intuito de facilitar a inscrição da monitoria para os prof
 
 O grupo é composto por:
         Amanda Aline,
-        Bruno Justino,
+        Bruno Justino (Arquiteto),
         Christian Werner,
         Diego Brian,
         Farlen Rhenir,
