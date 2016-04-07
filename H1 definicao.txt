@@ -1,0 +1,9 @@
+H1. Recuperar lista de ofertas
+
+Como tecnico administrativo, considero necessaria a recuperacao da lista de
+ofertas das disciplinas do departamento, de tal forma que os alunos possam se
+candidatar adequadamente a monitoria de uma determinada oferta de disciplina.
+A lista de ofertas deve conter informacoes sobre a oferta de disciplinas, como
+nome da disciplina, turma, professor e quantidade de alunos ja matriculados.
+Restricao. Preferencialmente, essa lista de ofertas deve ser recuperada do
+CPD/UnB, com uma chamada a alguma servico REST existente.
