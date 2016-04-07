@@ -4,5 +4,8 @@ teste
 
 Estou triste
 >>>>>>> 07bcc610c2b60d76fc0a7f696624dabead24edfc
+<<<<<<< HEAD
 2
+=======
+>>>>>>> 33632d737b64b7b368877c5bdb378e0e4a882065
 2
