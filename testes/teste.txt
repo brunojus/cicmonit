@@ -6,5 +6,5 @@ a
 test
 Testando
 Buzzzzzz
->>>>>>> 20ca2cec9405b40993c230484fceba841d39dfb9
+
 d
