@@ -1,0 +1,62 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      confirmed: "Seu email foi confirmado com sucesso!."
+      send_instructions: "Você irá receber um email com instrução para confirmação dentro de alguns instantes."
+      send_paranoid_instructions: "Se você já possui cadastro, dentro de alguns instantes irá receber um email para confirmação de cadastro"
+    failure:
+      already_authenticated: "Você já está cadastrado."
+      inactive: "Sua conta ainda não está ativa."
+      invalid: "Senha Inválida."
+      locked: "Sua conta está bloqueada."
+      last_attempt: "Você tem mais uma tentativa."
+      not_found_in_database: "Senha inválida."
+      timeout: "Sua sessão expirou."
+      unauthenticated: "Você precisa logar, para continuar."
+      unconfirmed: "Você precisa confirmar o seu email, antes de continuar."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrução de confirmação"
+      reset_password_instructions:
+        subject: "Instrução para gerar nova senha."
+      unlock_instructions:
+        subject: "Desbloquear instruções"
+      password_change:
+        subject: "Senha alterada"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "Confirme o email"
+      send_instructions: "Você irá receber um email com instruções para alterar a senha."
+      send_paranoid_instructions: "Você irá receber um email com instruções para alterar a senha."
+      updated: "Sua senha foi alterada com sucesso"
+      updated_not_active: "Sua senha foi alterada com sucesso"
+    registrations:
+      destroyed: "Sua conta foi cancelada com sucesso"
+      signed_up: "Bem-vindo!"
+      signed_up_but_inactive: "Cadastro realizado com sucesso!"
+      signed_up_but_locked: "Cadastro realizado com sucesso!"
+      signed_up_but_unconfirmed: "Confirme o seu email"
+      update_needs_confirmation: "Sua conta foi alterada com Sucesso."
+      updated: "Sua conta foi alterada com Sucesso."
+    sessions:
+      signed_in: "Cadastro realizado com sucesso."
+      signed_out: "Logout com sucesso"
+      already_signed_out: "Excluido com sucesso"
+    unlocks:
+      send_instructions: "Você irá receber um email para desbloquear a sua conta."
+      send_paranoid_instructions: "Você irá receber um email para desbloquear a sua conta."
+      unlocked: "Sua conta foi desbloqueada com sucesso"
+  errors:
+    messages:
+      already_confirmed: "Confirmado com sucesso."
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "Sessão expirada, entre novamente"
+      not_found: "não encontrado"
+      not_locked: "não está bloqueado"
+      not_saved:
+        one: "1 error encontrado: %{resource} "
+        other: "%{count} erros encontrados: %{resource}"
