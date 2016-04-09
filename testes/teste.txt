@@ -1,10 +1,5 @@
 teste
 wkrj
-<<<<<<< HEAD
-a
-=======
 test
 Testando
 Buzzzzzz
-
-d
