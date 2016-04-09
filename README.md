@@ -15,7 +15,7 @@ O grupo é composto por:
         *Matheus Lima,
         *Pedro Aurélio Coelho,
         *Roberta Renally,
-        *Vitor Mangerotti,
+        *Vitor Mangerotti
 
 O projeto se dará em duas partes, devido ao número de integrantes.
         A divisão será em web site e aplicativo mobile.
