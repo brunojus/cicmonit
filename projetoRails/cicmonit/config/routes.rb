@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+	
   get 'turmas/index'
 
   get 'turmas/index'
