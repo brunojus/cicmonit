@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'turmas/index'
+
+  get 'turmas/index'
+
+  get 'disciplinas/index'
+	resources:disciplina
+	root to:"disciplinas#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
