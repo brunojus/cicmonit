@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160411030925) do
 
-  create_table "apcs", force: :cascade do |t|
-    t.string   "turma"
-    t.string   "professor"
-    t.string   "horario"
-    t.integer  "alunos"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "disciplinas", force: :cascade do |t|
     t.integer  "codigo"
     t.string   "nome"
@@ -30,6 +21,26 @@ ActiveRecord::Schema.define(version: 20160411030925) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "professors", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "matricula"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "professors", ["email"], name: "index_professors_on_email", unique: true
+  add_index "professors", ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true
 
   create_table "turmas", force: :cascade do |t|
     t.string   "nome"
