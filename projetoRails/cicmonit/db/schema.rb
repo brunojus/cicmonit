@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160411030925) do
 
-  create_table "apcs", force: :cascade do |t|
-    t.string   "turma"
-    t.string   "professor"
-    t.string   "horario"
-    t.integer  "alunos"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "disciplinas", force: :cascade do |t|
     t.integer  "codigo"
     t.string   "nome"
