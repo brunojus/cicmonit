@@ -5,7 +5,10 @@
  */
 package getdb;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public class navegador {
             //condiçao para parar antes de acessar as turmas, pois nelas é outro formato de html
             //o return sera substituido pela funçao de acesso as turmas
             if (link.contains("oferta_dados.aspx?"))
+                //acessarturmas();
                 return;
             //Url da raiz, todos os links sao somados à essa url
             String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
@@ -30,7 +34,7 @@ public class navegador {
             List<String> filtrado = new ArrayList<>();
             //Todo o bloco necessário do html é lido como uma string
             try{
-                html = getdb.ReadPage.readblock(url);
+                html = readblock(url);
             } catch (IOException ex) {
                 //Seria interessante o tratamento de um erro de comunicacao com o MW ou de falha no acesso a memória
                 return;
@@ -64,5 +68,33 @@ public class navegador {
                     //Aqui seria adicionada a saida pro banco caso o programa operasse em outros campus/departamentos
                     //System.out.println(filtrado.get(i));
             }
-        }       
+        }
+        
+        //Funçao para acessar o html da turmas, retornando letra da turma horário e professor
+        static void acessarturmas (){
+            return;
+        }
+        
+        //Essa funçao retira só a parte necessária do html da pagina.
+        //A parte necessaria está contida entre os comentarios TABELA MEIO e FIM TABELA MEIO
+        static String readblock(URL url) throws IOException{
+        int read = 0;
+        InputStream source;
+        BufferedReader buff;
+        String linebuff, line = "";
+        source = url.openStream();
+        buff = new BufferedReader(new InputStreamReader(source));
+        while ((linebuff = buff.readLine()) != null) {
+            if (linebuff.matches("<!-- TABELA MEIO -->"))
+                read = 1;
+            if (read == 1){
+                line += linebuff;
+            }
+            if (linebuff.matches("<!-- FIM TABELA MEIO -->"))
+                read = 0;
+        }
+        if (source != null) 
+            source.close();
+        return line;
+    }
     }
