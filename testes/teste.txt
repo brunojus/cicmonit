@@ -4,4 +4,3 @@ test
 Testando
 Buzzzzzz
 amanda
-Testando novamente
