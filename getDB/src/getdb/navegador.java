@@ -29,10 +29,11 @@ public class navegador {
         String tobewritten = "", Num = "", NumSup="";
         int flagwriten = 0;
         //condiçao para parar antes de acessar as turmas, pois nelas é outro formato de html
-        //o return sera substituido pela funçao de acesso as turmas
-        if (link.contains("oferta_dados.aspx?"))
-            //acessarturmas();
+        if (link.contains("oferta_dados.aspx?")){
+            Num = link.substring(link.indexOf("cod=")+4,link.indexOf("&dep="));
+            acessarturmas(link, Integer.parseInt(Num));
             return;
+        }
         //Url da raiz, todos os links sao somados à essa url
         String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
         URL url = new URL(startlink.concat(link));
@@ -127,10 +128,76 @@ public class navegador {
     }
 
     //Funçao para acessar o html da turmas, retornando letra da turma horário e professor
-    static void acessarturmas (){
-        return;
+    static void acessarturmas (String link, int NumDis) throws MalformedURLException{
+        String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
+        URL url = new URL(startlink.concat(link));
+        String html, tobewritten=null, string;
+        String [] parte1, parte2=null;
+        List<String> filtrado = new ArrayList<>();
+        //Todo o bloco necessário do html é lido como uma string
+        try{
+            html = readblock(url);
+        } catch (IOException ex) {
+            //Seria interessante o tratamento de um erro de comunicacao com o MW ou de falha no acesso a memória
+            return;
+        }
+        //Ocorre aqui a divisao e limpeza da string nas respectivas partes removendo a marcaçao html
+        parte1 = html.split("</tr>");
+        for(int i = 0; i<parte1.length; i++){
+            if(parte1[i].contains("#FFFFFF")&&parte1[i].contains("<b>")&&parte1[i].contains("</b>")){
+                filtrado.add(parte1[i].substring(parte1[i].indexOf("<b>")+3,parte1[i].indexOf("</b>")));
+            }
+            if((parte1[i].contains("Horário:")&&parte1[i].contains("Local:"))&&!parte1[i].contains("href=")){
+                parte2 = parte1[i].split("</font></td>");
+                for(int j = 0; j<parte2.length; j++){
+                    if(parte2[j].contains("Horário:")&&parte2[j].contains("Local:")){
+                        filtrado.add(parte2[j].substring(parte2[j].indexOf("green>")+6));
+                        filtrado.add(parte2[j].substring(parte2[j].indexOf("Horário:")+9,parte2[j].indexOf("Local")));
+                        filtrado.add(parte2[j].substring(parte2[j].indexOf("Local:")+6,parte2[j].indexOf("\"><font")));
+                    }
+                }
+            }
+            if(parte1[i].contains("smoke><center>")){
+                string = parte1[i].substring(parte1[i].indexOf("smoke><center>")+14,parte1[i].indexOf("</center>"));
+                if(string.contains("<br>")){
+                    parte2=string.split("<br>");
+                    for(int j = 0; j<parte2.length; j++){
+                        filtrado.add(parte2[j]);
+                    }
+                }else{
+                    filtrado.add(string);
+                }
+            }
+        }
+        File file = new File("Banco/db.txt");
+        for(int i = 0; i<filtrado.size(); i++){
+            if(filtrado.get(i).length()<3){
+                tobewritten = "insert into turmas values ('"+filtrado.get(i)+"'";
+            }else{
+                tobewritten+=",'"+filtrado.get(i)+"'";
+            }
+            if(i+1<filtrado.size()){
+                if(filtrado.get(i+1).length()==1){
+                    tobewritten+=","+NumDis+");";
+                    try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+                        writer.println(tobewritten);
+                    } catch (IOException ex) {
+                        Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }else{
+                tobewritten+=","+NumDis+");";
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+                    writer.println(tobewritten);
+                } catch (IOException ex) {
+                    Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
+    
+    
     //Essa funçao retira só a parte necessária do html da pagina.
     //A parte necessaria está contida entre os comentarios TABELA MEIO e FIM TABELA MEIO
     static String readblock(URL url) throws IOException{
