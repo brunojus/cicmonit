@@ -3,6 +3,6 @@ class DisciplinasController < ApplicationController
   end
 
   def show
-	@disciplina = Disciplina.find(params[:id])
+	@disciplina = disciplina.find(params[:id])
   end
 end

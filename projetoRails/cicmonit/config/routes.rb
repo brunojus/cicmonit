@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
 	
-  get 'turmas/index'
-
-  get 'turmas/index'
-
   get 'disciplinas/index'
+
+  get 'disciplinas/show'
+
+  get 'turmas/index'
+
+  get 'turmas/index'
 	resources:disciplina
 	root to:"disciplinas#index"
 

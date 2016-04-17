@@ -1,28 +1,17 @@
+<h1><center>Disciplinas do Departamento de Ciencia da Computacao</center></h1>
 <table>
 <tr>
 
 	<th>Codigo</td>
-	<th>&nbsp&nbsp&nbsp&nbsp</td>
+	<th>&nbsp;</td>
 	<th>Nome da Disciplina</td>
-	<th>&nbsp&nbsp&nbsp&nbsp</td>
+	<th>&nbsp;</td>
 	<th>Codigo do Departamento</td>
-	<th>&nbsp&nbsp&nbsp&nbsp</td>
+	<th>&nbsp;</td>
 	<th>Creditos</td>
 </tr>
-</table>
 <% disciplina = Disciplina.all %>
 <% disciplina.each do|disciplina| %>
-<table>
-<tr>
-
-	<th>Codigo</td>
-	<th>&nbsp;</td>
-	<th>Nome da Disciplina</td>
-	<th>&nbsp;</td>
-	<th>Codigo do Departamento</td>
-	<th>&nbsp;</td>
-	<th>Creditos</td>
-</tr>
 <tr>
 <td><%= disciplina.codigo %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
@@ -31,26 +20,8 @@
 <td><%= disciplina.departamento %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
 <td><%= disciplina.creditos %></td>
-<table>
-<tr>
-
-	<th>Turma</td>
-	<th>&nbsp;</td>
-	<th>Professor</td>
-	<th>&nbsp;</td>
-	<th>Horário</td>
-</tr>
-<% turma = disciplina.turmas %>
-<% turma.each do|turma| %>
-<tr>
-<td><%= turma.nome %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
-<td><%= turma.professor%></td> 
-<td>&nbsp&nbsp&nbsp&nbsp</td>
-<td><%= turma.horario %></td>
-</tr>
-<% end %>
-</table>
+<td><%= link_to 'Turmas', action: 'show', id: disciplina %></td>
 </tr>
 <% end %>
 </table>
