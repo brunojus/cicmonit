@@ -177,7 +177,7 @@ public class navegador {
                 tobewritten+=",'"+filtrado.get(i)+"'";
             }
             if(i+1<filtrado.size()){
-                if(filtrado.get(i+1).length()==1){
+                if(filtrado.get(i+1).length()<3){
                     tobewritten+=","+NumDis+");";
                     try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                         writer.println(tobewritten);
