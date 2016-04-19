@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class navegador {
     //Navega através da arvore de links ,retornando Campus, Departamentos e/ou Matérias
     static void acessodepartamento(String link) throws MalformedURLException{
-        String tobewritten = "", Num = "", NumSup="";
+        String tobewritten = "", Num, NumSup;
         int flagwriten = 0;
         //condiçao para parar antes de acessar as turmas, pois nelas é outro formato de html
         if (link.contains("oferta_dados.aspx?")){
@@ -38,7 +38,7 @@ public class navegador {
         String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
         URL url = new URL(startlink.concat(link));
         String html;
-        String [] parte1, parte2=null;
+        String [] parte1, parte2;
         List<String> filtrado = new ArrayList<>();
         //Todo o bloco necessário do html é lido como uma string
         try{
@@ -67,12 +67,10 @@ public class navegador {
             for(int i = 0; i<filtrado.size(); i++){
                 //Estas linhas ditam a estrutura inicial do Banco
                 if(link.contains("oferta_dep")&& flagwriten == 0){
-                    Num = parte1[0].substring(parte1[0].indexOf("cod=")+4);
                     tobewritten = "insert into departamento values (";
                     flagwriten = 1;
                 }
                 if(link.contains("oferta_campus")&& flagwriten == 0){
-                    Num = parte1[0].substring(parte1[0].indexOf("cod=")+4);
                     tobewritten = "insert into campus values (";
                     flagwriten = 1;
                 }
@@ -95,14 +93,12 @@ public class navegador {
                     //Estas linhas são necessárias para navegação a partir de um campus específico
                     //devido à estrutura distinta da marcação
                     else if(link.contains("oferta_dep")){
-                        Num = parte1[0].substring(parte1[0].indexOf("cod=")+4);
                         NumSup = link.substring(parte1[0].indexOf("cod=")+4);
                         writer.println(tobewritten+"'"+filtrado.get(i)+"',"+NumSup+");");
                         flagwriten = 0;
                     }else{
                     //Estas linhas são necessárias para navegação a partir do início das ofertas do MW
                     //devido à estrutura distinta da marcação
-                        Num = parte1[0].substring(parte1[0].indexOf("cod=")+4);
                         writer.println(tobewritten+"'"+filtrado.get(i)+"');");
                         flagwriten = 0;
                     }
@@ -131,8 +127,8 @@ public class navegador {
     static void acessarturmas (String link, int NumDis) throws MalformedURLException{
         String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
         URL url = new URL(startlink.concat(link));
-        String html, tobewritten=null, string;
-        String [] parte1, parte2=null;
+        String html, tobewritten, professores, horarioelocal, turma = "";
+        String [] parte1, parte2;
         List<String> filtrado = new ArrayList<>();
         //Todo o bloco necessário do html é lido como uma string
         try{
@@ -158,37 +154,62 @@ public class navegador {
                 }
             }
             if(parte1[i].contains("smoke><center>")){
-                string = parte1[i].substring(parte1[i].indexOf("smoke><center>")+14,parte1[i].indexOf("</center>"));
-                if(string.contains("<br>")){
-                    parte2=string.split("<br>");
+                professores = parte1[i].substring(parte1[i].indexOf("smoke><center>")+14,parte1[i].indexOf("</center>"));
+                if(professores.contains("<br>")){
+                    parte2=professores.split("<br>");
                     for(int j = 0; j<parte2.length; j++){
                         filtrado.add(parte2[j]);
                     }
                 }else{
-                    filtrado.add(string);
+                    filtrado.add(professores);
                 }
             }
         }
         File file = new File("Banco/db.txt");
         for(int i = 0; i<filtrado.size(); i++){
-            if(filtrado.get(i).length()<3){
-                tobewritten = "insert into turmas values ('"+filtrado.get(i)+"'";
-            }else{
-                tobewritten+=",'"+filtrado.get(i)+"'";
-            }
-            if(i+1<filtrado.size()){
-                if(filtrado.get(i+1).length()<3){
-                    tobewritten+=","+NumDis+");";
+            //Insere a letra da turma na saida
+            if(filtrado.get(i).length()<4){
+                turma = filtrado.get(i);
+                tobewritten = "insert into turmas values ('"+turma+"'";
+                tobewritten+=","+NumDis+");";
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+                    writer.println(tobewritten);
+                } catch (IOException ex) {
+                    Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if(filtrado.get(i).length()==4){             
+                //Dia
+                horarioelocal="insert into horarios values ('"+filtrado.get(i); 
+                i=i+1;
+                if(i<filtrado.size()){
+                    //Horario
+                    horarioelocal+=filtrado.get(i);
+                    i=i+1;
+                    if(i<filtrado.size())
+                        //Local (Sempre existe, mesmo que seja A definir)
+                        horarioelocal+=filtrado.get(i);
+                    horarioelocal+="',"+NumDis+",'"+turma+"');";
                     try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
-                        writer.println(tobewritten);
+                        writer.println(horarioelocal);
                     } catch (IOException ex) {
                         Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            }else{
-                tobewritten+=","+NumDis+");";
+                //Caso tenha dia mas nao tenha horário nem local
+                else{
+                   horarioelocal+="',"+NumDis+",'"+turma+"');";
+                   try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+                        writer.println(horarioelocal);
+                    } catch (IOException ex) {
+                        Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+               }
+            }
+            //Se nao é turma ou dia é nome de professor
+            else{
+                professores = "insert into professores values ('"+filtrado.get(i)+"',"+NumDis+",'"+turma+"');";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
-                    writer.println(tobewritten);
+                    writer.println(professores);
                 } catch (IOException ex) {
                     Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                 }
