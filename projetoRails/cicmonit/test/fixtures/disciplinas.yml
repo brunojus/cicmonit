@@ -3,11 +3,9 @@
 one:
   codigo: 1
   nome: MyString
-  departamento: 1
-  creditos: 1
+  departamento_id: 
 
 two:
   codigo: 1
   nome: MyString
-  departamento: 1
-  creditos: 1
+  departamento_id: 

@@ -1,0 +1,25 @@
+<h1><center>Departamentos</center></h1>
+<table>
+<tr>
+
+	<th>Codigo</td>
+	<th>&nbsp;</td>
+	<th>sigla</td>
+	<th>&nbsp;</td>
+	<th>nome</td>
+	<th>&nbsp;</td>
+	<th>Links</td>
+</tr>
+<% departamento = Departamento.all %>
+<% departamento.each do|departamento| %>
+<tr>
+<td><%= departamento.codigo %></td>
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= departamento.sigla %></td> 
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= departamento.nome %></td> 
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= link_to 'Disciplinas', action: 'showDisciplinas', id: departamento %></td>
+</tr>
+<% end %>
+</table>

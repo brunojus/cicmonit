@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  codigo: 1
+  sigla: MyString
   nome: MyString
-  disciplina_id: 
+  campu_id: 
 
 two:
+  codigo: 1
+  sigla: MyString
   nome: MyString
-  disciplina_id: 
+  campu_id: 

@@ -11,22 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411030925) do
+ActiveRecord::Schema.define(version: 20160419182151) do
+
+  create_table "campus", force: :cascade do |t|
+    t.integer  "codigo"
+    t.string   "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "departamentos", force: :cascade do |t|
+    t.integer  "codigo"
+    t.string   "sigla"
+    t.string   "nome"
+    t.integer  "campu_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "departamentos", ["campu_id"], name: "index_departamentos_on_campu_id"
 
   create_table "disciplinas", force: :cascade do |t|
     t.integer  "codigo"
     t.string   "nome"
-    t.integer  "departamento"
-    t.integer  "creditos"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "departamento_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "disciplinas", ["departamento_id"], name: "index_disciplinas_on_departamento_id"
+
+  create_table "horarios", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "turma_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "horarios", ["turma_id"], name: "index_horarios_on_turma_id"
+
+  create_table "professors", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "turma_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "professors", ["turma_id"], name: "index_professors_on_turma_id"
 
   create_table "turmas", force: :cascade do |t|
     t.string   "nome"
-    t.string   "professor"
-    t.string   "horario"
-    t.integer  "alunos"
     t.integer  "disciplina_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
