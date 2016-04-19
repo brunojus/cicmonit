@@ -1,2 +1,22 @@
-<h1>Disciplinas#showDisciplinas</h1>
-<p>Find me in app/views/disciplinas/showDisciplinas.html.erb</p>
+<h1><center>Disciplinas</center></h1>
+<table>
+<tr>
+
+	<th>Codigo</td>
+	<th>&nbsp;</td>
+	<th>nome</td>
+	<th>&nbsp;</td>
+	<th>Links</td>
+</tr>
+<% disciplina = Disciplina.all %>
+<% disciplina.each do|disciplina| %>
+<tr>
+<td><%= disciplina.codigo %></td>
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= disciplina.nome %></td> 
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= link_to 'Turmas', action: 'showTurmas', id: disciplina %></td>
+</tr>
+<% end %>
+</table>
+<%= link_to 'Departamentos', "disciplina#showDepartamentos" %>

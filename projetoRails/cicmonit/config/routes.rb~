@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   get 'disciplinas/showProfessores'
 
+	resources:disciplina
+	root to:"disciplinas#showDisciplinas"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

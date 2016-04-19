@@ -45,5 +45,3 @@ group :development do
   gem 'spring'
 end
 
-  #Correcao necessaria para usar no windows
-	gem 'tzinfo-data'
