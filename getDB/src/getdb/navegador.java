@@ -63,65 +63,65 @@ public class navegador {
         }
         //Separaçao dos links dos nomes dos campus, matérias ou departamentos
         // ocorre também a navegaçao por recursividade
-        File file = new File("Banco/db.txt");
-            for(int i = 0; i<filtrado.size(); i++){
-                //Estas linhas ditam a estrutura inicial do Banco
-                if(link.contains("oferta_dep")&& flagwriten == 0){
-                    tobewritten = "insert into departamento values (";
-                    flagwriten = 1;
-                }
-                if(link.contains("oferta_campus")&& flagwriten == 0){
-                    tobewritten = "insert into campus values (";
-                    flagwriten = 1;
-                }
-                if(link.contains("oferta_dis")){
-                     tobewritten = "insert into disciplinas values (";
-                    flagwriten = 1;
-                }
-                try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
-                if(filtrado.get(i).contains(">")){
-                    parte1 = filtrado.get(i).split(">");
-                    filtrado.set(i, parte1[1]);
-                    //Estas linhas são necessárias para navegação a partir de um departamento específico
-                    //devido à estrutura distinta da marcação
-                    if (link.contains("oferta_dis")){
-                        Num = parte1[0].substring(parte1[0].indexOf("cod=")+4,parte1[0].indexOf("&dep="));
-                        NumSup = parte1[0].substring(parte1[0].indexOf("dep=")+4);
-                        writer.println(tobewritten+Num+",'"+filtrado.get(i)+"',"+NumSup+");");
-                        flagwriten = 0;
-                    }
-                    //Estas linhas são necessárias para navegação a partir de um campus específico
-                    //devido à estrutura distinta da marcação
-                    else if(link.contains("oferta_dep")){
-                        NumSup = link.substring(parte1[0].indexOf("cod=")+4);
-                        writer.println(tobewritten+"'"+filtrado.get(i)+"',"+NumSup+");");
-                        flagwriten = 0;
-                    }else{
-                    //Estas linhas são necessárias para navegação a partir do início das ofertas do MW
-                    //devido à estrutura distinta da marcação
-                        writer.println(tobewritten+"'"+filtrado.get(i)+"');");
-                        flagwriten = 0;
-                    }
-                    writer.close();
-                    acessodepartamento(parte1[0]);
-                }else{
-                    //esta linha é necessária para navegação a partir do campus, pois há a necessidade
-                    //de uma ordem entre números identificadores, siglas e nomes
-                    try{
-                        Integer.parseInt(filtrado.get(i));
-                        tobewritten += filtrado.get(i) +",";
-                        flagwriten = 1;
-                    }catch(NumberFormatException ex){
-                        tobewritten += "'"+filtrado.get(i)+"',";
-                        flagwriten = 1;
-                    }
-                }
-            } catch (IOException ex) {
-                //Seria bom um tratamento de erro aqui
-                Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+        File file = new File("Banco/db.sql");
+        for(int i = 0; i<filtrado.size(); i++){
+            //Estas linhas ditam a estrutura inicial do Banco
+            if(link.contains("oferta_dep")&& flagwriten == 0){
+                tobewritten = "INSERT INTO \"departamento\" VALUES(";
+                flagwriten = 1;
             }
+            if(link.contains("oferta_campus")&& flagwriten == 0){
+                tobewritten = "INSERT INTO \"campus\" VALUES(";
+                flagwriten = 1;
+            }
+            if(link.contains("oferta_dis")){
+                 tobewritten = "INSERT INTO \"disciplinas\" VALUES(";
+                flagwriten = 1;
+            }
+            try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+            if(filtrado.get(i).contains(">")){
+                parte1 = filtrado.get(i).split(">");
+                filtrado.set(i, parte1[1]);
+                //Estas linhas são necessárias para navegação a partir de um departamento específico
+                //devido à estrutura distinta da marcação
+                if (link.contains("oferta_dis")){
+                    Num = parte1[0].substring(parte1[0].indexOf("cod=")+4,parte1[0].indexOf("&dep="));
+                    NumSup = parte1[0].substring(parte1[0].indexOf("dep=")+4);
+                    writer.println(tobewritten+Num+",'"+filtrado.get(i)+"',"+NumSup+");");
+                    flagwriten = 0;
+                }
+                //Estas linhas são necessárias para navegação a partir de um campus específico
+                //devido à estrutura distinta da marcação
+                else if(link.contains("oferta_dep")){
+                    NumSup = link.substring(parte1[0].indexOf("cod=")+4);
+                    writer.println(tobewritten+"'"+filtrado.get(i)+"',"+NumSup+");");
+                    flagwriten = 0;
+                }else{
+                //Estas linhas são necessárias para navegação a partir do início das ofertas do MW
+                //devido à estrutura distinta da marcação
+                    writer.println(tobewritten+"'"+filtrado.get(i)+"');");
+                    flagwriten = 0;
+                }
+                writer.close();
+                acessodepartamento(parte1[0]);
+            }else{
+                //esta linha é necessária para navegação a partir do campus, pois há a necessidade
+                //de uma ordem entre números identificadores, siglas e nomes
+                try{
+                    Integer.parseInt(filtrado.get(i));
+                    tobewritten += filtrado.get(i) +",";
+                    flagwriten = 1;
+                }catch(NumberFormatException ex){
+                    tobewritten += "'"+filtrado.get(i)+"',";
+                    flagwriten = 1;
+                }
+            }
+        } catch (IOException ex) {
+            //Seria bom um tratamento de erro aqui
+            Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+}
 
     //Funçao para acessar o html da turmas, retornando letra da turma horário e professor
     static void acessarturmas (String link, int NumDis) throws MalformedURLException{
@@ -165,12 +165,15 @@ public class navegador {
                 }
             }
         }
-        File file = new File("Banco/db.txt");
+        File file = new File("Banco/db.sql");
         for(int i = 0; i<filtrado.size(); i++){
             //Insere a letra da turma na saida
+            //Tratando a única exceção ainda existente
+            if(filtrado.get(i).contains("wrap"))
+                filtrado.set(i, "DOM ");
             if(filtrado.get(i).length()<4){
                 turma = filtrado.get(i);
-                tobewritten = "insert into turmas values ('"+turma+"'";
+                tobewritten = "INSERT INTO \"turmas\" VALUES('"+turma+"'";
                 tobewritten+=","+NumDis+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(tobewritten);
@@ -179,7 +182,7 @@ public class navegador {
                 }
             }else if(filtrado.get(i).length()==4){             
                 //Dia
-                horarioelocal="insert into horarios values ('"+filtrado.get(i); 
+                horarioelocal="INSERT INTO \"horarios\" VALUES('"+filtrado.get(i); 
                 i=i+1;
                 if(i<filtrado.size()){
                     //Horario
@@ -207,7 +210,7 @@ public class navegador {
             }
             //Se nao é turma ou dia é nome de professor
             else{
-                professores = "insert into professores values ('"+filtrado.get(i)+"',"+NumDis+",'"+turma+"');";
+                professores = "INSERT INTO \"professores\" VALUES('"+filtrado.get(i)+"',"+NumDis+",'"+turma+"');";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(professores);
                 } catch (IOException ex) {
