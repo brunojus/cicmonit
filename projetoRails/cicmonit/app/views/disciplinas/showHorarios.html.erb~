@@ -3,7 +3,7 @@
 
 	<th>Horarios & Local</td>
 </tr>
-<% Horario = turma.horarios %>
+<% horario = turma.horarios %>
 <% horario.each do|horario| %>
 <tr>
 <td><%= horario.nome %></td> 

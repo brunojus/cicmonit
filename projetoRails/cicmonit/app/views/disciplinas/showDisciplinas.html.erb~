@@ -8,7 +8,7 @@
 	<th>&nbsp;</td>
 	<th>Links</td>
 </tr>
-<% disciplina = Disciplina.all %>
+<% disciplina = Disciplina.all%>
 <% disciplina.each do|disciplina| %>
 <tr>
 <td><%= disciplina.codigo %></td>
@@ -19,4 +19,3 @@
 </tr>
 <% end %>
 </table>
-<%= link_to 'Departamentos', "disciplina#showDepartamentos" %>

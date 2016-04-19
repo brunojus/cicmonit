@@ -15,7 +15,7 @@ class DisciplinasController < ApplicationController
   end
 
   def showHorarios
-	@Horarios = Turma.find(params[:id])
+	@horarios = Turma.find(params[:id])
   end
 
   def showProfessores

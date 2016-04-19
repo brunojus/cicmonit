@@ -1,10 +1,10 @@
 <% turma = Turma.all %>
+<% turma.each do|turma| %>
 <table>
 <tr>
 
 	<th>Turma</td>
 </tr>
-<% turma.each do|turma| %>
 <tr>
 <td><%= turma.nome %></td> 
 

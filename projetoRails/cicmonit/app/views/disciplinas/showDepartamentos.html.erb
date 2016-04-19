@@ -10,7 +10,7 @@
 	<th>&nbsp;</td>
 	<th>Links</td>
 </tr>
-<% departamento = Departamento.all %>
+<% departamento = @departamento.departamentos %>
 <% departamento.each do|departamento| %>
 <tr>
 <td><%= departamento.codigo %></td>

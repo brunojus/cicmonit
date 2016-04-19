@@ -10,8 +10,8 @@
 	<th>&nbsp;</td>
 	<th>Links</td>
 </tr>
-<% departamento = Departamento.all %>
-<% departamento.each do|departamento| %>
+<% departamento = @departamento.departamentos %>
+<% departamento.each do|@departamento| %>
 <tr>
 <td><%= departamento.codigo %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
@@ -23,4 +23,3 @@
 </tr>
 <% end %>
 </table>
-<%= link_to 'proximo', action: 'showDisciplinas', id: departamento %>
