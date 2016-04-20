@@ -1,21 +1,22 @@
 <h1><center>Universidade de Brasilia</center></h1>
-<table>
-<tr>
+<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
+<tr bgcolor="6B9A8C" >
 
 	<th>Codigo</td>
 	<th>&nbsp;</td>
 	<th>Denominacao</td>
-	<th>&nbsp;</td>
-	<th>Links</td>
+	
 </tr>
 <% campus = Campu.all %>
 <% campus.each do|campus| %>
-<tr>
+<% if campus.id % 2 == 0 %>
+	<tr bgcolor="E7F3D6" >
+<% else %>
+	<tr bgcolor="FFF7F7" >
+<% end %>
 <td><%= campus.codigo %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
-<td><%= campus.nome %></td> 
-<td>&nbsp&nbsp&nbsp&nbsp</td>
-<td><%= link_to 'Departamentos', action: 'showDepartamentos', id: campus %></td>
+<td><%= link_to campus.nome, action: 'showDepartamentos', id: campus %></td>
 </tr>
 <% end %>
 </table>

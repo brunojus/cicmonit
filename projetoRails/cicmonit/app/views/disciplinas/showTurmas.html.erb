@@ -1,6 +1,6 @@
 <% turma = @turma.turmas %>
 <% turma.each do|turma| %>
-<table>
+<font face="Arial"><table></font>
 <tr>
 
 	<th>Turma</td>
@@ -8,27 +8,35 @@
 <tr>
 <td><%= turma.nome %></td> 
 
-	<table>
-	<tr>
+	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
+	<tr bgcolor="6B9A8C" >
 
 		<th>Horarios & Local</td>
 	</tr>
 	<% horario = turma.horarios %>
 	<% horario.each do|horario| %>
-	<tr>
+	<% if horario.id % 2 == 0 %>
+		<tr bgcolor="E7F3D6" > <%#branco%>
+	<% else %>
+		<tr bgcolor="FFFFF7" > <%#verde%>
+	<% end %>
 	<td><%= horario.nome %></td> 
 	</tr>
 	<% end %>
-	</table>
 	
-	<table>
-	<tr>
-
+	
+	
+	
+	<tr bgcolor="6B9A8C">
 		<th>Professores</td>
 	</tr>
 	<% professor = turma.professors %>
 	<% professor.each do|professor| %>
-	<tr>
+	<% if professor.id % 2 == 0 %>
+		<tr bgcolor="E7F3D6" >
+	<% else %>
+		<tr bgcolor="FFF7F7" >
+	<% end %>
 	<td><%= professor.nome %></td> 
 	</tr>
 	<% end %>
