@@ -17,15 +17,15 @@
   </div>
   <div class="field">
     <%= f.label :matricula %><br>
-    <%= f.text_field :matricula %>
+    <%= f.number_field :matricula,min:0 %> 
   </div>
   <div class="field">
     <%= f.label :semestre %><br>
-    <%= f.number_field :semestre %>
+    <%= f.number_field :semestre,min:1 %>
   </div>
   <div class="field">
     <%= f.label :IRA %><br>
-    <%= f.text_field :IRA %>
+    <%= f.number_field :IRA, min: 0, max: 5.0, :step => 'any' %>
   </div>
   <div class="actions">
     <%= f.submit %>
