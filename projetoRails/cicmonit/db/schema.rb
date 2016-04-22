@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20160417161628) do
 
   create_table "alunos", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "matricula"
-    t.integer  "semestre"
-    t.float    "IRA"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 225,               null: false
+    t.string   "matricula",  limit: 9,                 null: false
+    t.integer  "semestre",                             null: false
+    t.float    "IRA",                    default: 5.0, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
 end
