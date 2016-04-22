@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
-
+<body style="background-color: lightblue;">
 <p>
-  <strong>Nome:</strong>
-  <%= @aluno.nome %>
+  <font color="red"><strong>Nome:</strong></font>
+  <font color="red"><%= @aluno.nome %></font>
 </p>
 
 <p>
-  <strong>Matricula:</strong>
-  <%= @aluno.matricula %>
+  <font color="red"><strong>Matricula:</strong></font>
+  <font color="red"><%= @aluno.matricula %></font>
 </p>
 
 <p>
-  <strong>Semestre:</strong>
-  <%= @aluno.semestre %>
+  <font color="red"><strong>Semestre:</strong></font>
+  <font color="red"><%= @aluno.semestre %></font>
 </p>
 
 <p>
-  <strong>Ira:</strong>
-  <%= @aluno.IRA %>
+  <font color="red"><strong>Ira:</strong></font>
+  <font color="red"><%= @aluno.IRA %></font>
 </p>
-
+</body>
 <%= link_to 'Editar Dicente', edit_aluno_path(@aluno) %> |
 <%= link_to 'Voltar', alunos_path %>
