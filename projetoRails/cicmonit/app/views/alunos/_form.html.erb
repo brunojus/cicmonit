@@ -13,15 +13,17 @@
 <body style="background-color: lightblue;">
   <div class="field">
     <font color="red"><%= f.label :nome %><br></font>
-    <%= f.text_field :nome %>
+    <%= f.text_field :nome, :size=>"50", placeholder: "Digite seu nome", :maxlength=>"255"   %>
   </div>
   <div class="field">
     <font color="red"><%= f.label :matricula %><br></font>
-    <%= f.text_field :matricula %>
+
+    <%= f.text_field :matricula, :size=>"11", placeholder: "Digite sua matrícula", :maxlength=>"9"  %>
+
   </div>
   <div class="field">
     <font color="red"><%= f.label :semestre %><br></font>
-    <%= f.number_field :semestre, min:1 %>
+    <%= f.number_field :semestre, placeholder: "Digite seu semestre", min:1 %>
   </div>
   <div class="field">
     <font color="red"><%= f.label :IRA %><br></font>
