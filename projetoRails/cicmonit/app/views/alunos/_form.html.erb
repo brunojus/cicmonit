@@ -10,24 +10,24 @@
       </ul>
     </div>
   <% end %>
-<body style="background-color: lightblue;">
+<body style="background-color: white;">
   <div class="field">
-    <font color="red"><%= f.label :nome %><br></font>
-    <%= f.text_field :nome, :size=>"50", placeholder: "Digite seu nome", :maxlength=>"255"   %>
+    <font color="black"><%= f.label :nome %><br></font>
+    <%= f.text_field :nome, :size=>"50", placeholder: "Digite seu nome", :maxlength=>"50"   %>
   </div>
   <div class="field">
-    <font color="red"><%= f.label :matricula %><br></font>
+    <font color="black"><%= f.label :matricula %><br></font>
 
     <%= f.text_field :matricula, :size=>"11", placeholder: "Digite sua matrícula", :maxlength=>"9"  %>
 
   </div>
   <div class="field">
-    <font color="red"><%= f.label :semestre %><br></font>
-    <%= f.number_field :semestre, placeholder: "Digite seu semestre", min:1 %>
+    <font color="black"><%= f.label :semestre %><br></font>
+    <%= f.number_field :semestre, placeholder: "Digite seu semestre", min:1, max:10s %>
   </div>
   <div class="field">
-    <font color="red"><%= f.label :IRA %><br></font>
-    <%= f.number_field :IRA, min: 0.0, max: 5.0, :step => 0.0001 %>
+    <font color="black"><%= f.label :IRA %><br></font>
+    <%= f.number_field :IRA, placeholder:"5.00", min: 0.00, max: 5.00, :step => 0.1, :maxlength=>"3" %>
   </div>
   <div class="actions">
     <%= f.submit %>
