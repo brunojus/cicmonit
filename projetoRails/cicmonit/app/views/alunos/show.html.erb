@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <font color="black"><strong>Matricula:</strong></font>
+  <font color="black"><strong>Matrícula:</strong></font>
   <font color="black"><%= @aluno.matricula %></font>
 </p>
 
@@ -16,9 +16,9 @@
 </p>
 
 <p>
-  <font color="black"><strong>Ira:</strong></font>
+  <font color="black"><strong>IRA:</strong></font>
   <font color="black"><%= @aluno.IRA %></font>
 </p>
 </body>
-<%= link_to 'Editar Dicente', edit_aluno_path(@aluno) %> |
-<%= link_to 'Voltar', alunos_path %>
+<%= link_to image_tag("edit.png"), edit_aluno_path(@aluno) %> |
+<%= link_to image_tag("back.png"), alunos_path %>
