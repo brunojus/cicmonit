@@ -1,0 +1,49 @@
+<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
+<% turma = @turma.turmas %>
+<% turma.each do|turma| %>
+<font face="Arial"><table></font>
+<tr>
+
+	<th>Turma</td>
+	<td><%= turma.nome %></td> 
+</tr>
+<tr>
+
+
+	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
+	<tr bgcolor="6B9A8C" >
+
+		<th>Horarios & Local</td>
+	</tr>
+	<% horario = turma.horarios %>
+	<% horario.each do|horario| %>
+	<% if horario.id % 2 == 0 %>
+		<tr bgcolor="E7F3D6" > <%#branco%>
+	<% else %>
+		<tr bgcolor="FFFFF7" > <%#verde%>
+	<% end %>
+	<td><%= horario.nome %></td> 
+	</tr>
+	<% end %>
+	
+	
+	
+	
+	<tr bgcolor="6B9A8C">
+		<th>Professores</td>
+	</tr>
+	<% professor = turma.professors %>
+	<% professor.each do|professor| %>
+	<% if professor.id % 2 == 0 %>
+		<tr bgcolor="E7F3D6" >
+	<% else %>
+		<tr bgcolor="FFF7F7" >
+	<% end %>
+	<td><%= professor.nome %></td> 
+	</tr>
+	<% end %>
+	</table>
+</tr>
+<% end %>
+</table>
+</body>

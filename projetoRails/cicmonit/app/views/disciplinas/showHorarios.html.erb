@@ -1,0 +1,13 @@
+<table>
+<tr>
+
+	<th>Horarios & Local</td>
+</tr>
+<% horario = @horarios.horarios %>
+<% horario.each do|horario| %>
+<tr>
+<td><%= horario.nome %></td> 
+</tr>
+<% end %>
+</table>
+

@@ -2,16 +2,8 @@
 
 one:
   nome: MyString
-<<<<<<< HEAD
-  matricula:
+  disciplina_id: 
 
 two:
   nome: MyString
-  matricula:
-=======
-  turma_id: 
-
-two:
-  nome: MyString
-  turma_id: 
->>>>>>> origin/h1
+  disciplina_id: 

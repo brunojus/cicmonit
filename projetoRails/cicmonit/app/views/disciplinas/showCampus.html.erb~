@@ -1,0 +1,22 @@
+<h1><center>Universidade de Brasilia</center></h1>
+<table>
+<tr>
+
+	<th>Codigo</td>
+	<th>&nbsp;</td>
+	<th>Denominacao</td>
+	<th>&nbsp;</td>
+	<th>Links</td>
+</tr>
+<% campus = Campu.all %>
+<% campus.each do|campus| %>
+<tr>
+<td><%= campus.codigo %></td>
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= campus.nome %></td> 
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= link_to 'Departamentos', action: 'showDepartamentos', id: campus %></td>
+</tr>
+<% end %>
+</table>
+<td><%= link_to 'proximo', action: 'showDepartamentos', id: campus %></td>

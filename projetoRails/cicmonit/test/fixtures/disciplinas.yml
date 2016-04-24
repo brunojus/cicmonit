@@ -1,17 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  codigo: 1
   nome: MyString
-<<<<<<< HEAD
-  matricula:
+  departamento_id: 
 
 two:
+  codigo: 1
   nome: MyString
-  matricula:
-=======
-  turma_id: 
-
-two:
-  nome: MyString
-  turma_id: 
->>>>>>> origin/h1
+  departamento_id: 

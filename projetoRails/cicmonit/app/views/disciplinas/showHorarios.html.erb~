@@ -1,0 +1,25 @@
+<table>
+<tr>
+
+	<th>Horarios & Local</td>
+</tr>
+<% horario = turma.horarios %>
+<% horario.each do|horario| %>
+<tr>
+<td><%= horario.nome %></td> 
+</tr>
+<% end %>
+</table>
+
+<table>
+<tr>
+
+	<th>Professores</td>
+</tr>
+<% professor = turma.professors %>
+<% professor.each do|professor| %>
+<tr>
+<td><%= professor.nome %></td> 
+</tr>
+<% end %>
+</table>

@@ -1,0 +1,93 @@
+No rails console:
+#####################################################################################################
+Para Adicionar um campus:
+	C = Campu.create(codigo:'1',nome:'Darcy Ribeiro')
+Para Adicionar um departamento:
+	D = Departamento.create(codigo:'116',sigla:'CIC',nome:'Departamento de Ciência de Computação')
+****************************************************************
+Como a tabela Departamento está relacionada com a tabela Campu, ou seja:
+ -Um campus tem vários departamentos 
+ -Um departamento pertence a apenas um Campus
+****************************************************************
+Relacionando as duas tabelas:
+	D.campu = C
+	D.save
+#####################################################################################################
+Para Adicionar uma Disciplina:
+	G = Disciplina.create(codigo:'113476',nome:'Algoritmos e Programação de Computadores')
+****************************************************************
+Como a tabela Disciplina está relacionada com a tabela Departamento, ou seja:
+ -Um Departamento tem várias disciplinas
+ -Uma Disciplina pertence a apenas a um Departamento
+****************************************************************
+Relacionando as duas tabelas:
+	G.departamento = D
+	G.save
+#####################################################################################################
+Para Adicionar uma Turma:
+	T = Turma.create(nome:'A')
+****************************************************************
+Como a tabela turma está relacionada com a tabela Disciplina, ou seja:
+ -Um Disciplina tem várias turmas
+ -Uma Turma pertence a apenas a uma Disciplina
+****************************************************************
+Relacionando as duas tabelas:
+	T.disciplina = G
+	T.save
+#####################################################################################################
+Para Adiconar um Horario:
+
+obs.: horario é uma string que contem o dia da semana horaio de inicio de termino e o local:
+
+	H = Horario.create(nome:'Segunda 16:00 17:50 PAT AT 117')
+****************************************************************
+Como a tabela Horario está relacionada com a tabela Turma, ou seja:
+ -Uma Turma pode ter vários horarios
+ -Um horario pertence a apenas uma Turma
+****************************************************************
+Relacionando as duas tabelas:
+	H.turma = T
+	H.save
+#####################################################################################################
+Para Adicionar um Professor:
+	P = Professor.create(nome:'Carla Denise Castanho')
+****************************************************************
+Como a tabela Professor está relacionada com a tabela Turma, ou seja:
+ -Uma Turma pode ter vários professores
+ -Um Professor pertence a apenas uma Turma
+****************************************************************
+Relacionando as duas tabelas:
+	P.turma = T
+	P.save
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+Dessa maneira me permite fazer a linkagem, entre as rotas e deixar o código mais organizado
+
+Lembrando, que a cada inserção em qualquer tabela é importante relacionar cada elemento inserido na tabela X com o respectivo elemento ja inserido na tabela W. Algoritmo:
+
+	1 - Inserindo um Campus;
+	2 - insere o departamento pertencente aquele campus;
+	3 - insere a disciplina pertencente aquele departamento;
+	4 - insere a turma pertencente aquela disciplina;
+	5 - insere o horario pertencente aquela turma;
+	6 - insere o professor pertencente aquela turma;
+	7 - verifica se existe mais algum professor daquela turma, caso tenha insere outro professor
+	8 - caso contrário: sobe um nível
+	9 - verifica se existe um outro horario para aquela mesma turma, caso exista insere outro horario
+        10 - caso contrário: sobe um nível
+	11 - verifica se existe outra turma pertencente aquela disciplina que inseriu
+	12 - Caso exista, repita os passos de 4 até 10
+	13 - Caso contrario, sobe um nivel
+	14 - Varifica se existe outra disciplina pertencente aquele departamento que inseriu
+	15 - Caso exista, repita os passos de 3 até 13
+	16 - Caso contrario, sobe um nivel
+	17 - Verifica se existe outro departamento pertencente aquele campus:
+	18 - Caso exista repete os passos de 2 até 16
+	19 - Caso contrário sobre um nivel
+	20 - Verifica se existe outro Campus
+	21 - Caso exista repete os passos de 1 até 19
+	22 - Caso contrário:fim
+	
+
+
+
