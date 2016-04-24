@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<body style="background-color: white;">
+
+<font color="black"><h1>Listar Alunos</h1></font>
+
+<font color="black"><table></font>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Matricula</th>
+      <th>Semestre</th>
+      <th>Ira</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alunos.each do |aluno| %>
+      <tr>
+        <td><%= aluno.nome %></td>
+        <td><%= aluno.matricula %></td>
+        <td><%= aluno.semestre %></td>
+        <td><%= aluno.IRA %></td>
+        <td><%= link_to image_tag("zoom.png"), aluno %></td>
+        <td><%= link_to image_tag("wrench.png"), edit_aluno_path(aluno) %></td>
+        <td><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+<br>
+
+<%= link_to 'Novo Dicente', new_aluno_path %>
