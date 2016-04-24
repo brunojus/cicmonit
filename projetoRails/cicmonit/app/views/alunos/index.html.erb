@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
+</head>
+<body style="background-color: white;">
+
+<font color="black"><h1>Listar Dicentes</h1></font>
+
+<font color="black"><table></font>
+  <thead>
+    <tr>
+      <th align="center">Nome</th>
+      <th align="center">Matrícula</th>
+      <th align="center">Semestre</th>
+      <th align="center">IRA</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alunos.each do |aluno| %>
+      <tr>
+        <td align="center"><%= aluno.nome %></td>
+        <td align="center"><%= formata_matricula(aluno.matricula) %></td>
+        <td align="center"><%= formata_semestre(aluno.semestre) %></td>
+        <td align="center"><%= aluno.IRA %></td>
+        <td align="center"><%= link_to image_tag("show.png"), aluno %></td>
+        <td align="center"><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td>
+        <td align="center"><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+<br>
+
+<%= link_to image_tag("new.png"), new_aluno_path %>
