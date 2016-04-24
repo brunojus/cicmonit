@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :alunos
   root :to =>"alunos#FrontPage"
+=======
+  devise_for :professors
+  resources :professors
+  root :to =>"professors#index"
+>>>>>>> H3
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

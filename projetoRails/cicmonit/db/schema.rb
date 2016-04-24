@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160419182125) do
 
   create_table "alunos", force: :cascade do |t|
@@ -58,6 +59,9 @@ ActiveRecord::Schema.define(version: 20160419182125) do
   end
 
   add_index "horarios", ["turma_id"], name: "index_horarios_on_turma_id"
+=======
+ActiveRecord::Schema.define(version: 20160409015547) do
+>>>>>>> H3
 
   create_table "professors", force: :cascade do |t|
     t.string   "nome"
@@ -79,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160419182125) do
   add_index "professors", ["email"], name: "index_professors_on_email", unique: true
   add_index "professors", ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true
 
+<<<<<<< HEAD
   create_table "turmas", force: :cascade do |t|
     t.string   "nome"
     t.integer  "disciplina_id"
@@ -88,4 +93,6 @@ ActiveRecord::Schema.define(version: 20160419182125) do
 
   add_index "turmas", ["disciplina_id"], name: "index_turmas_on_disciplina_id"
 
+=======
+>>>>>>> H3
 end
