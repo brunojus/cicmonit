@@ -11,21 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160419182125) do
 
   create_table "alunos", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "matricula"
-    t.integer  "semestre"
-    t.float    "IRA"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 225,               null: false
+    t.string   "matricula",  limit: 9,                 null: false
+    t.integer  "semestre",                             null: false
+    t.float    "IRA",                    default: 5.0, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
-=======
-ActiveRecord::Schema.define(version: 20160419182151) do
->>>>>>> origin/h1
 
   create_table "campus", force: :cascade do |t|
     t.integer  "codigo"
@@ -63,14 +58,11 @@ ActiveRecord::Schema.define(version: 20160419182151) do
   end
 
   add_index "horarios", ["turma_id"], name: "index_horarios_on_turma_id"
-<<<<<<< HEAD
-=======
-ActiveRecord::Schema.define(version: 20160409015547) do
->>>>>>> H3
 
   create_table "professors", force: :cascade do |t|
     t.string   "nome"
     t.integer  "matricula"
+    t.integer  "turma_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -87,20 +79,8 @@ ActiveRecord::Schema.define(version: 20160409015547) do
 
   add_index "professors", ["email"], name: "index_professors_on_email", unique: true
   add_index "professors", ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true
-
-<<<<<<< HEAD
-=======
-
-  create_table "professors", force: :cascade do |t|
-    t.string   "nome"
-    t.integer  "turma_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_index "professors", ["turma_id"], name: "index_professors_on_turma_id"
 
->>>>>>> origin/h1
   create_table "turmas", force: :cascade do |t|
     t.string   "nome"
     t.integer  "disciplina_id"
@@ -110,9 +90,4 @@ ActiveRecord::Schema.define(version: 20160409015547) do
 
   add_index "turmas", ["disciplina_id"], name: "index_turmas_on_disciplina_id"
 
-<<<<<<< HEAD
-=======
->>>>>>> H3
-=======
->>>>>>> origin/h1
 end

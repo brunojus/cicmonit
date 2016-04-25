@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   resources :alunos
-  root :to =>"alunos#FrontPage"
-=======
+  # root :to =>"alunos#FrontPage"
+
   devise_for :professors
   resources :professors
-  root :to =>"professors#index"
->>>>>>> H3
-=======
+  # root :to =>"professors#index"
+
   get 'disciplinas/showCampus'
 
   get 'disciplinas/showDepartamentos'
@@ -24,7 +22,6 @@ Rails.application.routes.draw do
 	resources:disciplina
 	root to:"disciplinas#showCampus"
 
->>>>>>> origin/h1
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
