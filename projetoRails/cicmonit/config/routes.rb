@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :professors
   resources :professors
-  # root :to =>"professors#index"
+  #root :to =>"professors#index"
 
   get 'disciplinas/showCampus'
 

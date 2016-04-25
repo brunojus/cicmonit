@@ -18,9 +18,9 @@
         <td><%= professor.nome %></td>
         <td><%= professor.matricula %></td>
         <td><%= professor.email %></td>
-        <td><%= link_to 'Ver', professor %></td>
-        <td><%= link_to 'Editar', edit_professor_path(professor) %></td>
-        <td><%= link_to 'Excluir', professor, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td><%= link_to image_tag("show.png"), professor %></td>
+        <td><%= link_to image_tag("edit.png"), edit_professor_path(professor) %></td>
+        <td><%= link_to image_tag("delete.png"), professor, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>

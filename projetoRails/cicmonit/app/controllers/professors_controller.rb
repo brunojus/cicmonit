@@ -28,7 +28,7 @@ class ProfessorsController < ApplicationController
 
     respond_to do |format|
       if @professor.save
-        format.html { redirect_to @professor, notice: 'Professor foi cadastrado.' }
+        format.html { redirect_to @professor, notice: 'Sucesso no cadastro do dicente #{@professor.nome}.' }
         format.json { render :show, status: :created, location: @professor }
       else
         format.html { render :new }
