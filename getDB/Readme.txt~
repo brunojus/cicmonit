@@ -1,3 +1,4 @@
+Commit inicial:
 GetDB: o programa lê a arvore de html do site do Matricula Web, retornando os campus,departamentos e matérias.
 Está configurado atualmente para retornar apenas as matérias do CIC.
 Segue o seguinte padrão caso seja configurado desde a raiz do MW:
