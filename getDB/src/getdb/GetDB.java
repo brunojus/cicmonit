@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Linco
+ * @author Lincoln
  */
 public class GetDB {
 
