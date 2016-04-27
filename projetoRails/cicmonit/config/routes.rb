@@ -7,6 +7,18 @@ Rails.application.routes.draw do
   resources :professors
   #root :to =>"professors#index"
 
+
+  unauthenticated do
+
+      root :to =>"alunos#index", as: :unauthenticated_root
+
+  end
+
+  authenticated :professors do
+    root  :to=>  'disciplinas#showCampus',  as: :authenticated_root
+  end
+
+
   get 'disciplinas/showCampus'
 
   get 'disciplinas/showDepartamentos'
