@@ -5,19 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :professors
   resources :professors
-  #root :to =>"professors#index"
-
-
-  unauthenticated do
-
-      root :to =>"alunos#index", as: :unauthenticated_root
-
-  end
-
-  authenticated :professors do
-    root  :to=>  'disciplinas#showCampus',  as: :authenticated_root
-  end
-
+   root :to =>"professors#index"
 
   get 'disciplinas/showCampus'
 
@@ -32,7 +20,7 @@ Rails.application.routes.draw do
   get 'disciplinas/showProfessores'
 
 	resources:disciplina
-	root to:"disciplinas#showCampus"
+	#root to:"disciplinas#showCampus"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

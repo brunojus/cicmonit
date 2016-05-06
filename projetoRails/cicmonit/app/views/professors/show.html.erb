@@ -14,5 +14,5 @@
   <strong>Email:</strong>
   <%= @professor.email %>
 </p>
-<%= link_to 'Editar', edit_professor_path(@professor) %> |
-<%= link_to 'Voltar', professors_path %>
+<%= link_to image_tag("edit.png"), edit_professor_path(@professor) %> |
+<%= link_to image_tag("back.png"), professors_path %>
