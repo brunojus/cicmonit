@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getdb;
 
 import java.io.BufferedReader;
@@ -14,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Linco
+ * @author Lincoln
  */
 public class navegador {
     //Navega através da arvore de links ,retornando Campus, Departamentos e/ou Matérias
@@ -50,7 +46,14 @@ public class navegador {
         //Ocorre aqui a divisao e limpeza da string nas respectivas partes removendo a marcaçao html
         parte1 = html.split("</tr>");
         for(int i = 0; i<parte1.length; i++){
-            if(!(parte1[i].contains("<!-- TABELA MEIO -->") || parte1[i].contains("<!-- FIM TABELA MEIO -->"))){
+            parte1[i]= toalphanum(parte1[i]);
+            if(parte1[i].contains("AAO"))
+                parte1[i].replace("AAO", "CAO");
+            if(parte1[i].contains("AAo"))
+                parte1[i].replace("AAo", "cao");
+        }
+        for(int i = 0; i<parte1.length; i++){
+            if(!parte1[i].contains("TABELA MEIO")){
                 parte2 = parte1[i].split("<td>");
                 for(int j = 0; j<parte2.length; j++){
                     if(!(parte2[j].contains("<img") || parte2[j].contains("</b"))){
@@ -140,16 +143,23 @@ public class navegador {
         //Ocorre aqui a divisao e limpeza da string nas respectivas partes removendo a marcaçao html
         parte1 = html.split("</tr>");
         for(int i = 0; i<parte1.length; i++){
+            parte1[i]= toalphanum(parte1[i]);
+            if(parte1[i].contains("AAO"))
+                parte1[i].replace("AAO", "CAO");
+            if(parte1[i].contains("AAo"))
+                parte1[i].replace("AAo", "cao");
+        }
+        for(int i = 0; i<parte1.length; i++){
             if(parte1[i].contains("#FFFFFF")&&parte1[i].contains("<b>")&&parte1[i].contains("</b>")){
                 filtrado.add(parte1[i].substring(parte1[i].indexOf("<b>")+3,parte1[i].indexOf("</b>")));
             }
-            if((parte1[i].contains("Horário:")&&parte1[i].contains("Local:"))&&!parte1[i].contains("href=")){
+            if((parte1[i].contains("Horario:")||parte1[i].contains("Local:"))&&!parte1[i].contains("href=")){
                 parte2 = parte1[i].split("</font></td>");
                 for(int j = 0; j<parte2.length; j++){
-                    if(parte2[j].contains("Horário:")&&parte2[j].contains("Local:")){
+                    if(parte2[j].contains("Horario:")&&parte2[j].contains("Local:")){
                         filtrado.add(parte2[j].substring(parte2[j].indexOf("green>")+6));
-                        filtrado.add(parte2[j].substring(parte2[j].indexOf("Horário:")+9,parte2[j].indexOf("Local")));
-                        filtrado.add(parte2[j].substring(parte2[j].indexOf("Local:")+6,parte2[j].indexOf("\"><font")));
+                        filtrado.add(parte2[j].substring(parte2[j].indexOf("Horario:")+9,parte2[j].indexOf("Local")));
+                        filtrado.add(parte2[j].substring(parte2[j].indexOf("Local:")+7,parte2[j].indexOf("\"><font")));
                     }
                 }
             }
@@ -170,23 +180,24 @@ public class navegador {
             //Insere a letra da turma na saida
             //Tratando a única exceção ainda existente
             if(filtrado.get(i).contains("wrap"))
-                filtrado.set(i, "DOM ");
-            if(filtrado.get(i).length()<4){
+                filtrado.set(i, "DOM");
+            if(filtrado.get(i).length()<3){
                 turma = filtrado.get(i);
                 tobewritten = "INSERT INTO \"turmas\" VALUES('"+turma+"'";
                 tobewritten+=","+NumDis+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(tobewritten);
+                    writer.close();
                 } catch (IOException ex) {
                     Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else if(filtrado.get(i).length()==4){             
+            }else if(filtrado.get(i).length()==3){
                 //Dia
-                horarioelocal="INSERT INTO \"horarios\" VALUES('"+filtrado.get(i); 
+                horarioelocal="INSERT INTO \"horarios\" VALUES('"+filtrado.get(i)+" "; 
                 i=i+1;
                 if(i<filtrado.size()){
                     //Horario
-                    horarioelocal+=filtrado.get(i);
+                    horarioelocal+=filtrado.get(i)+" ";
                     i=i+1;
                     if(i<filtrado.size())
                         //Local (Sempre existe, mesmo que seja A definir)
@@ -194,6 +205,7 @@ public class navegador {
                     horarioelocal+="',"+NumDis+",'"+turma+"');";
                     try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                         writer.println(horarioelocal);
+                        writer.close();
                     } catch (IOException ex) {
                         Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -203,6 +215,7 @@ public class navegador {
                    horarioelocal+="',"+NumDis+",'"+turma+"');";
                    try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                         writer.println(horarioelocal);
+                        writer.close();
                     } catch (IOException ex) {
                         Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -213,6 +226,7 @@ public class navegador {
                 professores = "INSERT INTO \"professores\" VALUES('"+filtrado.get(i)+"',"+NumDis+",'"+turma+"');";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(professores);
+                    writer.close();
                 } catch (IOException ex) {
                     Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -220,7 +234,11 @@ public class navegador {
         }
     }
 
-    
+    public static String toalphanum(final String str) {
+	String limpa = Normalizer.normalize(str, Normalizer.Form.NFD);
+	limpa = limpa.replaceAll("[^\\p{ASCII}]", "");
+	return limpa;
+    }
     
     //Essa funçao retira só a parte necessária do html da pagina.
     //A parte necessaria está contida entre os comentarios TABELA MEIO e FIM TABELA MEIO

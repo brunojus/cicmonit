@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getdb;
 
 import java.io.File;
@@ -15,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Linco
+ * @author Lincoln
  */
 public class GetDB {
 
@@ -59,7 +54,7 @@ public class GetDB {
             writer.println("CREATE TABLE \"professores\" (\"professor\" varchar, \"id_dis\" integer, \"id_tur\" varchar);");
             //Necessário por nao comessar da raiz
             writer.println("INSERT INTO \"campus\" VALUES(1,'Darcy Ribeiro');");
-            writer.println("INSERT INTO \"departamentos\" VALUES(116,'CIC','Departamento de Ciência da Computação',1);");
+            writer.println("INSERT INTO \"departamentos\" VALUES(116,'CIC','Departamento de Ciencia da Computacao',1);");
             writer.close();
         }catch (IOException ex) {
             //Seria bom um tratamento de erro aqui
