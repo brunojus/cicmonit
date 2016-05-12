@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512021255) do
+ActiveRecord::Schema.define(version: 20160512041843) do
 
   create_table "alunos", force: :cascade do |t|
     t.string   "nome",       limit: 225,               null: false
@@ -30,11 +30,21 @@ ActiveRecord::Schema.define(version: 20160512021255) do
   end
 
   create_table "candidatos", force: :cascade do |t|
-    t.integer  "codigo_candidato"
     t.string   "mencao"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "aluno_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "candidatos", ["aluno_id"], name: "index_candidatos_on_aluno_id"
+
+  create_table "candidatos_turmas", id: false, force: :cascade do |t|
+    t.integer "candidato_id", null: false
+    t.integer "turma_id",     null: false
+  end
+
+  add_index "candidatos_turmas", ["candidato_id"], name: "index_candidatos_turmas_on_candidato_id"
+  add_index "candidatos_turmas", ["turma_id"], name: "index_candidatos_turmas_on_turma_id"
 
   create_table "departamentos", force: :cascade do |t|
     t.integer  "codigo"
@@ -68,17 +78,13 @@ ActiveRecord::Schema.define(version: 20160512021255) do
 
   create_table "professores_das_disciplinas", force: :cascade do |t|
     t.string   "nome"
-    t.integer  "turma_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "professores_das_disciplinas", ["turma_id"], name: "index_professores_das_disciplinas_on_turma_id"
-
   create_table "professors", force: :cascade do |t|
     t.string   "nome"
     t.integer  "matricula"
-    t.integer  "turma_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -95,7 +101,14 @@ ActiveRecord::Schema.define(version: 20160512021255) do
 
   add_index "professors", ["email"], name: "index_professors_on_email", unique: true
   add_index "professors", ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true
-  add_index "professors", ["turma_id"], name: "index_professors_on_turma_id"
+
+  create_table "professors_turmas", id: false, force: :cascade do |t|
+    t.integer "professor_id", null: false
+    t.integer "turma_id",     null: false
+  end
+
+  add_index "professors_turmas", ["professor_id"], name: "index_professors_turmas_on_professor_id"
+  add_index "professors_turmas", ["turma_id"], name: "index_professors_turmas_on_turma_id"
 
   create_table "turma_has_candidatos", force: :cascade do |t|
     t.datetime "created_at", null: false

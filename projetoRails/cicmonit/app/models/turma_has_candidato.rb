@@ -1,4 +1,4 @@
 class TurmaHasCandidato < ActiveRecord::Base
-  belongs_to :candidato
-  belongs_to :turma
+  # belongs_to :candidato
+  # belongs_to :turma
 end
