@@ -4,7 +4,6 @@ class CreateProfessors < ActiveRecord::Migration
       t.string :nome
       t.integer :matricula
       # t.references :turma, index: true, foreign_key: true
-      t.timestamps null: false
     end
   end
 end
