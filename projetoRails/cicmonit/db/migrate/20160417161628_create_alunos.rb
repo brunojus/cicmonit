@@ -5,6 +5,8 @@ class CreateAlunos < ActiveRecord::Migration
       t.string :matricula, limit:9, null: false
       t.integer :semestre, null: false
       t.float :IRA, null: false, default: 5.0
+
+      t.timestamps null: false
     end
   end
 end

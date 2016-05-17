@@ -70,18 +70,15 @@ public class navegador {
         for(int i = 0; i<filtrado.size(); i++){
             //Estas linhas ditam a estrutura inicial do Banco
             if(link.contains("oferta_dep")&& flagwriten == 0){
-            	GetDB.Dep ++;
-                tobewritten = "INSERT INTO \"departamento\" VALUES("+GetDB.Dep+",";
+                tobewritten = "INSERT INTO \"departamento\" VALUES(";
                 flagwriten = 1;
             }
             if(link.contains("oferta_campus")&& flagwriten == 0){
-            	GetDB.Camp ++;
-                tobewritten = "INSERT INTO \"campus\" VALUES("+GetDB.Camp+",";
+                tobewritten = "INSERT INTO \"campus\" VALUES(";
                 flagwriten = 1;
             }
             if(link.contains("oferta_dis")){
-            	GetDB.Dis ++;
-                tobewritten = "INSERT INTO \"disciplinas\" VALUES("+GetDB.Dis+",";
+                 tobewritten = "INSERT INTO \"disciplinas\" VALUES(";
                 flagwriten = 1;
             }
             try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
@@ -93,14 +90,14 @@ public class navegador {
                 if (link.contains("oferta_dis")){
                     Num = parte1[0].substring(parte1[0].indexOf("cod=")+4,parte1[0].indexOf("&dep="));
                     NumSup = parte1[0].substring(parte1[0].indexOf("dep=")+4);
-                    writer.println(tobewritten+Num+",'"+filtrado.get(i)+"',"+GetDB.Dep+");");
+                    writer.println(tobewritten+Num+",'"+filtrado.get(i)+"',"+NumSup+");");
                     flagwriten = 0;
                 }
                 //Estas linhas são necessárias para navegação a partir de um campus específico
                 //devido à estrutura distinta da marcação
                 else if(link.contains("oferta_dep")){
                     NumSup = link.substring(parte1[0].indexOf("cod=")+4);
-                    writer.println(tobewritten+"'"+filtrado.get(i)+"',"+GetDB.Camp+");");
+                    writer.println(tobewritten+"'"+filtrado.get(i)+"',"+NumSup+");");
                     flagwriten = 0;
                 }else{
                 //Estas linhas são necessárias para navegação a partir do início das ofertas do MW
@@ -186,9 +183,8 @@ public class navegador {
                 filtrado.set(i, "DOM");
             if(filtrado.get(i).length()<3){
                 turma = filtrado.get(i);
-            	GetDB.Tur ++;
-                tobewritten = "INSERT INTO \"turmas\" VALUES("+GetDB.Tur+",'"+turma+"'";
-                tobewritten+=","+GetDB.Dis+");";
+                tobewritten = "INSERT INTO \"turmas\" VALUES('"+turma+"'";
+                tobewritten+=","+NumDis+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(tobewritten);
                     writer.close();
@@ -197,8 +193,7 @@ public class navegador {
                 }
             }else if(filtrado.get(i).length()==3){
                 //Dia
-            	GetDB.Hor ++;
-                horarioelocal="INSERT INTO \"horarios\" VALUES("+GetDB.Hor+",'"+filtrado.get(i)+" "; 
+                horarioelocal="INSERT INTO \"horarios\" VALUES('"+filtrado.get(i)+" "; 
                 i=i+1;
                 if(i<filtrado.size()){
                     //Horario
@@ -207,7 +202,7 @@ public class navegador {
                     if(i<filtrado.size())
                         //Local (Sempre existe, mesmo que seja A definir)
                         horarioelocal+=filtrado.get(i);
-                    horarioelocal+="',"+GetDB.Tur+");";
+                    horarioelocal+="',"+NumDis+",'"+turma+"');";
                     try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                         writer.println(horarioelocal);
                         writer.close();
@@ -217,7 +212,7 @@ public class navegador {
                 }
                 //Caso tenha dia mas nao tenha horário nem local
                 else{
-                   horarioelocal+="',"+GetDB.Tur+");";
+                   horarioelocal+="',"+NumDis+",'"+turma+"');";
                    try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                         writer.println(horarioelocal);
                         writer.close();
@@ -228,8 +223,7 @@ public class navegador {
             }
             //Se nao é turma ou dia é nome de professor
             else{
-            	GetDB.Prof ++;
-                professores = "INSERT INTO \"professores_das_disciplinas\" VALUES("+GetDB.Prof+",'"+filtrado.get(i)+"',"+GetDB.Tur+");";
+                professores = "INSERT INTO \"professores\" VALUES('"+filtrado.get(i)+"',"+NumDis+",'"+turma+"');";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(professores);
                     writer.close();

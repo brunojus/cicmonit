@@ -5,6 +5,8 @@ class CreateDepartamentos < ActiveRecord::Migration
       t.string :sigla
       t.string :nome
       t.references :campu, index: true, foreign_key: true
+
+      t.timestamps null: false
     end
   end
 end
