@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
 
   unauthenticated do
-
-      root :to =>"alunos#index", as: :unauthenticated_root
+	#alunos#index
+      root :to =>"alunos#FrontPage", as: :unauthenticated_root
 
   end
 
