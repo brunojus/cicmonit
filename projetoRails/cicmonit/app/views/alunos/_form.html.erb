@@ -1,7 +1,6 @@
 <body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
-<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
+<!--<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>--> <!--Essa linha esta dando o bug. Nao sei porque -->
 <style> body { margin: 5% 35% 100px 35%; } </style>
-<% campus = Campu.all %>
 <%= form_for(@aluno) do |f| %>
   <% if @aluno.errors.any? %>
     <div id="error_explanation">
