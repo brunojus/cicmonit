@@ -1,0 +1,5 @@
+- Criar uma nova view com nome do aluno, turma e horario (com html.erb). Linkar na FrontPage. (*Christian)
+- Deixar todas as paginas com visual padrao. Tirar todas as chaves primarias. (*Pedro A., *)
+- Linkar as paginas no ruby (*Pedro A., )
+- Cadastrar um professor relacionado as turmas. (*Luan )
+- Montar Banco de dados alunos/professores (*Luan).
