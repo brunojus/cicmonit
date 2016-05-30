@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512041843) do
+ActiveRecord::Schema.define(version: 20160530053943) do
 
   create_table "alunos", force: :cascade do |t|
     t.string  "nome",      limit: 225,               null: false
@@ -57,6 +57,21 @@ ActiveRecord::Schema.define(version: 20160512041843) do
 
   add_index "disciplinas", ["departamento_id"], name: "index_disciplinas_on_departamento_id"
 
+  create_table "docentes", force: :cascade do |t|
+    t.string  "nome"
+    t.integer "professor_id"
+  end
+
+  add_index "docentes", ["professor_id"], name: "index_docentes_on_professor_id"
+
+  create_table "docentes_turmas", id: false, force: :cascade do |t|
+    t.integer "docente_id", null: false
+    t.integer "turma_id",   null: false
+  end
+
+  add_index "docentes_turmas", ["docente_id"], name: "index_docentes_turmas_on_docente_id"
+  add_index "docentes_turmas", ["turma_id"], name: "index_docentes_turmas_on_turma_id"
+
   create_table "horarios", force: :cascade do |t|
     t.string  "nome"
     t.integer "turma_id"
@@ -88,14 +103,6 @@ ActiveRecord::Schema.define(version: 20160512041843) do
 
   add_index "professors", ["email"], name: "index_professors_on_email", unique: true
   add_index "professors", ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true
-
-  create_table "professors_turmas", id: false, force: :cascade do |t|
-    t.integer "professor_id", null: false
-    t.integer "turma_id",     null: false
-  end
-
-  add_index "professors_turmas", ["professor_id"], name: "index_professors_turmas_on_professor_id"
-  add_index "professors_turmas", ["turma_id"], name: "index_professors_turmas_on_turma_id"
 
   create_table "turma_has_candidatos", force: :cascade do |t|
   end

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'docentes/index'
+
+  get 'docentes/show'
+
   resources :alunos
   # root :to =>"alunos#FrontPage"
 
