@@ -8,7 +8,7 @@
       <th>Nome</th>
       <th>Matricula</th>
       <th>Email</th>
-      <th colspan="3"></th>
+      <th colspan="3" hidden="hidden"></th>
     </tr>
   </thead>
 
@@ -20,7 +20,7 @@
         <td><%= professor.email %></td>
         <td><%= link_to image_tag("show.png"), professor %></td>
         <td><%= link_to image_tag("edit.png"), edit_professor_path(professor) %></td>
-        <td><%= link_to image_tag("delete.png"), professor, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      <td><%= link_to image_tag("delete.png"), professor, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o docente #{professor.nome}?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-#<%= link_to 'Novo Professor', new_professor_path %>
+<%= link_to image_tag("new.png"), new_professor_path %>
