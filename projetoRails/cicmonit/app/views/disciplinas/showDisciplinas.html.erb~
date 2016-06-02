@@ -1,27 +1,21 @@
-<font color ="003366" face ="Arial"><h1><left>Disciplinas</left></h1> </font>
-<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
-<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
-<tr bgcolor="6B9A8C" >
+<h1><center>Disciplinas</center></h1>
+<table>
+<tr>
 
 	<th>Codigo</td>
-	<th >&nbsp;</td>
-	<th >Nome</td>
-		
-
+	<th>&nbsp;</td>
+	<th>nome</td>
+	<th>&nbsp;</td>
+	<th>Links</td>
 </tr>
-
-<% disciplina = @disciplina.disciplinas%>
+<% disciplina = Disciplina.all%>
 <% disciplina.each do|disciplina| %>
-<% if disciplina.id % 2 == 0 %>
-	<tr bgcolor="E7F3D6" >
-<% else %>
-	<tr bgcolor="FFF7F7" > <%#branco%>
-<% end %>	
-<td ><%= disciplina.codigo %></td>
+<tr>
+<td><%= disciplina.codigo %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
-<td><%= link_to disciplina.nome, action: 'showTurmas', id: disciplina %></td>
+<td><%= disciplina.nome %></td> 
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= link_to 'Turmas', action: 'showTurmas', id: disciplina %></td>
 </tr>
 <% end %>
 </table>
-<%= link_to 'Voltar para lista de Departamentos', action: 'showDepartamentos', id: 1 %></td>
-</body>

@@ -1,28 +1,25 @@
-<font color ="003366" face ="Arial"><h1><left>Departamentos</left></h1> </font><body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
-<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
-<tr bgcolor="6B9A8C" >
+<h1><center>Departamentos</center></h1>
+<table>
+<tr>
 
 	<th>Codigo</td>
 	<th>&nbsp;</td>
-	<th>Sigla</td>
+	<th>sigla</td>
 	<th>&nbsp;</td>
-	<th>Denomminação</td>
-	
+	<th>nome</td>
+	<th>&nbsp;</td>
+	<th>Links</td>
 </tr>
 <% departamento = @departamento.departamentos %>
-<% departamento.each do|departamento| %>
-<% if departamento.id % 2 == 0 %>
-	<tr bgcolor="E7F3D6" >
-<% else %>
-	<tr bgcolor="FFF7F7" > <%#branco%>
-<% end %>
+<% departamento.each do|@departamento| %>
+<tr>
 <td><%= departamento.codigo %></td>
 <td>&nbsp&nbsp&nbsp&nbsp</td>
 <td><%= departamento.sigla %></td> 
 <td>&nbsp&nbsp&nbsp&nbsp</td>
-<td><%= link_to departamento.nome, action: 'showDisciplinas', id: departamento %></td>
+<td><%= departamento.nome %></td> 
+<td>&nbsp&nbsp&nbsp&nbsp</td>
+<td><%= link_to 'Disciplinas', action: 'showDisciplinas', id: departamento %></td>
 </tr>
 <% end %>
 </table>
-<a href="/disciplinas/showCampus">Retornar para escolha de Campus</a>
-</body>

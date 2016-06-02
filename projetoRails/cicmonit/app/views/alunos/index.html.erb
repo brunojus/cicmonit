@@ -1,30 +1,17 @@
-<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
-<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
-<style> body { margin: 5% 35% 100px 35%; } </style>
+<h1>Dicentes</h1>
 <p id="notice"><%= notice %></p>
 <head>
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-</style>
 </head>
-<body style="background-color: white;">
 
-<font color="black"><h1>Listar Dicentes</h1></font>
+<h1>Listar Dicentes</h1>
 
-<font color="black"><table></font>
+<table>
   <thead>
     <tr>
-      <th align="center">Nome</th>
-      <th align="center">Matrícula</th>
-      <th align="center">Semestre</th>
-      <th align="center">IRA</th>
+      <th>Nome</th>
+      <th>Matrícula</th>
+      <th>Semestre</th>
+      <th>IRA</th>
 
     </tr>
   </thead>
@@ -32,14 +19,14 @@ th, td {
   <tbody>
     <% @alunos.each do |aluno| %>
       <tr>
-        <td align="center"><%= aluno.nome %></td>
-        <td align="center"><%= formata_matricula(aluno.matricula) %></td>
-        <td align="center"><%= formata_semestre(aluno.semestre) %></td>
-        <td align="center"><%= aluno.IRA %></td>
-        <td align="center"><%= link_to image_tag("show.png"), aluno %></td>
-        <td align="center"><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td>
-        <td align="center"><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td>
-	<td align="center"><%=link_to 'Campus',disciplinas_showCampus_path %> </td>      
+        <td><%= aluno.nome %></td>
+        <td><%= formata_matricula(aluno.matricula) %></td>
+        <td><%= formata_semestre(aluno.semestre) %></td>
+        <td><%= aluno.IRA %></td>
+        <td><%= link_to image_tag("show.png"), aluno %></td>
+        <td><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td>
+        <td><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td>
+	<td><%=link_to 'Campus',disciplinas_showCampus_path %> </td>
 	</tr>
     <% end %>
   </tbody>

@@ -1,26 +1,23 @@
-<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
-<font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
-<style> body { margin: 5% 35% 100px 35%; } </style>
 <p id="notice"><%= notice %></p>
-<body style="background-color: white;">
+<body>
 <p>
-  <font color="black"><strong>Nome:</strong></font>
-  <font color="black"><%= @aluno.nome %></font>
+  <strong>Nome:</strong>
+  <%= @aluno.nome %>
 </p>
 
 <p>
-  <font color="black"><strong>Matrícula:</strong></font>
-  <font color="black"><%= @aluno.matricula %></font>
+  <strong>Matrícula:</strong>
+  <%= @aluno.matricula %>
 </p>
 
 <p>
-  <font color="black"><strong>Semestre:</strong></font>
-  <font color="black"><%= @aluno.semestre %></font>
+<strong>Semestre:</strong>
+<%= @aluno.semestre %>
 </p>
 
 <p>
-  <font color="black"><strong>IRA:</strong></font>
-  <font color="black"><%= @aluno.IRA %></font>
+  <strong>IRA:</strong>
+  <%= @aluno.IRA %>
 </p>
 </body>
 <%= link_to image_tag("edit.png"), edit_aluno_path(@aluno) %> |
