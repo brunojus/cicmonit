@@ -1,5 +1,6 @@
 <body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
 <% turma = @turma.turmas %>
+<td><%= link_to 'Voltar para lista de Disciplinas', action: 'showDisciplinas', id: 1 %></td>
 <% turma.each do|turma| %>
 <font face="Arial"><table></font>
 <tr>
@@ -32,7 +33,7 @@
 	<tr bgcolor="6B9A8C">
 		<th>Professores</td>
 	</tr>
-	<% docente = turma.docentes%>
+	<% docente = turma.professores_das_disciplinas%>
 	<% docente.each do|docente| %>
 	<% if docente.id % 2 == 0 %>
 		<tr bgcolor="E7F3D6" >
@@ -46,4 +47,5 @@
 </tr>
 <% end %>
 </table>
+<td><%= link_to 'Voltar para lista de Disciplinas', action: 'showDisciplinas', id: 1 %></td>
 </body>

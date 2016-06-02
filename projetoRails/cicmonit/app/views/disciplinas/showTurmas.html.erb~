@@ -1,11 +1,12 @@
 <body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
+<td><%= link_to 'Voltar para lista de Disciplinas', action: 'showDisciplinas', id: 1 %></td>
 <% turma = @turma.turmas %>
 <% turma.each do|turma| %>
 <font face="Arial"><table></font>
 <tr>
 
 	<th>Turma</td>
-	<td><%= turma.nome %></td> 
+	<td><%= turma.nome %></td>
 </tr>
 <tr>
 
@@ -22,28 +23,29 @@
 	<% else %>
 		<tr bgcolor="FFFFF7" > <%#verde%>
 	<% end %>
-	<td><%= horario.nome %></td> 
+	<td><%= horario.nome %></td>
 	</tr>
 	<% end %>
-	
-	
-	
-	
+
+
+
+
 	<tr bgcolor="6B9A8C">
 		<th>Professores</td>
 	</tr>
-	<% professor = turma.professores_das_disciplinas%>
-	<% professor.each do|professor| %>
-	<% if professor.id % 2 == 0 %>
+	<% docente = turma.professores_das_disciplinas%>
+	<% docente.each do|docente| %>
+	<% if docente.id % 2 == 0 %>
 		<tr bgcolor="E7F3D6" >
 	<% else %>
 		<tr bgcolor="FFF7F7" >
 	<% end %>
-	<td><%= professor.nome %></td> 
+	<td><%= docente.nome %></td>
 	</tr>
 	<% end %>
 	</table>
 </tr>
 <% end %>
 </table>
+<td><%= link_to 'Voltar para lista de Disciplinas', action: 'showDisciplinas', id: 1 %></td>
 </body>
