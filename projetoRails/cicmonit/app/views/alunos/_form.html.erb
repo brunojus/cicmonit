@@ -15,21 +15,21 @@
     <div class="container">
       <div class="form">
   <div class="field">
-    <font color="black"><%= f.label :nome %><br></font>
+    <font color="red"><%= f.label :nome %><br></font>
     <%= f.text_field :nome, :size=>"50", placeholder: "Digite seu nome", :maxlength=>"50"   %>
   </div>
   <div class="field">
-    <font color="black"><%= f.label :matrícula %><br></font>
+    <font color="red"><%= f.label :matrícula %><br></font>
 
     <%= f.text_field :matricula, :size=>"11", placeholder: "Digite sua matrícula", :maxlength=>"9"  %>
 
   </div>
   <div class="field">
-    <font color="black"><%= f.label :semestre %><br></font>
+    <font color="red"><%= f.label :semestre %><br></font>
     <%= f.number_field :semestre, placeholder: "Digite seu semestre", min:1, max:10 %>
   </div>
   <div class="field">
-    <font color="black"><%= f.label :IRA, "IRA" %><br></font>
+    <font color="red"><%= f.label :IRA, "IRA" %><br></font>
     <%= f.number_field :IRA, placeholder:"5.00", min: 0.00, max: 5.00, :step => 0.0001, :maxlength=>"3" %>
   </div>
   <div class="actions">

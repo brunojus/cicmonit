@@ -1,6 +1,9 @@
 @import "materialize";
 @import "materialize/extras/nouislider";
-
+html *
+{
+	color: #FF0000 ;
+}
 body {
  font-family: Arial, sans-serif;
  font-weight: bold;
@@ -21,7 +24,9 @@ body {
  }
 
  width: 1000px;
- background-image: url("https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif");
+ /*background-image: url("https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif");*//*para as paginas da propria monitoria, naos sera utiliazado o fundo do mw, ne?*/
+ background-color: lightblue;
+
 }
 
 .container {
@@ -39,14 +44,14 @@ body {
 
 h1{
   text-align: center;
-  color: rgba(0,0,0,0.21);
+  color: black;
 }
 
-input[type=text],
-input[type=email],
-input[type=password],
+input[type=text]{color: black;}
+input[type=email]{color:black;}
+input[type=password]{color:black;}
 input[type=number] {
-  color: #666666;
+  color:black;
   width: 100%;
   border: 1px solid #E6E6E6;
   border-radius: 0px;
