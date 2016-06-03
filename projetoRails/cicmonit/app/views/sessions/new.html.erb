@@ -1,0 +1,27 @@
+<header>
+    <% if !logged_in? %>
+    <div>
+      <nav>
+        <ul>
+            <li><%= link_to "Inicial", root_path %></li>
+        </ul>
+      </nav>
+    </div>
+    <% end %>
+  </header>
+
+<%= form_for :session, url: sign_in_path do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :senha %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Entrar" %>
+    </div>
+  <p>Novo dicente? <%= link_to "Inscreva-se agora!", new_dicente_path %></p>
+  <% end %>

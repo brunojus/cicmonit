@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <p><th>Nome: </th><%= @dicente.name %></p>
+    <p><th>Email: </th><%= @dicente.email %></p>
+    <p><th>Matrícula: </th><%= formata_matricula(@dicente.matricula) %></p>
+    <p><th>Semestre: </th><%= formata_semestre(@dicente.semestre) %></p>
+    <p><th>IRA: </th><%= @dicente.ira %></p>
+      <% if current_dicente == @dicente %>
+         <ul>
+          <th><%= link_to image_tag("edit.png"), edit_dicente_path(current_dicente) %><th>
+           <th><%= link_to image_tag("delete.png"), @dicente, method: :delete%><th>
+             <th><%= link_to image_tag("back.png"), dicentes_path%><th>
+         </ul>
+      <%end%>
+  </body>
+</html>
