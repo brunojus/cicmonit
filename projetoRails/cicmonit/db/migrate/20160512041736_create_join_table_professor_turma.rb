@@ -1,7 +1,7 @@
-class CreateJoinTableDocenteTurma < ActiveRecord::Migration
+class CreateJoinTableProfessorTurma < ActiveRecord::Migration
   def change
-    create_join_table :docentes, :turmas do |t|
-      t.index :docente_id
+    create_join_table :professors, :turmas do |t|
+      t.index :professor_id
       t.index :turma_id
     end
 

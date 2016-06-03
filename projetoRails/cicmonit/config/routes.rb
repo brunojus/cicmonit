@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
   get 'sessions/new'
 
   get 'dicentes/new'
+=======
+  get 'info_page/index'
+>>>>>>> 24cad374515321899d225bac388e7698c2c01e04
 
   get 'docentes/index'
 
@@ -10,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :alunos
   # root :to =>"alunos#FrontPage"
-
+ # resources :info_page
   devise_for :professors
   resources :professors
   #root :to =>"professors#index"
@@ -25,7 +29,6 @@ Rails.application.routes.draw do
   # authenticated :professors do
   #   root  :to=>  'disciplinas#showCampus',  as: :authenticated_root
   # end
-
 
   get 'disciplinas/showCampus'
 

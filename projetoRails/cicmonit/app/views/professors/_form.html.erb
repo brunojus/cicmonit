@@ -1,10 +1,7 @@
-<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif"> 
- <!-- <font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>--> <!--Essa linha esta dando o bug. Nao sei porque -->
-<style> body { margin: 5% 35% 100px 35%; } </style>
 <%= form_for(@professor) do |f| %>
   <% if @professor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+      <h1><%= pluralize(@professor.errors.count, "erro(s)") %> encontrado(s):</h1>
 
       <ul>
       <% @professor.errors.full_messages.each do |message| %>
@@ -13,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  <div class="login">
+    <div class="container">
+      <div class="form">
 
   <div class="field">
     <%= f.label :nome %><br>
@@ -31,6 +31,9 @@
     <%= f.password_field :senha %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Criar novo professor", class: "btn-submit"%>
+  </div>
+  </div>
+  </div>
   </div>
 <% end %>

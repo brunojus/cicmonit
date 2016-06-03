@@ -3,10 +3,9 @@
 <font face="Arial"><table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0"></font>
 <tr text="white" bgcolor="6B9A8C" >
 
-	<th>Codigo</td>
-	<th>&nbsp;</td>
-	<th>Denominacao</td>
-	
+
+	<th>Campus</td>
+
 </tr>
 <% campus = Campu.all %>
 <% campus.each do|campus| %>
@@ -15,8 +14,6 @@
 <% else %>
 	<tr bgcolor="FFF7F7" >
 <% end %>
-<td><%= campus.codigo %></td>
-<td>&nbsp&nbsp&nbsp&nbsp</td>
 <td><%= link_to campus.nome, action: 'showDepartamentos', id: campus %></td>
 </tr>
 <% end %>
