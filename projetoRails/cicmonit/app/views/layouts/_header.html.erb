@@ -4,11 +4,12 @@
       <nav>
         <ul>
 
-            <li><%= link_to "Dicentes", dicentes_path %></li>
+            <!li><!%= link_to "Dicentes", dicentes_path %><!/li><!comentei a ref a lista de tds os dicentes para evitar possiveis invasoes de privacidade>
             <li>
               <ul>
-                <li><%= link_to "Perfil", current_dicente %></li>
-                <li><%= link_to "Configurações", edit_dicente_path(current_dicente) %></li>
+		<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
+                <li><%= link_to "Perfil", current_dicente %></li>                
+		<li><%= link_to "Configurações", edit_dicente_path(current_dicente) %></li>
                 <li>
                   <%= link_to "Sair", sign_out_path, method: "delete" %>
                 </li>
