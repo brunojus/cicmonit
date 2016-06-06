@@ -1,3 +1,9 @@
+INSERT INTO `alunos` VALUES (1,'Luan Talles da Silva Araújo','100111483',10,4.9594);
+INSERT INTO `alunos` VALUES (2,'Luiza Alves Moura','130123412',6,5.0);
+
+INSERT INTO `candidatos` VALUES (1,'SS',1);
+INSERT INTO `candidatos` VALUES (2,'SS',2);
+
 INSERT INTO `campus` VALUES (1,1,'Darcy Ribeiro');
 
 INSERT INTO `departamentos` VALUES (1,116,'CIC','Departamento de Ciência da Computação',1);
@@ -12,6 +18,11 @@ INSERT INTO `turmas` VALUES (5,'E',1);
 INSERT INTO `turmas` VALUES (6,'F',1);
 INSERT INTO `turmas` VALUES (7,'G',1);
 INSERT INTO `turmas` VALUES (8,'H',1);
+
+INSERT INTO `candidatos_turmas` VALUES (1,1);
+INSERT INTO `candidatos_turmas` VALUES (2,1);
+INSERT INTO `candidatos_turmas` VALUES (1,2);
+INSERT INTO `candidatos_turmas` VALUES (2,2);
 
 INSERT INTO `horarios` VALUES (1,'SEG 16:00 - 17:50 PAT AT 117',1);
 INSERT INTO `horarios` VALUES (2,'TER 16:00 - 17:50 PJC BT 093',1);
