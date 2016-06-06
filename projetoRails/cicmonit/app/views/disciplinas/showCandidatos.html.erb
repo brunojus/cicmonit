@@ -1,0 +1,32 @@
+<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
+<table>
+	<tr>
+		<th align="center">Aluno</th>
+		<th align="center">Disciplina</th>
+		<th align="center">Menção na Disciplina</th>
+		<th align="center">Turma</th>
+
+	</tr>
+	<% @aluno = Aluno.all %>
+	<% @aluno.each do|aluno| %>
+
+			<% candidato = aluno.candidatos %>
+			<% candidato.each do|candidato| %>
+
+					<% turma = candidato.turmas %>
+					<% turma.each do|turma| %>
+
+					<% disciplina = Disciplina.find(turma.disciplina_id)%>
+
+									<tr>
+										<td align="center"><%= aluno.nome %></td>
+										<td align="center"><%= disciplina.nome %></td>
+										<td align="center"><%= candidato.mencao %></td>
+										<td align="center"><%= turma.nome %></td>
+									</tr>
+
+					<% end %>
+			<% end %>
+	<% end %>
+</table>
+</body>

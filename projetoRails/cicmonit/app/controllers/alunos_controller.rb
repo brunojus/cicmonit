@@ -11,7 +11,7 @@ class AlunosController < ApplicationController
   # GET /alunos/1.json
 
   def show
-  	render 
+  	render
   end
 
   # GET /alunos/new

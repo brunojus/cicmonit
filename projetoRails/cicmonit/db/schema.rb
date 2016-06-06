@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160603010048) do
-=======
-ActiveRecord::Schema.define(version: 20160512041843) do
->>>>>>> 24cad374515321899d225bac388e7698c2c01e04
 
   create_table "alunos", force: :cascade do |t|
     t.string  "nome",      limit: 225,               null: false

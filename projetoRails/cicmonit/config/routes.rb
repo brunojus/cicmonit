@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
+
   get 'sessions/new'
 
   get 'dicentes/new'
-=======
+
   get 'info_page/index'
->>>>>>> 24cad374515321899d225bac388e7698c2c01e04
+
 
   get 'docentes/index'
 
@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get 'disciplinas/showHorarios'
 
   get 'disciplinas/showProfessores'
+
+    get 'disciplinas/showCandidatos'
 
 	resources:disciplina
 	# root to:"disciplinas#showCampus"
