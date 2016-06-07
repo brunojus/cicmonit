@@ -1,16 +1,12 @@
-<body background="https://matriculaweb.unb.br/matriculaweb/imagens/fundo_main.gif">
+<h1>Horários e Turmas</h1>
 <% turma = @turma.turmas %>
 <% turma.each do|turma| %>
 <font face="Arial"><table></font>
 
 <tr>
-	<th>Turma</td>
-	<td><%= turma.nome %></td>
-</tr>
-<tr>
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
+			<th>Turma: <%= turma.nome %></th>
 	<tr bgcolor="6B9A8C" >
-
 		<th>Horarios & Local</td>
 	</tr>
 	<% horario = turma.horarios %>
@@ -38,7 +34,7 @@
 	</tr>
 	<% end %>
 	</table>
-</tr>
+		</tr>
 <% end %>
 </table>
 </body>

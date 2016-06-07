@@ -1,11 +1,10 @@
 <%= form_for(@professor) do |f| %>
   <% if @professor.errors.any? %>
     <div id="error_explanation">
-      <h1><%= pluralize(@professor.errors.count, "erro(s)") %> encontrado(s):</h1>
-
+      <%= pluralize(@professor.errors.count, "erro(s)") %> encontrado(s):
       <ul>
       <% @professor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <%= message %>
       <% end %>
       </ul>
     </div>

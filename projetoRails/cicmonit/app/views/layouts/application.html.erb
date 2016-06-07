@@ -2,24 +2,24 @@
 <html>
 <head>
   <title>Monitoria CIC</title>
-  
   <%= favicon_link_tag 'icone.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= render 'layouts/header' %>
   <div class="header">
+    <%= link_to root_path do %>
+      <img src="http://www.cic.unb.br/wp-content/uploads/2016/03/logo2.png" alt="Departamento de Ciência da Computação" align="right">
+    <% end %>
       <div class="container">
-        <%= link_to root_path do %>
-          <img src="http://www.cic.unb.br/wp-content/uploads/2016/03/logo2.png" alt="Departamento de Ciência da Computação" align="left">
-        <% end %>
         <div class="nav pull-right">
+          <%= render 'layouts/header' %>
         </div>
       </div>
     </div>
+
+
 <%= yield %>
 
 </body>
