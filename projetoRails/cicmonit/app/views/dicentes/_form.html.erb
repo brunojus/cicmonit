@@ -12,29 +12,28 @@
                           </ul>
               </div>
   <% end %>
+
+<div class="login">
+<div class="container">
+<div class="form">
               <div class="field">
-                      <br>    
-			<br>
-			<p>
-			<%= f.label :nome %>
-                          <%= f.text_field :name %>
-			</p>			
-			</br>		    
-		</br>              
-		</div>
+			                   <%= f.label :nome %>
+                        <%= f.text_field :name %>
+
+		          </div>
               <div class="field">
                           <%= f.label :email %>
                           <%= f.email_field :email %>
               </div>
-            </div class="field">
+            <div class="field">
                           <%= f.label :matricula %>
                           <%= f.text_field :matricula %>
               </div>
-            </div class="field">
+            <div class="field">
                           <%= f.label :semestre %>
                           <%= f.text_field :semestre %>
               </div>
-            </div class="field">
+            <div class="field">
                           <%= f.label :IRA %>
                           <%= f.text_field :ira %>
               </div>
@@ -47,7 +46,10 @@
                           <%= f.password_field :password_confirmation %>
               </div>
               <div class="actions">
-                          <%= f.submit "Cadastrar"%>
+                          <%= f.submit "Cadastrar", class: "btn-submit"%>
               </div>
               </div>
+            </div>
+            </div>
+            </div>
   <% end %>

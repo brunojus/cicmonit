@@ -2,14 +2,12 @@
 <% turma = @turma.turmas %>
 <% turma.each do|turma| %>
 <font face="Arial"><table></font>
-<tr>
 
+<tr>
 	<th>Turma</td>
 	<td><%= turma.nome %></td>
 </tr>
 <tr>
-
-
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
 	<tr bgcolor="6B9A8C" >
 
@@ -25,9 +23,6 @@
 	<td><%= horario.nome %></td>
 	</tr>
 	<% end %>
-
-
-
 
 	<tr bgcolor="6B9A8C">
 		<th>Professores</td>
