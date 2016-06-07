@@ -5,7 +5,7 @@
 
 <tr>
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
-			<th>Turma: <%= turma.nome %></th>
+			<th><%= check_box_tag(:turma_id) %><%= label_tag(:turma_id) %> <%= turma.nome %></th>
 	<tr bgcolor="6B9A8C" >
 		<th>Horarios & Local</td>
 	</tr>
