@@ -1,7 +1,17 @@
 <header>
 	<nav>
       <ul>
-        <li><%=link_to "Campus",disciplinas_showCampus_path %>
+				<%if user_signed_in?%>
+					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
+					<li><%= link_to "Informações", sign_out_path, method: "delete" %></li>
+					<li><%= link_to "Perfil", current_dicente %></li>
+					<li><%= link_to "Configurações", edit_dicente_path(current_dicente) %></li>
+					<li><%= link_to "Sair", sign_out_path, method: "delete" %></li>
+			  <%else%>
+					<li><%= link_to "Entrar", new_user_session_path, method: :get %></li>
+					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
+					<li><%=link_to "Informações",disciplinas_showCampus_path %></li>
+			  <%end%>
 
       </ul>
   </nav>

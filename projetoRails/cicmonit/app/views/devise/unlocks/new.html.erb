@@ -1,4 +1,4 @@
-<h2>Resend unlock instructions</h2>
+<h1>Reenviar email de confirmação</h1>
 
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
@@ -9,7 +9,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
+    <%= f.submit "Reenviar instruções de desbloqueio", class: "btn-submit" %>
   </div>
 <% end %>
 
