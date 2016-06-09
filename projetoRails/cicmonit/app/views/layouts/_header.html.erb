@@ -1,26 +1,9 @@
 <header>
-    <% if logged_in? %>	
 	<nav>
-              <ul>
-		            <li><%=link_to "Campus",disciplinas_showCampus_path %></li>
-                <li><%= link_to "Perfil", current_dicente %></li>
-		            <li><%= link_to "Configurações", edit_dicente_path(current_dicente) %></li>
-                <li><%= link_to "Sair", sign_out_path, method: "delete" %></li>
-              </ul>
-      </nav>
+      <ul>
+        <li><%=link_to "Campus",disciplinas_showCampus_path %>
 
-	
-    <% end %>
-    <% if !logged_in? %>
-	     
-	<nav>
-              <ul>
-		            <!li><!%=link_to "Campus",disciplinas_showCampus_path %><!/li><!se  nao esta logado, pode ir na pagina de campus/
-inscricao na monitoria?>
-			   <li><%=link_to "Main",dicentes_path %></li>
-                <li><%= link_to "Login", '/sessions/new'%></li>
-              </ul>
-      </nav>
+      </ul>
+  </nav>
 
-    <%end%>
   </header>

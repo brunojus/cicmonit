@@ -6,5 +6,11 @@ class Aluno < ActiveRecord::Base
   validates :semestre, inclusion: { in: 1..10 }
   validates :semestre, presence: true
 
+  validates :user_id, presence: true
+
+
   has_many :candidatos
+
+  belongs_to :user
+
 end

@@ -1,10 +1,13 @@
 class AlunosController < ApplicationController
   before_action :set_aluno, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /alunos
   # GET /alunos.json
   def index
-    @alunos = Aluno.all
+    # @alunos = Aluno.all
+    @alunos = current_user.alunos
   end
 
   # GET /alunos/1
@@ -27,7 +30,7 @@ class AlunosController < ApplicationController
   # POST /alunos.json
   def create
     @aluno = Aluno.new(aluno_params)
-
+    @aluno.user_id = current_user.id
     respond_to do |format|
       if @aluno.save
         format.html { redirect_to @aluno, notice: "Sucesso no cadastro do dicente #{@aluno.nome}." }
@@ -66,7 +69,9 @@ class AlunosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_aluno
-      @aluno = Aluno.find(params[:id])
+      # @aluno = Aluno.find(params[:id])
+      @aluno = current_user.alunos.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

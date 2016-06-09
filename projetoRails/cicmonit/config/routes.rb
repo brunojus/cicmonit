@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users
   get 'sessions/new'
 
-  get 'dicentes/new'
+  # get 'dicentes/new'
 
   get 'info_page/index'
 
@@ -47,10 +48,10 @@ Rails.application.routes.draw do
 	resources:disciplina
 	# root to:"disciplinas#showCampus"
 
-  resources :dicentes
-  get    'sign_in'   => 'sessions#new'
-  post   'sign_in'   => 'sessions#create'
-  delete 'sign_out'  => 'sessions#destroy'
+  # resources :dicentes
+  # get    'sign_in'   => 'sessions#new'
+  # post   'sign_in'   => 'sessions#create'
+  # delete 'sign_out'  => 'sessions#destroy'
 
   root 'alunos#FrontPage'
 
