@@ -21,11 +21,12 @@ Rails.application.routes.draw do
   #root :to =>"professors#index"
 
 
-  # unauthenticated do
+   unauthenticated do
 	# #alunos#index
-  #     root :to =>"alunos#FrontPage", as: :unauthenticated_root
+       root :to =>"alunos#FrontPage", as: :unauthenticated_root
   #
-  # end
+   end
+   
   #
   # authenticated :professors do
   #   root  :to=>  'disciplinas#showCampus',  as: :authenticated_root

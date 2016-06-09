@@ -4,8 +4,9 @@
 <div class="form">
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :Matricula %><br />
+    <%= f.text_field :email,value: formata_email(@user.email) %>
+     
   </div>
 
   <div class="field">

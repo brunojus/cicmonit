@@ -1,6 +1,8 @@
 class AlunosController < ApplicationController
   before_action :set_aluno, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  #before_action :authenticate_user! # nao precisa ir direto para a autenticacao antes de entrar 
+  # na parte de alunos pq as rotas do routes.rb ja direcionam para a pagina principal (a partir da qual
+  # sera feito o login) quando o usuario nao esta autenticado
 
 
   # GET /alunos
