@@ -51,12 +51,17 @@ body {
     margin-right: auto;
 }
 
+.nav-bar{
+  font-size: 5pt;
+}
+
 h1{
   text-align: center;
   color: rgba(0,0,0,0.21);
 	position: relative;
 	margin-top: 100px;
-	text-transform: capitalize;
+	text-transform: uppercase;
+  font-size: 25pt;
 }
 
 input[type=text]{color: black;}
@@ -76,15 +81,7 @@ nav{
 	background-color: rgba(0,0,0,0.19);
 	position: relative;
 	text-transform: uppercase;
-	margin: 10px;
-}
-
-ul{
-	margin: 0px;
-}
-
-li{
-	margin-left: 15px;
+	padding: 0px;
 }
 
 .btn-submit {
@@ -95,9 +92,11 @@ li{
   padding: 10px 20px;
   border: 0;
   margin-top: 6px;
+  margin-bottom: 35px;
 }
 .btn-submit:hover{
-  background: rgba(0,0,0,0.31);
+  background: rgba(0,0,0,0.4);
+  transition: 2s;
 }
 
 /* HEADER */

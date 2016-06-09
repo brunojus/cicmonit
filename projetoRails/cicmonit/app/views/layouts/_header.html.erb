@@ -1,6 +1,6 @@
 <header>
 	<nav>
-      <ul>
+      <ul class="nav-bar">
 				<%if user_signed_in?%>
 					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
 					<li><%= link_to "Informações", sign_out_path, method: "delete" %></li>
@@ -12,8 +12,6 @@
 					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
 					<li><%=link_to "Informações",disciplinas_showCampus_path %></li>
 			  <%end%>
-
       </ul>
   </nav>
-
-  </header>
+</header>
