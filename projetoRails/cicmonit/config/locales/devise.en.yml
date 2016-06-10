@@ -3,7 +3,7 @@
 en:
   devise:
     confirmations:
-      confirmed: "Seu email foi confirmado com sucesso!."
+      confirmed: "Seu email foi confirmado com sucesso!"
       send_instructions: "Você irá receber um email com instrução para confirmação dentro de alguns instantes."
       send_paranoid_instructions: "Se você já possui cadastro, dentro de alguns instantes irá receber um email para confirmação de cadastro"
     failure:
@@ -58,5 +58,5 @@ en:
       not_found: "não encontrado"
       not_locked: "não está bloqueado"
       not_saved:
-        one: "1 error encontrado: %{resource} "
+        one: "1 erro encontrado!"
         other: "%{count} erros encontrados: %{resource}"

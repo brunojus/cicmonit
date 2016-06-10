@@ -8,10 +8,4 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
-  def correct_dicente?
-    @dicente = Dicente.find(params[:id])
-    unless current_dicente == @dicente
-       redirect_to dicentes_path
-    end
-  end
 end
