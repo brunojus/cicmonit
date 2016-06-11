@@ -7,6 +7,8 @@ module SessionsHelper
     	#email_formatado = "#{email}" #campo de matricula que o usario esta preechendo
 
     	email_formatado = "@aluno.unb.br" #endereco de email que vem automaticamente logo depois do campo de matricula
+  	elsif email.index("@")== nil # se nao tiver @
+  		email_formatado = "@aluno.unb.br" #endereco de email que vem automaticamente logo depois do campo de matricula
   	elsif email[email.index("@")..email.length] != "@aluno.unb.br" # verifica se o dominio eh @aluno.unb.br
   	#codigo acima pega os indices de email(string) desde o indice do '@' ate o tamanho maximo da palavra 
   		if email.index("@")-1 <= tamanho_matricula then # se o campo de matricula digitado tem tamanho menor
