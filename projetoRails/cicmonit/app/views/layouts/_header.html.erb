@@ -4,12 +4,14 @@
 				<%if user_signed_in?%>
 					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
 					<li><%= link_to "Perfil", alunos_path %></li>
+			 		<li><%=link_to "Sair", destroy_user_session_path, method: "delete" %> </li> <!Aluno precisa ser capaz de se deslogar!!!!!!>
 			  <%else%>
 					<li><%= link_to "Entrar", new_user_session_path, method: :get %></li>
 					<li><%=link_to "Pagina Inicial",root_path %></li>
 			<%end%>
 			<li><%= link_to "Informações", info_page_index_path %></li>
-			<li><%=link_to "Sair", destroy_user_session_path, method: "delete" %> </li> <!Aluno precisa ser capaz de se deslogar!!!!!!>
+
+			
       </ul>
   </nav>
 </header>
