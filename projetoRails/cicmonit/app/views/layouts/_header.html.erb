@@ -9,6 +9,7 @@
 					<li><%=link_to "Pagina Inicial",root_path %></li>
 			<%end%>
 			<li><%= link_to "Informações", info_page_index_path %></li>
+			<li><%=link_to "Sair", destroy_user_session_path, method: "delete" %> </li> <!Aluno precisa ser capaz de se deslogar!!!!!!>
       </ul>
   </nav>
 </header>
