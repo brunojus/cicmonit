@@ -1,8 +1,7 @@
 <%= form_for(@aluno) do |f| %>
   <% if @aluno.errors.any? %>
-    <div id="error_explanation">
+    <div id="errorExplanation">
       <h2><%= pluralize(@aluno.errors.count, "erro(s)") %> encontrado(s):</h2>
-
       <ul>
       <% @aluno.errors.full_messages.each do |message| %>
         <li><%= message %></li>

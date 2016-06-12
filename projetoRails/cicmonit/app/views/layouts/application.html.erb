@@ -7,6 +7,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script>
+$(document).ready(function() {
+setTimeout("$('#alertasenoticias').hide()", 2000);
+});
+</script>
 </head>
 <body>
   <div class="header">
@@ -15,22 +20,14 @@
     <% end %>
       <div class="container">
         <div class="nav pull-right">
-	 <br>
-	 <br>
-	 <br>
-	 <br>
           <%= render 'layouts/header' %>
-	</br>
-	</br>
-	</br>
-	</br>
 	</div>
       </div>
     </div>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+    <div id="alertasenoticias">
+      <p class="notice"> <%= notice %></p>
+      <p class="alert"> <%= alert %></p>
+    </div>
 <%= yield %>
 
 </body>

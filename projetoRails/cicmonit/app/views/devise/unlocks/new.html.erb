@@ -1,12 +1,14 @@
 <h1>Reenviar email de confirmação</h1>
 
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+<div class="menssagem">
   <%= devise_error_messages! %>
+</div>
 
   <div class="field">
     <%= f.label :Matricula %><br />
     <%= f.text_field :email,value:formata_email(@user.email) %>
-     
+
   </div>
 
   <div class="actions">
