@@ -8,8 +8,7 @@
 <%if user_signed_in?%>
 			<th><%= check_box_tag (turma.nome) %><%= label_tag (turma.nome) %> <!%= turma.nome %></th>
 <%end%>
-			<!sobre a linha do check_box_tag: tanto check_box tag qto a label_tag precisam ter o mesmo identificador, aqui escritos entre parenteses. O <%=turma.nome %> <!esta comentado para nao exibir, por exmplos, B B. Para ficar mais facil retroceder ao codigo anterior, caso necessario,ele foi incluido abaixo como comentario >
-		<!th><!%= check_box_tag(:turma_id) %><!%= label_tag(:turma_id) %> <!%= turma.nome %><!/th>
+
 	<tr bgcolor="6B9A8C" >
 			Turma: <%= turma.nome%>
 		<th>Horarios & Local</td>
@@ -43,3 +42,16 @@
 <% end %>
 </table>
 </body>
+
+
+
+
+<%= form_for(Candidato) do |f| %>
+
+<body>
+  <div class="actions">
+    <%= f.submit "Cadastrar", class: "btn-submit"%>
+  </div>
+</body>
+
+<%end%>
