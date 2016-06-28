@@ -6,7 +6,7 @@
 <tr>
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
 <%if user_signed_in?%>
-			<th><%= check_box_tag (turma.nome) %><%= label_tag (turma.nome) %> <!%= turma.nome %></th>
+			<th><%= check_box_tag(turma.nome, value = "1", checked = false, options = {})  %><%= label_tag(turma.nome, text = "Turma " + turma.nome, options = {}) %></th>
 <%end%>
 
 	<tr bgcolor="6B9A8C" >
