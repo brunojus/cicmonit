@@ -5,7 +5,8 @@ class Aluno < ActiveRecord::Base
   validates :IRA, presence: true
   validates :semestre, inclusion: { in: 1..10 }
   validates :semestre, presence: true
-
+  validates :Candidatura, presence: true
+  validates :TurmasCandidatar, presence: true
   validates :user_id, presence: true
 
 
