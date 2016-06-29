@@ -1,4 +1,4 @@
-<h1>Dicentes</h1>
+<h1>Dicente</h1>
 <p id="notice"><%= notice %></p>
 <head>
 </head>
@@ -21,10 +21,10 @@
         <td><%= formata_matricula(aluno.matricula) %></td>
         <td><%= formata_semestre(aluno.semestre) %></td>
         <td><%= aluno.IRA %></td>
-        <td><%= link_to image_tag("show.png"), aluno %></td>
-        <td><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td>
-        <td><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td>
-	<td><%=link_to 'Campus',disciplinas_showCampus_path %> </td>
+        <!-- <td><%= link_to image_tag("show.png"), aluno %></td> -->
+        <!-- <td><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td> -->
+        <!-- <td><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td> -->
+	<!-- <td><%=link_to 'Campus',disciplinas_showCampus_path %> </td> -->
 	</tr>
     <% end %>
   </tbody>
@@ -32,4 +32,8 @@
 </body>
 <br>
 
+<% se = Aluno.where(user_id: current_user.id).count %>
+
+<% if se == 0 %>
 <%= link_to image_tag("new.png"), new_aluno_path %>
+<% end %>

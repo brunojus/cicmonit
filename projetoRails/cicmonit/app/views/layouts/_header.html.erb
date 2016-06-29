@@ -9,7 +9,9 @@
 			  <%else%>
 					<li><%=link_to "Pagina Inicial",root_path %></li>
 					<li><%= link_to "Informações", info_page_index_path %></li>
-					<li><%= link_to "Entrar", new_user_session_path, method: :get %></li>
+					<li><%= link_to 'Aluno', new_user_session_path, method: :get %></li>	
+					<li><%= link_to 'Professor', professors_path %></li>
+
 			<%end%>
 
 

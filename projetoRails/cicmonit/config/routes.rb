@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :candidatos
   devise_for :users
   get 'sessions/new'
 
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
        root :to =>"alunos#FrontPage", as: :unauthenticated_root
   #
    end
-   
+
   #
   # authenticated :professors do
   #   root  :to=>  'disciplinas#showCampus',  as: :authenticated_root
@@ -39,6 +40,8 @@ Rails.application.routes.draw do
   get 'disciplinas/showDisciplinas'
 
   get 'disciplinas/showTurmas'
+  
+  get 'disciplinas/showTurma'
 
   get 'disciplinas/showHorarios'
 

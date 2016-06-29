@@ -1,4 +1,5 @@
 <h1>Horários e Turmas</h1>
+
 <% turma = @turma.turmas %>
 <% turma.each do|turma| %>
 <font face="Arial"><table></font>
@@ -6,11 +7,15 @@
 <tr>
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
 <%if user_signed_in?%>
-			<th><%= check_box_tag (turma.nome) %><%= label_tag (turma.nome) %> <!%= turma.nome %></th>
+
+		<th><%= link_to turma.nome, action: 'showTurma', id: turma.id %><td>
+
 <%end%>
 
+	<tr bgcolor="E7F3D6" >
+		<th>	Turma: <%= turma.nome%></td>
+		</tr>
 	<tr bgcolor="6B9A8C" >
-			Turma: <%= turma.nome%>
 		<th>Horarios & Local</td>
 	</tr>
 	<% horario = turma.horarios %>
@@ -42,16 +47,3 @@
 <% end %>
 </table>
 </body>
-
-
-
-
-<%= form_for(Candidato) do |f| %>
-
-<body>
-  <div class="actions">
-    <%= f.submit "Cadastrar", class: "btn-submit"%>
-  </div>
-</body>
-
-<%end%>
