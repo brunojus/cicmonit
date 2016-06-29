@@ -10,6 +10,8 @@
       <th>Matrícula</th>
       <th>Semestre</th>
       <th>IRA</th>
+      <th>Opcao de Monitoria</th>
+      <th>Turmas a Candidatar</th>
 
     </tr>
   </thead>
@@ -20,8 +22,8 @@
         <td><%= aluno.nome %></td>
         <td><%= formata_matricula(aluno.matricula) %></td>
         <td><%= formata_semestre(aluno.semestre) %></td>
-        <td><%= aluno.Candidatura %></td>
         <td><%= aluno.IRA %></td>
+        <td><%= aluno.Candidatura %></td>
         <td><%= aluno.TurmasCandidatar %></td>
         <td><%= link_to image_tag("show.png"), aluno %></td>
         <td><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td>

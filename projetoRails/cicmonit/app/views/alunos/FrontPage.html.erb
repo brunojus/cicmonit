@@ -3,20 +3,20 @@
 <div class="front-links">
 
 <p><strong><b>
-<%if !user_signed_in?%> <! usuario nao esta logado>
-	<p><%= link_to 'Login Discente', new_user_session_path, method: :get%></p>
+<!%if !user_signed_in?%> <! usuario nao esta logado>
+	<!p><!%= link_to 'Login Discente', new_user_session_path, method: :get%><!/p>
 <%else%> <! usuario esta logado>
-	<p> <%= link_to 'Informacoes Discente', alunos_path%> </p>
-<%end%>
+	<!p> <!%= link_to 'Informacoes Discente', alunos_path%> <!/p>
+<!%end%>
 
-</b></strong></p>
+<!/b><!/strong><!/p>
 <!p><!%= link_to 'Novo discente', new_aluno_path%><!/p>
 
-<%if !user_signed_in?%>
-	<p><%= link_to 'Professor', professors_path %></p>	
-<%end%>
-<p><%= link_to 'Mais informacoes sobre monitoria',info_page_index_path %></p>
-<p><%= link_to 'Candidatos','/disciplinas/showCandidatos' %></p>
+<!%if !user_signed_in?%>
+	<!p><!%= link_to 'Professor', professors_path %><!/p>	
+<!%end%>
+<!p><!%= link_to 'Mais informacoes sobre monitoria',info_page_index_path %><!/p>
+<!p><!%= link_to 'Candidatos','/disciplinas/showCandidatos' %><!/p>
 
 
 </div>
