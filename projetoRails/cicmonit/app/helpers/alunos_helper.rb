@@ -10,4 +10,5 @@ module AlunosHelper
     sem_formatado = "#{n_semestre}"
     sem_formatado << "º"
   end
+  
 end

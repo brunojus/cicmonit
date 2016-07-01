@@ -23,20 +23,7 @@
     <%= f.text_field :matricula, :size=>"11", placeholder: "Digite sua matrícula", :maxlength=>"9"  %>
 
   </div>
-    <div class="field">
-    <font color="red"><%= f.label "Digite sua opcao de  matrícula (1-voluntaria,2-remunerada,3-ambas)" %><br></font>
-
-    <%= f.number_field :Candidatura, :size=>"11",min: 0, max: 3, placeholder: "Digite sua opcao de  matrícula", :maxlength=>"9"  %>
-
-  </div>
-   
-    <div class="field">
-    <font color="red"><%= f.label "Escolha sua turma de acordo com o parametro materia(turma,turma),materia(turma,turma)" %><br></font>
-
-    <%= f.text_field :TurmasCandidatar, placeholder: "Digite sua turma" %>
-
-  </div>
-
+    
   <div class="field">
     <font color="red"><%= f.label :semestre %><br></font>
     <%= f.number_field :semestre, placeholder: "Digite seu semestre", min:1, max:10 %>
@@ -45,6 +32,7 @@
     <font color="red"><%= f.label :IRA, "IRA" %><br></font>
     <%= f.number_field :IRA, placeholder:"5.00", min: 0.00, max: 5.00, :step => 0.0001, :maxlength=>"3" %>
   </div>
+
   <div class="actions">
     <%= f.submit "Criar novo aluno", class: "btn-submit"%>
   </div>

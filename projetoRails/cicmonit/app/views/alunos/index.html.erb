@@ -23,8 +23,6 @@
         <td><%= formata_matricula(aluno.matricula) %></td>
         <td><%= formata_semestre(aluno.semestre) %></td>
         <td><%= aluno.IRA %></td>
-        <td><%= aluno.Candidatura %></td>
-        <td><%= aluno.TurmasCandidatar %></td>
         <td><%= link_to image_tag("show.png"), aluno %></td>
         <td><%= link_to image_tag("edit.png"), edit_aluno_path(aluno) %></td>
         <td><%= link_to image_tag("delete.png"), aluno, method: :delete, data: { confirm: "Você tem certeza que deseja excluir o dicente #{aluno.nome}?" } %></td>
