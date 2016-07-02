@@ -2,21 +2,38 @@
 
 <div class="front-links">
 
+<<<<<<< HEAD
 <!-- <p><strong><b>
 <%if !user_signed_in?%> <! usuario nao esta logado>
 	<p><%= link_to 'Login Discente', new_user_session_path, method: :get%></p>
 <%else%> <! usuario esta logado>
 	<p> <%= link_to 'Informacoes Discente', alunos_path%> </p>
 <%end%>
+=======
+<p><strong><b>
+<!%if !user_signed_in?%> <! usuario nao esta logado>
+	<!p><!%= link_to 'Login Discente', new_user_session_path, method: :get%><!/p>
+<!%else%> <! usuario esta logado>
+	<!p> <!%= link_to 'Informacoes Discente', alunos_path%> <!/p>
+<!%end%>
+>>>>>>> 9ea796892db5971b8eaa55ebb85611c888eb0a10
 
-</b></strong></p>
+<!/b><!/strong><!/p>
 <!p><!%= link_to 'Novo discente', new_aluno_path%><!/p>
 
+<<<<<<< HEAD
 <%if !user_signed_in?%>
 	<p><%= link_to 'Professor', professors_path %></p>
 <%end%>
 <p><%= link_to 'Mais informacoes sobre monitoria',info_page_index_path %></p>
 <p><%= link_to 'Candidatos','/disciplinas/showCandidatos' %></p>
+=======
+<!%if !user_signed_in?%>
+	<!p><!%= link_to 'Professor', professors_path %><!/p>	
+<!%end%>
+<!p><!%= link_to 'Mais informacoes sobre monitoria',info_page_index_path %><!/p>
+<!p><!%= link_to 'Candidatos','/disciplinas/showCandidatos' %><!/p>
+>>>>>>> 9ea796892db5971b8eaa55ebb85611c888eb0a10
 
 
 </div>

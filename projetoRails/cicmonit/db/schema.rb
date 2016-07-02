@@ -51,15 +51,6 @@ ActiveRecord::Schema.define(version: 20160627013426) do
 
   add_index "departamentos", ["campu_id"], name: "index_departamentos_on_campu_id"
 
-  create_table "dicentes", force: :cascade do |t|
-    t.string  "name"
-    t.string  "email"
-    t.string  "matricula",       limit: 9
-    t.float   "ira"
-    t.integer "semestre"
-    t.string  "password_digest"
-  end
-
   create_table "disciplinas", force: :cascade do |t|
     t.integer "codigo"
     t.string  "nome"
