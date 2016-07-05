@@ -1,2 +1,29 @@
-<h1>Docentes#index</h1>
-<p>Find me in app/views/docentes/index.html.erb</p>
+<h1>Dicente</h1>
+<p id="notice"><%= notice %></p>
+<head>
+</head>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @docentes.each do |docente| %>
+      <tr>
+        <td><%= docente.nome %></td>
+	     </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+<br>
+
+<% se = Docente.where(user_id: current_user.id).count %>
+
+<% if se == 0 %>
+<%= link_to image_tag("new.png"), new_docente_path %>
+<% end %>

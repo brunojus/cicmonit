@@ -1,2 +1,13 @@
-<h1>Docentes#show</h1>
-<p>Find me in app/views/docentes/show.html.erb</p>
+<h1>Discente</h1>
+<p id="notice"><%= notice %></p>
+<body>
+<p>
+  <strong>Nome:</strong>
+  <%= @docente.nome %>
+</p>
+
+</body>
+
+<!-- <%= link_to image_tag("edit.png"), edit_docente_path(@docente) %> | -->
+<%= link_to image_tag("back.png"), docentes_path %>
+<!-- <%= link_to 'Campus',disciplinas_showCampus_path %> -->

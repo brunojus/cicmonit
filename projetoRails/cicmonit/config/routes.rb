@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'docentes/show'
 
   resources :alunos
+
+  resources :docentes
   # root :to =>"alunos#FrontPage"
  # resources :info_page
   devise_for :professors
@@ -40,7 +42,7 @@ Rails.application.routes.draw do
   get 'disciplinas/showDisciplinas'
 
   get 'disciplinas/showTurmas'
-  
+
   get 'disciplinas/showTurma'
 
   get 'disciplinas/showHorarios'

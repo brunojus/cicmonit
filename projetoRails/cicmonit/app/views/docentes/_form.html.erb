@@ -1,0 +1,29 @@
+<%= form_for(@docente) do |f| %>
+  <% if @docente.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@docente.errors.count, "erro(s)") %> encontrado(s):</h2>
+      <ul>
+      <% @docente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<body>
+  <div class="login">
+    <div class="container">
+      <div class="form">
+  <div class="field">
+    <font color="red"><%= f.label :nome %><br></font>
+    <%= f.text_field :nome, :size=>"50", placeholder: "Digite seu nome", :maxlength=>"50"   %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Criar novo docente", class: "btn-submit"%>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </body>
+<%end%>

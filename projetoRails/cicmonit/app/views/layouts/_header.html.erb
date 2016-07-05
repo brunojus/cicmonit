@@ -3,20 +3,25 @@
       <ul class="nav-bar">
 				<%if user_signed_in?%>
 					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
+
+					<% se = Docente.where(user_id: current_user.id).count %>
+
+					<% if se == 0 %>
 					<li><%= link_to "Perfil", alunos_path %></li>
+					<%else%>
+					<li><%= link_to "Perfil", docentes_path %></li>
+					<% end %>
+
+
 					<li><%= link_to "Informações", info_page_index_path %></li>
 			 		<li><%=link_to "Sair", destroy_user_session_path, method: "delete" %> </li>
 			  <%else%>
 					<li><%=link_to "Pagina Inicial",root_path %></li>
 					<li><%= link_to "Informações", info_page_index_path %></li>
-<<<<<<< HEAD
-					<li><%= link_to 'Aluno', new_user_session_path, method: :get %></li>	
+
+					<li><%= link_to 'Logar', new_user_session_path, method: :get %></li>
 					<li><%= link_to 'Professor', professors_path %></li>
 
-=======
-					<li><%= link_to "Aluno", new_user_session_path, method: :get %></li>
-					<li><%= link_to 'Professor', professors_path %></li>
->>>>>>> 9ea796892db5971b8eaa55ebb85611c888eb0a10
 			<%end%>
 
 
