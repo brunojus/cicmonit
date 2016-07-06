@@ -54,7 +54,8 @@ public class GetDB {
             writer.println("CREATE TABLE \"disciplinas\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"codigo\" integer, \"nome\" varchar, \"departamento_id\" integer);");
             writer.println("CREATE TABLE \"turmas\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"nome\" varchar, \"disciplina_id\" integer);");
             writer.println("CREATE TABLE \"horarios\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"nome\" varchar, \"turma_id\" integer);");
-            writer.println("CREATE TABLE \"professores_das_disciplinas\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"nome\" varchar, \"turma_id\" integer);");
+            writer.println("CREATE TABLE "docentes_turmas" ("docente_id" integer NOT NULL, "turma_id" integer NOT NULL);");
+            writer.println("CREATE TABLE "docentes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "user_id" integer);");
             */
             //Necessário por nao comessar da raiz
             writer.println("INSERT INTO \"campus\" VALUES(1,1,'Darcy Ribeiro');");
@@ -89,8 +90,9 @@ public class GetDB {
         	writer.println("CREATE INDEX \"index_disciplinas_on_departamento_id\" ON \"disciplinas\" (\"departamento_id\");");
         	writer.println("CREATE INDEX \"index_turmas_on_disciplina_id\" ON \"turmas\" (\"disciplina_id\");");
         	writer.println("CREATE INDEX \"index_horarios_on_turma_id\" ON \"horarios\" (\"turma_id\");");
-        	writer.println("CREATE INDEX \"index_professores_das_disciplinas_on_turma_id\" ON \"professores_das_disciplinas\" (\"turma_id\");");
-        	*/
+        	writer.println("CREATE INDEX \"index_docentes_turmas_on_docente_id\" ON \"docentes_turmas\" (\"docente_id\");");
+			writer.println("CREATE INDEX \"index_docentes_turmas_on_turma_id\" ON \"docentes_turmas\" (\"turma_id\");");
+			*/
             writer.println("COMMIT;");
             writer.close();
         }catch (IOException ex) {

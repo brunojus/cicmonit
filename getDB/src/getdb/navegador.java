@@ -133,9 +133,10 @@ public class navegador {
     static void acessarturmas (String link, int NumDis) throws MalformedURLException{
         String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
         URL url = new URL(startlink.concat(link));
-        String html, tobewritten, professores, horarioelocal, turma = "";
+        String html, tobewritten, docentes, docentes_turmas, horarioelocal, turma = "", numero_de_alunos = "";
         String [] parte1, parte2;
         List<String> filtrado = new ArrayList<>();
+        int k = 0, l = 0;
         //Todo o bloco necessário do html é lido como uma string
         try{
             html = readblock(url);
@@ -167,15 +168,22 @@ public class navegador {
                 }
             }
             if(parte1[i].contains("smoke><center>")){
-                professores = parte1[i].substring(parte1[i].indexOf("smoke><center>")+14,parte1[i].indexOf("</center>"));
-                if(professores.contains("<br>")){
-                    parte2=professores.split("<br>");
+                docentes = parte1[i].substring(parte1[i].indexOf("smoke><center>")+14,parte1[i].indexOf("</center>"));
+                if(docentes.contains("<br>")){
+                    parte2=docentes.split("<br>");
                     for(int j = 0; j<parte2.length; j++){
                         filtrado.add(parte2[j]);
                     }
                 }else{
-                    filtrado.add(professores);
+                    filtrado.add(docentes);
                 }
+            }
+            if(parte1[i].contains("Ocupadas")){
+            	if (i != k + 3){
+            		k = i;
+            		filtrado.add(parte1[i].substring(parte1[i].indexOf("</font></b></td>")-2,parte1[i].indexOf("</font></b></td>")));
+            	}
+            	
             }
         }
         File file = new File("Banco/db.sql");
@@ -185,13 +193,18 @@ public class navegador {
             if(filtrado.get(i).contains("wrap"))
                 filtrado.set(i, "DOM");
             if(filtrado.get(i).length()<3){
-                turma = filtrado.get(i);
+        		turma = filtrado.get(i);
+        		numero_de_alunos = filtrado.get(i+1);
+        		if(numero_de_alunos.contains(">")){
+        			numero_de_alunos = numero_de_alunos.substring(numero_de_alunos.lastIndexOf('>')+1);
+        		}
             	GetDB.Tur ++;
                 tobewritten = "INSERT INTO \"turmas\" VALUES("+GetDB.Tur+",'"+turma+"'";
-                tobewritten+=","+GetDB.Dis+");";
+                tobewritten+=","+GetDB.Dis+","+numero_de_alunos+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                     writer.println(tobewritten);
                     writer.close();
+                    i++;
                 } catch (IOException ex) {
                     Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -229,9 +242,11 @@ public class navegador {
             //Se nao é turma ou dia é nome de professor
             else{
             	GetDB.Prof ++;
-                professores = "INSERT INTO \"professores_das_disciplinas\" VALUES("+GetDB.Prof+",'"+filtrado.get(i)+"',"+GetDB.Tur+");";
+                docentes = "INSERT INTO \"docentes\" VALUES("+GetDB.Prof+",'"+filtrado.get(i)+"',NULL);";
+                docentes_turmas = "INSERT INTO \"docentes_turmas\" VALUES("+GetDB.Prof+","+GetDB.Tur+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
-                    writer.println(professores);
+                    writer.println(docentes);
+                    writer.println(docentes_turmas);
                     writer.close();
                 } catch (IOException ex) {
                     Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
