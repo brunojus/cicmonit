@@ -28,7 +28,7 @@ class CandidatosController < ApplicationController
 
     respond_to do |format|
       if @candidato.save
-        format.html { redirect_to @candidato, notice: 'Candidato was successfully created.' }
+        format.html { redirect_to @candidato}
         format.json { render :show, status: :created, location: @candidato }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class CandidatosController < ApplicationController
   def destroy
     @candidato.destroy
     respond_to do |format|
-      format.html { redirect_to candidatos_url, notice: 'Candidato was successfully destroyed.' }
+      format.html { redirect_to candidatos_url, notice: 'Sucesso na retirada de candidatura.' }
       format.json { head :no_content }
     end
   end

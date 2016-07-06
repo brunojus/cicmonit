@@ -30,6 +30,9 @@
                   <td align="center"><%= disciplina.nome %></td>
                   <td align="center"><%= candidato.mencao %></td>
                   <td align="center"><%= turma.nome %></td>
+
+                  <td><%= link_to image_tag("delete.png"), candidato, method: :delete, data: { confirm: "Você tem certeza que deseja excluir sua candidatura na turma #{turma.nome} de #{disciplina.nome}" } %></td>
+
                 </tr>
 
         <% end %>
