@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'docentes/show'
 
+  get 'alunos/listar'
+
   resources :alunos
 
   resources :docentes
@@ -50,6 +52,8 @@ Rails.application.routes.draw do
   get 'disciplinas/showProfessores'
 
     get 'disciplinas/showCandidatos'
+
+
 
 	resources:disciplina
 	# root to:"disciplinas#showCampus"

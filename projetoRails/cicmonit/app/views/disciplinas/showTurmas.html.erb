@@ -7,13 +7,9 @@
 <tr>
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
 <%if user_signed_in?%>
-<<<<<<< HEAD
 
 		<th><%= link_to turma.nome, action: 'showTurma', id: turma.id %><td>
 
-=======
-			<th><%= check_box_tag(turma.nome, value = "1", checked = false, options = {})  %><%= label_tag(turma.nome, text = "Turma " + turma.nome, options = {}) %></th>
->>>>>>> 9ea796892db5971b8eaa55ebb85611c888eb0a10
 <%end%>
 
 	<tr bgcolor="E7F3D6" >
@@ -51,19 +47,3 @@
 <% end %>
 </table>
 </body>
-<<<<<<< HEAD
-=======
-
-
-
-
-<!%= form_for(Candidato) do |f| %>
-
-<!body>
-  <!div class="actions">
-    <!%= f.submit "Cadastrar", class: "btn-submit"%>
-  <!/div>
-<!/body>
-
-<!%end%>
->>>>>>> 9ea796892db5971b8eaa55ebb85611c888eb0a10

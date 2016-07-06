@@ -1,0 +1,39 @@
+<h1>Lista de candidatura</h1>
+<table>
+<tr>
+  <th align="center">Aluno</th>
+  <th align="center">Avaliação</th>
+  <th align="center">Disciplina</th>
+  <th align="center">Menção na Disciplina</th>
+  <th align="center">Turma</th>
+
+</tr>
+<% @aluno.each do|aluno| %>
+
+    <% candidato = aluno.candidatos %>
+    <% candidato.each do|candidato| %>
+
+        <% turma = candidato.turmas %>
+        <% turma.each do|turma| %>
+
+        <% disciplina = Disciplina.find(turma.disciplina_id)%>
+
+                <tr>
+                  <td align="center"><%= aluno.nome %></td>
+                  <% if candidato.avaliacao == 0%>
+                  <td align="center"><%= "INDEFERIDA"%></td>
+                  <% elsif candidato.avaliacao == 1%>
+                  <td align="center"><%= "VOLUNTARIO"%></td>
+                  <% else%>
+                  <td align="center"><%= "REMUNERADO"%></td>
+                  <%end%>
+                  <td align="center"><%= disciplina.nome %></td>
+                  <td align="center"><%= candidato.mencao %></td>
+                  <td align="center"><%= turma.nome %></td>
+                </tr>
+
+        <% end %>
+    <% end %>
+<% end %>
+</table>
+</body>

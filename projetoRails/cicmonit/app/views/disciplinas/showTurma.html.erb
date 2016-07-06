@@ -50,7 +50,7 @@
 
 </div>
 	<div class="actions">
-		<%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id)%>
+		<%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
 		<%= f.hidden_field :avaliacao, value: 0%>
 		<%= f.submit @turma.id, :name=>"commit", :value => @turma.id%>
 		<!-- , :style => "display: none;" %> -->

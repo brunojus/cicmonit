@@ -8,6 +8,7 @@
 
 					<% if se == 0 %>
 					<li><%= link_to "Perfil", alunos_path %></li>
+					<li><%= link_to "Lista", 'alunos/listar' %></li>
 					<%else%>
 					<li><%= link_to "Perfil", docentes_path %></li>
 					<% end %>
@@ -19,8 +20,8 @@
 					<li><%=link_to "Pagina Inicial",root_path %></li>
 					<li><%= link_to "Informações", info_page_index_path %></li>
 
-					<li><%= link_to 'Logar', new_user_session_path, method: :get %></li>
-					<li><%= link_to 'Professor', professors_path %></li>
+					<li><%= link_to 'Aluno', new_user_session_path, method: :get %></li>
+					<li><%= link_to 'Professor', new_user_session_path, method: :get %></li>
 
 			<%end%>
 
