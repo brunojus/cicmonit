@@ -45,13 +45,27 @@
 
 <div>
 	<font color="red"><%= f.label :mencao %><br></font>
-
-	<%= f.text_field :mencao  %>
-
+	<% if @aluno != nil %>
+		<%= f.text_field :mencao, placeholder: @candidato.mencao  %>
+	<%else %>
+		<%= f.text_field :mencao  %>
+	<%end%>
 </div>
+
+<div>
+	<font color="red"><%= f.label :avaliacao, "Digite a sua opcao de Inscrição (1-Voluntária,2-Remunerada,3 -Ambas)" %><br></font>
+	<%if @aluno != nil%>
+		<%= f.number_field :avaliacao, placeholder: @candidato.avaliacao%>
+	<%else%>
+		<%= f.number_field :avaliacao, placeholder: 1%>
+	<%end%>
+</div>
+
+	
+
 	<div class="actions">
 		<%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
-		<%= f.hidden_field :avaliacao, value: 0%>
+		<!%= f.hidden_field :avaliacao, value: 0%>
 		<%= f.submit @turma.id, :name=>"commit", :value => @turma.id%>
 		<!-- , :style => "display: none;" %> -->
 		<%= link_to 'voltar', action: 'showTurmas', id: @turma.disciplina_id %>

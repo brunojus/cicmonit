@@ -1,17 +1,31 @@
-<%= form_for(@candidato) do |f| %>
-  <% if @candidato.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@candidato.errors.count, "error") %> prohibited this candidato from being saved:</h2>
+  <%= form_for(@candidato) do |f| %>
 
-      <ul>
-      <% @candidato.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div>
+  <font color="red"><%= f.label :mencao %><br></font>
+  <% if @aluno != nil %>
+    <%= f.text_field :mencao, placeholder: @candidato.mencao  %>
+  <%else %>
+    <%= f.text_field :mencao  %>
+  <%end%>
+</div>
+
+<div>
+  <font color="red"><%= f.label :avaliacao, "Digite a sua opcao de Inscrição (0-Indeferir,1-Voluntária,2-Remunerada)" %><br></font>
+  <%if @aluno != nil%>
+    <%= f.number_field :avaliacao, placeholder: @candidato.avaliacao%>
+  <%else%>
+    <%= f.number_field :avaliacao, placeholder: 1%>
+  <%end%>
+</div>
+
+  
 
   <div class="actions">
+    <!%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
+    <!%= f.hidden_field :avaliacao, value: 0%>
     <%= f.submit %>
+    <!-- , :style => "display: none;" %> -->
+    <!%= link_to 'voltar', action: 'showTurmas', id: @turma.disciplina_id %>
+
   </div>
-<% end %>
+<%end%>

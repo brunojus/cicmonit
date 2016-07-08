@@ -24,8 +24,10 @@
                   <td align="center"><%= "INDEFERIDA"%></td>
                   <% elsif candidato.avaliacao == 1%>
                   <td align="center"><%= "VOLUNTARIO"%></td>
-                  <% else%>
+                  <% elsif candidato.avaliacao == 2%>
                   <td align="center"><%= "REMUNERADO"%></td>
+                  <%else%>
+                  <td align="center"><%= "AMBAS"%></td>
                   <%end%>
                   <td align="center"><%= disciplina.nome %></td>
                   <td align="center"><%= candidato.mencao %></td>
