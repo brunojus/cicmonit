@@ -4,11 +4,11 @@
 				<%if user_signed_in?%>
 					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
 
-					<% se = Docente.where(user_id: current_user.id).count %>
+					<% se = User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count %>
 
-					<% if se == 0 %>
+					<% if se == 1 %>
 					<li><%= link_to "Perfil", alunos_path %></li>
-					<li><%= link_to "Lista", alunos_listar_path %></li>
+					<li><%=link_to "Lista", controller: "alunos", action: "listar"%></li>
 					<%else%>
 					<li><%= link_to "Perfil", docentes_path %></li>
 					<% end %>
@@ -20,8 +20,7 @@
 					<li><%=link_to "Pagina Inicial",root_path %></li>
 					<li><%= link_to "Informações", info_page_index_path %></li>
 
-					<li><%= link_to 'Aluno', new_user_session_path, method: :get %></li>
-					<li><%= link_to 'Professor', new_user_session_path, method: :get %></li>
+					<li><%= link_to 'Entrar', new_user_session_path, method: :get %></li>
 
 			<%end%>
 

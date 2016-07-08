@@ -134,9 +134,9 @@ public class navegador {
         String startlink = "https://www.matriculaweb.unb.br/matriculaweb/graduacao/";
         URL url = new URL(startlink.concat(link));
         String html, tobewritten, docentes, docentes_turmas, horarioelocal, turma = "", numero_de_alunos = "";
-        String [] parte1, parte2;
+        String [] parte1, parte2, temp;
         List<String> filtrado = new ArrayList<>();
-        int k = 0, l = 0;
+        int k = 0;
         //Todo o bloco necessário do html é lido como uma string
         try{
             html = readblock(url);
@@ -241,11 +241,19 @@ public class navegador {
             }
             //Se nao é turma ou dia é nome de professor
             else{
-            	GetDB.Prof ++;
-                docentes = "INSERT INTO \"docentes\" VALUES("+GetDB.Prof+",'"+filtrado.get(i)+"',NULL);";
-                docentes_turmas = "INSERT INTO \"docentes_turmas\" VALUES("+GetDB.Prof+","+GetDB.Tur+");";
+            	docentes = "";
+            	temp = new String[2];
+            	temp[0] = filtrado.get(i);
+            	if(!Professor.exists(temp)){
+	            	temp = Professor.addProfessor(temp);
+	                docentes = "INSERT INTO \"docentes\" VALUES("+temp[1]+",'"+temp[0]+"',NULL);";
+            	}else{
+            		temp = Professor.addProfessor(temp);
+            	}
+            	docentes_turmas = "INSERT INTO \"docentes_turmas\" VALUES("+temp[1]+","+GetDB.Tur+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
-                    writer.println(docentes);
+                	if(!docentes.isEmpty())
+                		writer.println(docentes);
                     writer.println(docentes_turmas);
                     writer.close();
                 } catch (IOException ex) {
