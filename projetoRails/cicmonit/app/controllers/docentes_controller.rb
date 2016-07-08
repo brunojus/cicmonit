@@ -31,16 +31,11 @@ class DocentesController < ApplicationController
   # POST /docentes
   # POST /docentes.json
   def create
-    @docente = Docente.new(docente_params)
-    @docente.user_id = current_user.id
+    @docente = Docente.where("nome = ?", docente_params["nome"])
+    User.find(current_user.id).docentes << @docente
     respond_to do |format|
-      if @docente.save
-        format.html { redirect_to @docente, notice: "Sucesso no cadastro do docente #{@docente.nome}." }
+        format.html { redirect_to :edit => 'localhost:3000/docentes'}
         format.json { render :show, status: :created, location: @docente }
-      else
-        format.html { render :new }
-        format.json { render json: @docente.errors, status: :unprocessable_entity }
-      end
     end
   end
 

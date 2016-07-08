@@ -8,7 +8,7 @@
 
 					<% if se == 1 %>
 					<li><%= link_to "Perfil", alunos_path %></li>
-					<li><%= link_to "Lista", 'alunos/listar' %></li>
+					<li><%=link_to "Lista", controller: "alunos", action: "listar"%></li>
 					<%else%>
 					<li><%= link_to "Perfil", docentes_path %></li>
 					<% end %>

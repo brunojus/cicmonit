@@ -8,13 +8,16 @@
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
 <%if user_signed_in?%>
 
-		<th><%= link_to turma.nome, action: 'showTurma', id: turma.id %><td>
-
+		<% if User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count == 1%>
+		<th>	Turma: <%= link_to turma.nome, action: 'showTurma', id: turma.id %>
+			<%else%>
+			<tr bgcolor="E7F3D6" >
+				<th>	Turma: <%= turma.nome%></td>
+				</tr>
+		<%end%>
 <%end%>
 
-	<tr bgcolor="E7F3D6" >
-		<th>	Turma: <%= turma.nome%></td>
-		</tr>
+
 	<tr bgcolor="6B9A8C" >
 		<th>Horarios & Local</td>
 	</tr>
