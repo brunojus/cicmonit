@@ -12,7 +12,6 @@
 					<%else%>
 					<li><%= link_to "Perfil", docentes_path %></li>
 					<% end %>
-					<li><%=link_to "Lista", controller: "docentes", action: "listar"%></li>
 
 
 					<li><%= link_to "Informações", info_page_index_path %></li>

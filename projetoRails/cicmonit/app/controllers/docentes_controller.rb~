@@ -13,8 +13,8 @@ class DocentesController < ApplicationController
   end
 
   def listar
-    @docentes = Docente.where(user_id: current_user.id)
-    #@docentes = current_user.docentes
+    #@docentes = Docente.where(user_id: current_user.id)
+    @docentes = current_user.docentes
   end
 
   # GET /docentes/1

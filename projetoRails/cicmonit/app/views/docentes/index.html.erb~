@@ -37,7 +37,7 @@
 
 </tr>
 
-<%@aluno =  Aluno.all%>
+%@aluno =  Aluno.all%>
 <% @aluno.each do|aluno| %>
 
     <% candidato = aluno.candidatos %>

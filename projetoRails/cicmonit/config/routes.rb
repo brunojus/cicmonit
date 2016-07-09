@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
 
   get 'docentes/index'
+  
+  get 'docentes/listar'
 
   get 'docentes/show'
 

@@ -1,32 +1,4 @@
-<h1>Dicente</h1>
-<p id="notice"><%= notice %></p>
-<head>
-</head>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @docentes.each do |docente| %>
-      <tr>
-        <td><%= docente.nome %></td>
-	     </tr>
-    <% end %>
-  </tbody>
-</table>
-</body>
-<br>
-
-<% se = Docente.where(user_id: current_user.id).count %>
-
-<% if se == 0 %>
-<%= link_to image_tag("new.png"), new_docente_path %>
-<% end %>
+<h1>Lista de candidatura</h1>
 <table>
 <tr>
   <th align="center">Aluno</th>
@@ -37,16 +9,12 @@
 
 </tr>
 
-<%@aluno =  Aluno.all%>
-<% @aluno.each do|aluno| %>
-
-    <% candidato = aluno.candidatos %>
-    <% candidato.each do|candidato| %>
-
-        <% turma = candidato.turmas %>
-        <% turma.each do|turma| %>
-
-        <% disciplina = Disciplina.find(turma.disciplina_id)%>
+<% @docentes.each do |docente| %>
+	<% turma = docente.turmas %>
+	<% turma.each do|turma| %>
+			    <% candidato = turma.candidatos %>
+			    <% candidato.each do|candidato| %>
+				<% disciplina = Disciplina.find(turma.disciplina_id)%>
 
                 <tr>
                   <td align="center"><%=link_to aluno.nome, edit_candidato_path(candidato) %></td>
@@ -66,11 +34,9 @@
                   <td><%= link_to image_tag("delete.png"), candidato, method: :delete, data: { confirm: "Você tem certeza que deseja excluir sua candidatura na turma #{turma.nome} de #{disciplina.nome}" } %></td>
 
                 </tr>
-
         <% end %>
-    <% end %>
+<% end %>
 <% end %>
 </table>
 </body>
-
 

@@ -4,5 +4,5 @@ class Turma < ActiveRecord::Base
   
   has_and_belongs_to_many :docentes
 
-  has_and_belongs_to_many :cadidatos
+  has_and_belongs_to_many :candidatos
 end

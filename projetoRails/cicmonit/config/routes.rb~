@@ -1,11 +1,41 @@
 Rails.application.routes.draw do
 
-  resources :alunos
-  # root :to =>"alunos#FrontPage"
 
+  resources :candidatos
+  devise_for :users
+  get 'sessions/new'
+
+  # get 'dicentes/new'
+
+  get 'info_page/index'
+
+
+  get 'docentes/index'
+
+  get 'docentes/show'
+
+  get 'alunos/listar'
+
+  resources :alunos
+
+  resources :docentes
+  # root :to =>"alunos#FrontPage"
+ # resources :info_page
   devise_for :professors
   resources :professors
-   root :to =>"professors#index"
+  #root :to =>"professors#index"
+
+
+   unauthenticated do
+	# #alunos#index
+       root :to =>"alunos#FrontPage", as: :unauthenticated_root
+  #
+   end
+
+  #
+  # authenticated :professors do
+  #   root  :to=>  'disciplinas#showCampus',  as: :authenticated_root
+  # end
 
   get 'disciplinas/showCampus'
 
@@ -15,12 +45,25 @@ Rails.application.routes.draw do
 
   get 'disciplinas/showTurmas'
 
+  get 'disciplinas/showTurma'
+
   get 'disciplinas/showHorarios'
 
   get 'disciplinas/showProfessores'
 
+    get 'disciplinas/showCandidatos'
+
+
+
 	resources:disciplina
-	#root to:"disciplinas#showCampus"
+	# root to:"disciplinas#showCampus"
+
+  # resources :dicentes
+  # get    'sign_in'   => 'sessions#new'
+  # post   'sign_in'   => 'sessions#create'
+  # delete 'sign_out'  => 'sessions#destroy'
+
+  root 'alunos#FrontPage'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
