@@ -36,10 +36,10 @@ class CandidatosController < ApplicationController
       end
     end
 
-    @turma = Turma.find(params[:commit])
+    @turma = Turma.find(params[:turma_id])
     @candidato.turmas << @turma
     flash[:notice] = 'Candidatura efetuada com sucesso.'
-
+    
    end
 
   # PATCH/PUT /candidatos/1

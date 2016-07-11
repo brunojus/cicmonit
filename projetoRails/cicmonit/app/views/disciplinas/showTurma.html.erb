@@ -61,12 +61,12 @@
 	<%end%>
 </div>
 
-	
+
 
 	<div class="actions">
 		<%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
-		<!%= f.hidden_field :avaliacao, value: 0%>
-		<%= f.submit @turma.id, :name=>"commit", :value => @turma.id%>
+		<%= f.hidden_field :turma_id, :value => @turma.id, :index => @turma.id, :name => :turma_id %>
+		<%= f.submit "candidatar"%>
 		<!-- , :style => "display: none;" %> -->
 		<%= link_to 'voltar', action: 'showTurmas', id: @turma.disciplina_id %>
 
