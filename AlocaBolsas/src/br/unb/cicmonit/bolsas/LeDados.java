@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -167,6 +168,18 @@ public class LeDados {
 
 	public HashMap<Integer, Turma> getTurmas() {
 		return turmas;
+	}
+
+	public List<Turma> getTurmasList() {
+		List<Turma> turma = new ArrayList<Turma>();
+		
+		
+		return turma;
+	}
+	
+	
+	public Turma getTurma(int index) {
+		return turmas.get(index);
 	}
 
 	public HashMap<Integer, Candidato> getCandidatos() {
