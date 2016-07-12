@@ -10,14 +10,21 @@ public class Turma {
 	private int disciplinaId;
 	private int alunosMatriculados;
 	private boolean obrigatoria;
-	private int bolsasRequeridas;
+	
 	private List<Candidato> candidatos;
+	private int bolsasRequeridas;
+	private int bolsasAlocadas;
+	private int prioridade;
+	private static int obrigatorias = 0;
+	private static int optativas = 0;
+	private boolean alocado;
 	public static final String TURMAS = "\"turmas\"";
 	public static final int TURMAS_LENGTH = 28;
 	
 	
 	public Turma() {
 		candidatos = new ArrayList<Candidato>();
+		alocado = false;
 	}
 	
 	public Turma(int id, String nome, int disciplinaId,
@@ -77,14 +84,6 @@ public class Turma {
 		this.obrigatoria = obrigatoria;
 	}
 
-	public int getBolsasDisponiveis() {
-		return bolsasRequeridas;
-	}
-
-	public void setBolsasDisponiveis(int bolsasDisponiveis) {
-		this.bolsasRequeridas = bolsasDisponiveis;
-	}
-
 	public List<Candidato> getCandidatos() {
 		return candidatos;
 	}
@@ -92,6 +91,79 @@ public class Turma {
 	public void setCandidatos(List<Candidato> candidatos) {
 		this.candidatos = candidatos;
 	}
+	
+	public int getBolsasRequeridas() {
+		return bolsasRequeridas;
+	}
 
+	public void setBolsasRequeridas() {
+		bolsasRequeridas = 0;
+		for(Candidato c : candidatos)
+			if(c.getAvaliacao() == 2 || c.getAvaliacao() == 3) 
+				bolsasRequeridas++;
+		
+	}
+
+	public int getBolsasAlocadas() {
+		return bolsasAlocadas;
+	}
+
+	public void alocaBolsa() {
+		bolsasAlocadas++;
+	}
+	
+	public Candidato fetchMelhorOpcao() {
+		Candidato OP = null;
+		
+		for(Candidato c : candidatos) {
+			if(OP == null && c != null)
+				OP = c;
+			else if((c.getMencao().compareTo(OP.getMencao()) > 0) && !c.isBolsista())
+				OP = c;
+		}
+		
+		return OP;
+	}
+
+	public int getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(int prioridade) {
+		this.prioridade = prioridade;
+	}
+
+	public static int getObrigatorias() {
+		return obrigatorias;
+	}
+
+	public static void setObrigatorias(int obrigatorias) {
+		Turma.obrigatorias = obrigatorias;
+	}
+	
+	public static void addObrigatorias() {
+		Turma.obrigatorias++;
+	}
+
+	public static int getOptativas() {
+		return optativas;
+	}
+
+	public static void setOptativas(int optativas) {
+		Turma.optativas = optativas;
+	}
+	
+	public static void addOptativas() {
+		Turma.optativas++;
+	}
+
+	public boolean isAlocado() {
+		return alocado;
+	}
+
+	public void setAlocado(boolean alocado) {
+		this.alocado = alocado;
+	}
+	
 	
 }

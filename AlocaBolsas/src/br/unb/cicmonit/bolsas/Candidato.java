@@ -6,13 +6,17 @@ public class Candidato {
 	private String mencao;
 	private int alunoId;
 	private int avaliacao;
+	
 	private int turmaId;
+	private boolean bolsista;
 	public final static String CANDIDATOS = "\"candidatos\"";
 	public final static String CANDIDATOS_TURMAS = "\"candidatos_turmas\"";
 	public final static int CANDIDATOS_LENGTH = 32;
 	public final static int CANDIDATOS_TURMAS_LENGTH = 39;
 	
-	public Candidato() {}
+	public Candidato() {
+		bolsista = false;
+	}
 
 	public Candidato(int id, String mencao, int alunoId, int avaliacao) {
 		this.id = id;
@@ -66,6 +70,18 @@ public class Candidato {
 
 	public void setTurmaId(int turmaId) {
 		this.turmaId = turmaId;
+	}
+
+	public boolean isBolsista() {
+		return bolsista;
+	}
+	
+	public void setBolsista(boolean bolsista) {
+		this.bolsista = bolsista;
+	}
+
+	public void setBolsista() {
+		bolsista = true;
 	}
 	
 	
