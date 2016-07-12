@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -88,15 +87,18 @@ public class LeDados {
 		return turmas;
 	}
 	
-	public Turma fetchTurmaPriority() {
+	public Turma fetchTurmaPriority(boolean obrigatoria) {
 		Turma turma = null;
 		
 		for(Turma t : turmas.values()) {
-			if(turma == null && t != null)
-				turma = t;
-			else if((turma.getAlunosMatriculados() < t.getAlunosMatriculados())
-					&& t.getBolsasAlocadas() < t.getBolsasRequeridas())
-				turma = t;
+			if(t.isObrigatoria() == obrigatoria) {
+				if(turma == null && t != null)
+					turma = t;
+				else if((turma.getAlunosMatriculados() < t.getAlunosMatriculados())
+						&& t.getBolsasAlocadas() < t.getBolsasRequeridas()
+						&& !t.isAlocado())
+					turma = t;
+			}
 		}
 		
 		return turma;
@@ -169,14 +171,6 @@ public class LeDados {
 	public HashMap<Integer, Turma> getTurmas() {
 		return turmas;
 	}
-
-	public List<Turma> getTurmasList() {
-		List<Turma> turma = new ArrayList<Turma>();
-		
-		
-		return turma;
-	}
-	
 	
 	public Turma getTurma(int index) {
 		return turmas.get(index);
