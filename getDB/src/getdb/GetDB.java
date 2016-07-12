@@ -26,6 +26,7 @@ public class GetDB {
         //String start = "oferta_dep.aspx?cod=1";
         //endereço do CIC no MW
         String start = "oferta_dis.aspx?cod=116";
+        Camp = 1;
         Dep = 1;
         //Inicializando os arquivos necessários
         File file = new File("Banco/");
@@ -58,8 +59,8 @@ public class GetDB {
             writer.println("CREATE TABLE "docentes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "user_id" integer);");
             */
             //Necessário por nao comessar da raiz
-            writer.println("INSERT INTO \"campus\" VALUES(1,1,'Darcy Ribeiro');");
-            writer.println("INSERT INTO \"departamentos\" VALUES(1,116,'CIC','Departamento de Ciência de Computação',1);");
+            writer.println("INSERT OR REPLACE INTO \"campus\" VALUES(1,1,'Darcy Ribeiro');");
+            writer.println("INSERT OR REPLACE INTO \"departamentos\" VALUES(1,116,'CIC','Departamento de Ciência de Computação',1);");
             writer.close();
         }catch (IOException ex) {
             //Seria bom um tratamento de erro aqui
@@ -76,12 +77,12 @@ public class GetDB {
             //Finalizando
         	/*
         	writer.println("DELETE FROM sqlite_sequence;");
-        	writer.println("INSERT INTO \"sqlite_sequence\" VALUES('campus',1);");
-        	writer.println("INSERT INTO \"sqlite_sequence\" VALUES('departamentos',1);");
-        	writer.println("INSERT INTO \"sqlite_sequence\" VALUES('disciplinas',2);");
-        	writer.println("INSERT INTO \"sqlite_sequence\" VALUES('turmas',2);");
-        	writer.println("INSERT INTO \"sqlite_sequence\" VALUES('horarios',5);");
-        	writer.println("INSERT INTO \"sqlite_sequence\" VALUES('professores_das_disciplinas',2);");
+        	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('campus',1);");
+        	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('departamentos',1);");
+        	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('disciplinas',2);");
+        	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('turmas',2);");
+        	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('horarios',5);");
+        	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('professores_das_disciplinas',2);");
         	writer.println("CREATE UNIQUE INDEX \"unique_schema_migrations\" ON \"schema_migrations\" (\"version\");");
         	writer.println("CREATE INDEX \"index_professors_on_turma_id\" ON \"professors\" (\"turma_id\");");
         	writer.println("CREATE UNIQUE INDEX \"index_professors_on_email\" ON \"professors\" (\"email\");");

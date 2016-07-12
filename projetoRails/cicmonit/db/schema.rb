@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705181903) do
+ActiveRecord::Schema.define(version: 20160712164626) do
 
   create_table "alunos", force: :cascade do |t|
     t.string  "nome",      limit: 225,               null: false
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160705181903) do
     t.string  "nome"
     t.integer "disciplina_id"
     t.integer "QtdeAlunos"
+    t.integer "obrigatoria"
   end
 
   add_index "turmas", ["disciplina_id"], name: "index_turmas_on_disciplina_id"

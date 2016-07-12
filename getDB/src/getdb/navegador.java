@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class navegador {
     //Navega através da arvore de links ,retornando Campus, Departamentos e/ou Matérias
     static void acessodepartamento(String link) throws MalformedURLException{
-        String tobewritten = "", Num, NumSup;
+        String tobewritten = "", Num;
         int flagwriten = 0;
         //condiçao para parar antes de acessar as turmas, pois nelas é outro formato de html
         if (link.contains("oferta_dados.aspx?")){
@@ -71,17 +71,17 @@ public class navegador {
             //Estas linhas ditam a estrutura inicial do Banco
             if(link.contains("oferta_dep")&& flagwriten == 0){
             	GetDB.Dep ++;
-                tobewritten = "INSERT INTO \"departamento\" VALUES("+GetDB.Dep+",";
+                tobewritten = "INSERT OR REPLACE INTO \"departamento\" VALUES("+GetDB.Dep+",";
                 flagwriten = 1;
             }
             if(link.contains("oferta_campus")&& flagwriten == 0){
             	GetDB.Camp ++;
-                tobewritten = "INSERT INTO \"campus\" VALUES("+GetDB.Camp+",";
+                tobewritten = "INSERT OR REPLACE INTO \"campus\" VALUES("+GetDB.Camp+",";
                 flagwriten = 1;
             }
             if(link.contains("oferta_dis")){
             	GetDB.Dis ++;
-                tobewritten = "INSERT INTO \"disciplinas\" VALUES("+GetDB.Dis+",";
+                tobewritten = "INSERT OR REPLACE INTO \"disciplinas\" VALUES("+GetDB.Dis+",";
                 flagwriten = 1;
             }
             try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
@@ -92,14 +92,12 @@ public class navegador {
                 //devido à estrutura distinta da marcação
                 if (link.contains("oferta_dis")){
                     Num = parte1[0].substring(parte1[0].indexOf("cod=")+4,parte1[0].indexOf("&dep="));
-                    NumSup = parte1[0].substring(parte1[0].indexOf("dep=")+4);
                     writer.println(tobewritten+Num+",'"+filtrado.get(i)+"',"+GetDB.Dep+");");
                     flagwriten = 0;
                 }
                 //Estas linhas são necessárias para navegação a partir de um campus específico
                 //devido à estrutura distinta da marcação
                 else if(link.contains("oferta_dep")){
-                    NumSup = link.substring(parte1[0].indexOf("cod=")+4);
                     writer.println(tobewritten+"'"+filtrado.get(i)+"',"+GetDB.Camp+");");
                     flagwriten = 0;
                 }else{
@@ -136,7 +134,8 @@ public class navegador {
         String html, tobewritten, docentes, docentes_turmas, horarioelocal, turma = "", numero_de_alunos = "";
         String [] parte1, parte2, temp;
         List<String> filtrado = new ArrayList<>();
-        int k = 0;
+        int k = 0, l;
+        boolean check = false;
         //Todo o bloco necessário do html é lido como uma string
         try{
             html = readblock(url);
@@ -183,7 +182,9 @@ public class navegador {
             		k = i;
             		filtrado.add(parte1[i].substring(parte1[i].indexOf("</font></b></td>")-2,parte1[i].indexOf("</font></b></td>")));
             	}
-            	
+            }
+            if(parte1[i].contains("Reserva para curso")){
+            		filtrado.add("$");            	
             }
         }
         File file = new File("Banco/db.sql");
@@ -193,25 +194,59 @@ public class navegador {
             if(filtrado.get(i).contains("wrap"))
                 filtrado.set(i, "DOM");
             if(filtrado.get(i).length()<3){
+            	if(filtrado.get(i).contains("$"))
+            		i++;
+        		if(filtrado.size()<=i)
+        			return;
         		turma = filtrado.get(i);
         		numero_de_alunos = filtrado.get(i+1);
         		if(numero_de_alunos.contains(">")){
         			numero_de_alunos = numero_de_alunos.substring(numero_de_alunos.lastIndexOf('>')+1);
         		}
-            	GetDB.Tur ++;
-                tobewritten = "INSERT INTO \"turmas\" VALUES("+GetDB.Tur+",'"+turma+"'";
-                tobewritten+=","+GetDB.Dis+","+numero_de_alunos+");";
-                try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
-                    writer.println(tobewritten);
-                    writer.close();
-                    i++;
-                } catch (IOException ex) {
-                    Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        		l=i+2;
+        		while(!check && l<filtrado.size()){
+        			try{
+        				Integer.parseInt(filtrado.get(l));
+        				check = true;
+        				l=0;
+        			}catch(NumberFormatException exp){
+        				if(filtrado.get(l).contains("$")){
+        					check = true;
+        				}else{
+        					l++;
+        				}
+        			}
+        		}
+        		if(l!= 0 && l<filtrado.size()){
+	            	GetDB.Tur ++;
+	                tobewritten = "INSERT OR REPLACE INTO \"turmas\" VALUES("+GetDB.Tur+",'"+turma+"'";
+	                tobewritten+=","+GetDB.Dis+","+numero_de_alunos+",1);";
+	                l=0;
+	                check = false;
+	                try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+	                    writer.println(tobewritten);
+	                    writer.close();
+	                    i++;
+	                } catch (IOException ex) {
+	                    Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+	                }
+        		}else{
+        			GetDB.Tur ++;
+                    tobewritten = "INSERT OR REPLACE INTO \"turmas\" VALUES("+GetDB.Tur+",'"+turma+"'";
+                    tobewritten+=","+GetDB.Dis+","+numero_de_alunos+",0);";
+                    check = false;
+                    try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
+                        writer.println(tobewritten);
+                        writer.close();
+                        i++;
+                    } catch (IOException ex) {
+                        Logger.getLogger(navegador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        		}
             }else if(filtrado.get(i).length()==3){
                 //Dia
             	GetDB.Hor ++;
-                horarioelocal="INSERT INTO \"horarios\" VALUES("+GetDB.Hor+",'"+filtrado.get(i)+" "; 
+                horarioelocal="INSERT OR REPLACE INTO \"horarios\" VALUES("+GetDB.Hor+",'"+filtrado.get(i)+" "; 
                 i=i+1;
                 if(i<filtrado.size()){
                     //Horario
@@ -246,11 +281,11 @@ public class navegador {
             	temp[0] = filtrado.get(i);
             	if(!Professor.exists(temp)){
 	            	temp = Professor.addProfessor(temp);
-	                docentes = "INSERT INTO \"docentes\" VALUES("+temp[1]+",'"+temp[0]+"',NULL);";
+	                docentes = "INSERT OR REPLACE INTO \"docentes\" VALUES("+temp[1]+",'"+temp[0]+"',NULL);";
             	}else{
             		temp = Professor.addProfessor(temp);
             	}
-            	docentes_turmas = "INSERT INTO \"docentes_turmas\" VALUES("+temp[1]+","+GetDB.Tur+");";
+            	docentes_turmas = "INSERT OR REPLACE INTO \"docentes_turmas\" VALUES("+temp[1]+","+GetDB.Tur+");";
                 try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
                 	if(!docentes.isEmpty())
                 		writer.println(docentes);
