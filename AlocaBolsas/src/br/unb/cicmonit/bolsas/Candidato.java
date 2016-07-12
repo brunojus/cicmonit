@@ -21,6 +21,13 @@ public class Candidato {
 		this.avaliacao = avaliacao;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Candidato)
+			return ((Turma) o).getId() == this.getId();
+		return false;
+	}
+
 	public int getId() {
 		return id;
 	}

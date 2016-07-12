@@ -1,5 +1,6 @@
 package br.unb.cicmonit.bolsas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Turma {
@@ -15,7 +16,9 @@ public class Turma {
 	public static final int TURMAS_LENGTH = 28;
 	
 	
-	public Turma() {}
+	public Turma() {
+		candidatos = new ArrayList<Candidato>();
+	}
 	
 	public Turma(int id, String nome, int disciplinaId,
 			int alunosMatriculados, boolean obrigatoria) {
