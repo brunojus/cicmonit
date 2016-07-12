@@ -12,11 +12,15 @@ class DocentesController < ApplicationController
     @docentes = current_user.docentes
   end
 
-  def listar
+  def listarTurmas
     @docentes = Docente.where(user_id: current_user.id)
     #@docentes = current_user.docentes
   end
 
+  def listar
+    @turma = Turma.find(params[:id])
+    #@docentes = current_user.docentes
+  end
   # GET /docentes/1
   # GET /docentes/1.json
 

@@ -9,34 +9,28 @@
 
 </tr>
 
-<% @docentes.each do |docente| %>
-	<% turma = docente.turmas %>
-	<% turma.each do|turma| %>
-			    <% candidato = turma.candidatos %>
-			    <% candidato.each do|candidato| %>
-				<% aluno = Aluno.find(candidato.aluno_id)%>
-				<% disciplina = Disciplina.find(turma.disciplina_id)%>
+<% candidato = @turma.candidatos %>
+<% candidato.each do|candidato| %>
+<% aluno = Aluno.find(candidato.aluno_id)%>
+<% disciplina = Disciplina.find(@turma.disciplina_id)%>
 
-                <tr>
-                  <td align="center"><%=link_to aluno.nome, edit_candidato_path(candidato) %></td>
-                  <% if candidato.avaliacao == 0%>
-                  <td align="center"><%= "INDEFERIDA"%></td>
-                  <% elsif candidato.avaliacao == 1%>
-                  <td align="center"><%= "VOLUNTARIO"%></td>
-                  <% elsif candidato.avaliacao == 2%>
-                  <td align="center"><%= "REMUNERADO"%></td>
-                  <%else%>
-                  <td align="center"><%= "AMBAS"%></td>
-                  <%end%>
-                  <td align="center"><%= disciplina.nome %></td>
-                  <td align="center"><%= candidato.mencao %></td>
-                  <td align="center"><%= turma.nome %></td>
+      <tr>
+        <td align="center"><%=link_to aluno.nome, edit_candidato_path(candidato) %></td>
+        <% if candidato.avaliacao == 0%>
+        <td align="center"><%= "INDEFERIDA"%></td>
+        <% elsif candidato.avaliacao == 1%>
+        <td align="center"><%= "VOLUNTARIO"%></td>
+        <% elsif candidato.avaliacao == 2%>
+        <td align="center"><%= "REMUNERADO"%></td>
+        <%else%>
+        <td align="center"><%= "AMBAS"%></td>
+        <%end%>
+        <td align="center"><%= disciplina.nome %></td>
+        <td align="center"><%= candidato.mencao %></td>
+        <td align="center"><%= @turma.nome %></td>
 
-                  <!-- <td><%= link_to image_tag("delete.png"), candidato, method: :delete, data: { confirm: "Você tem certeza que deseja excluir sua candidatura na turma #{turma.nome} de #{disciplina.nome}" } %></td> -->
-
-                </tr>
-        <% end %>
+      </tr>
 <% end %>
-<% end %>
+
 </table>
 </body>

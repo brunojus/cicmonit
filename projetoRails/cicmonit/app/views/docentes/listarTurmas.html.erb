@@ -1,0 +1,18 @@
+<h1>Lista de turmas</h1>
+
+<% @docente = Docente.where(user_id: current_user.id) %>
+<% @docente.each do|docente| %>
+    <% turma = docente.turmas %>
+    <% turma.each do|turma| %>
+    <font face="Arial"><table></font>
+
+    <tr>
+
+    <th>	 <%= Disciplina.find(turma.disciplina_id).nome %> - TURMA: <%= link_to turma.nome, controller: "docentes", action: 'listar', id: turma.id %>
+
+    </tr>
+    </table>
+    
+    <% end %>
+<% end %>
+</body>

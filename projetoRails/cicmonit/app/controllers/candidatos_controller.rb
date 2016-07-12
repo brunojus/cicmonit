@@ -39,7 +39,7 @@ class CandidatosController < ApplicationController
     @turma = Turma.find(params[:turma_id])
     @candidato.turmas << @turma
     flash[:notice] = 'Candidatura efetuada com sucesso.'
-    
+
    end
 
   # PATCH/PUT /candidatos/1
@@ -47,7 +47,7 @@ class CandidatosController < ApplicationController
   def update
     respond_to do |format|
       if @candidato.update(candidato_params)
-        format.html { redirect_to @candidato, notice: 'Candidato was successfully updated.' }
+        format.html { redirect_to @candidato, notice: "Avaliação do candidato efetuada com sucesso." }
         format.json { render :show, status: :ok, location: @candidato }
       else
         format.html { render :edit }
