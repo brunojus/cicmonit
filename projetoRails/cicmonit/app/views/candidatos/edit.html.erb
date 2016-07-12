@@ -1,6 +1,11 @@
-<h1>Editing Candidato</h1>
+<h1>Editar candidato</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @candidato %> |
-<%= link_to 'Back', candidatos_path %>
+<% se = User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count %>
+
+<% if se == 1 %>
+  <br/><%= link_to 'Voltar', candidatos_path %>
+<% else %>
+  <br/><%=link_to "Voltar", controller: "docentes", action: "listar"%>
+<% end%>

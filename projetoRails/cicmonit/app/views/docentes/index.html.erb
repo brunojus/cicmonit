@@ -28,49 +28,47 @@
 <%= link_to image_tag("new.png"), new_docente_path %>
 <% end %>
 <table>
-<tr>
+<!-- <tr>
   <th align="center">Aluno</th>
   <th align="center">Avaliação</th>
   <th align="center">Disciplina</th>
   <th align="center">Menção na Disciplina</th>
   <th align="center">Turma</th>
 
-</tr>
+</tr> -->
 
-<%@aluno =  Aluno.all%>
-<% @aluno.each do|aluno| %>
+<!%@aluno =  Aluno.all%>
+<!% @aluno.each do|aluno| %>
 
-    <% candidato = aluno.candidatos %>
-    <% candidato.each do|candidato| %>
+    <!% candidato = aluno.candidatos %>
+    <!% candidato.each do|candidato| %>
 
-        <% turma = candidato.turmas %>
-        <% turma.each do|turma| %>
+        <!% turma = candidato.turmas %>
+        <!% turma.each do|turma| %>
 
-        <% disciplina = Disciplina.find(turma.disciplina_id)%>
+        <!% disciplina = Disciplina.find(turma.disciplina_id)%>
 
-                <tr>
-                  <td align="center"><%=link_to aluno.nome, edit_candidato_path(candidato) %></td>
-                  <% if candidato.avaliacao == 0%>
-                  <td align="center"><%= "INDEFERIDA"%></td>
-                  <% elsif candidato.avaliacao == 1%>
-                  <td align="center"><%= "VOLUNTARIO"%></td>
-                  <% elsif candidato.avaliacao == 2%>
-                  <td align="center"><%= "REMUNERADO"%></td>
-                  <%else%>
-                  <td align="center"><%= "AMBAS"%></td>
-                  <%end%>
-                  <td align="center"><%= disciplina.nome %></td>
-                  <td align="center"><%= candidato.mencao %></td>
-                  <td align="center"><%= turma.nome %></td>
+                <!tr>
+                  <!td align="center"><!%=link_to aluno.nome, edit_candidato_path(candidato) %><!/td>
+                  <!% if candidato.avaliacao == 0%>
+                  <!td align="center"><!%= "INDEFERIDA"%><!/td>
+                  <!% elsif candidato.avaliacao == 1%>
+                  <!td align="center"><!%= "VOLUNTARIO"%><!/td>
+                  <!% elsif candidato.avaliacao == 2%>
+                  <!td align="center"><!%= "REMUNERADO"%><!/td>
+                  <!%else%>
+                  <!td align="center"><!%= "AMBAS"%><!/td>
+                  <!%end%>
+                  <!td align="center"><!%= disciplina.nome %><!/td>
+                  <!td align="center"><!%= candidato.mencao %><!/td>
+                  <!td align="center"><!%= turma.nome %><!/td>
 
-                  <td><%= link_to image_tag("delete.png"), candidato, method: :delete, data: { confirm: "Você tem certeza que deseja excluir sua candidatura na turma #{turma.nome} de #{disciplina.nome}" } %></td>
+                  <!td><!%= link_to image_tag("delete.png"), candidato, method: :delete, data: { confirm: "Você tem certeza que deseja excluir sua candidatura na turma #{turma.nome} de #{disciplina.nome}" } %><!/td>
 
-                </tr>
+                <!/tr>
 
-        <% end %>
-    <% end %>
-<% end %>
+        <!% end %>
+    <!% end %>
+<!% end %>
 </table>
 </body>
-
-

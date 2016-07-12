@@ -1,31 +1,27 @@
   <%= form_for(@candidato) do |f| %>
 
 <div>
-  <font color="red"><%= f.label :mencao %><br></font>
   <% if @aluno != nil %>
+  <font color="red"><%= f.label :mencao %><br></font>
     <%= f.text_field :mencao, placeholder: @candidato.mencao  %>
-  <%else %>
-    <%= f.text_field :mencao  %>
-  <%end%>
+    <%end%>
 </div>
 
 <div>
-  <font color="red"><%= f.label :avaliacao, "Digite a sua opcao de Inscrição (0-Indeferir,1-Voluntária,2-Remunerada)" %><br></font>
   <%if @aluno != nil%>
-    <%= f.number_field :avaliacao, placeholder: @candidato.avaliacao%>
+  <font color="red"><%= f.label :avaliacao, "Digite a sua opcao de Inscrição (0-Indeferir,1-Voluntária,2-Remunerada)" %><br></font>
+    <%= f.number_field :avaliacao, placeholder: @candidato.avaliacao, min: 0.0, max: 3.0, :step => 1, :maxlength=>"1"%>
   <%else%>
-    <%= f.number_field :avaliacao, placeholder: 1%>
+  <font color="red"><%= f.label :avaliacao, "Escolha a opção de avaliação para o candidato (0-Indeferir,1-Voluntária,2-Remunerada)" %><br></font>
+    <%= f.number_field :avaliacao, placeholder: 1, min: 0.0, max: 3.0, :step => 1, :maxlength=>"1"%>
   <%end%>
 </div>
 
-  
+
 
   <div class="actions">
-    <!%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
-    <!%= f.hidden_field :avaliacao, value: 0%>
-    <%= f.submit %>
-    <!-- , :style => "display: none;" %> -->
-    <!%= link_to 'voltar', action: 'showTurmas', id: @turma.disciplina_id %>
+
+    <%= f.submit :Submeter%>
 
   </div>
 <%end%>
