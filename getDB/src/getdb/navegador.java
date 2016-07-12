@@ -66,9 +66,9 @@ public class navegador {
         }
         //Separaçao dos links dos nomes dos campus, matérias ou departamentos
         // ocorre também a navegaçao por recursividade
-        File file = new File("Banco/db.sql");
+        File file = new File("db/db.sql");
         for(int i = 0; i<filtrado.size(); i++){
-            //Estas linhas ditam a estrutura inicial do Banco
+            //Estas linhas ditam a estrutura inicial do db
             if(link.contains("oferta_dep")&& flagwriten == 0){
             	GetDB.Dep ++;
                 tobewritten = "INSERT OR REPLACE INTO \"departamento\" VALUES("+GetDB.Dep+",";
@@ -187,7 +187,7 @@ public class navegador {
             		filtrado.add("$");            	
             }
         }
-        File file = new File("Banco/db.sql");
+        File file = new File("db/db.sql");
         for(int i = 0; i<filtrado.size(); i++){
             //Insere a letra da turma na saida
             //Tratando a única exceção ainda existente

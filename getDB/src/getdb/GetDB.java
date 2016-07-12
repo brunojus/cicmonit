@@ -29,17 +29,17 @@ public class GetDB {
         Camp = 1;
         Dep = 1;
         //Inicializando os arquivos necessários
-        File file = new File("Banco/");
+        File file = new File("db/");
         if(!file.exists())
             file.mkdir();
-        file = new File("Banco/db.sql");
-        File fileold = new File("Banco/db-backup"+System.nanoTime()+".sql");
+        file = new File("db/db.sql");
+        File fileold = new File("db/db-backup"+System.nanoTime()+".sql");
         try {
             if(!file.exists()) {
                 file.createNewFile();
             }else{
                 file.renameTo(fileold);
-                file = new File("Banco/db.sql");
+                file = new File("db/db.sql");
                     file.createNewFile();
             }
         } catch (IOException ex) {
@@ -49,6 +49,7 @@ public class GetDB {
             //Cabeçalho
             writer.println("PRAGMA foreign_keys=OFF;");
             writer.println("BEGIN TRANSACTION;");
+        	writer.println("DELETE FROM docentes_turmas;");
             /*
             writer.println("CREATE TABLE \"campus\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"codigo\" integer, \"nome\" varchar);");
             writer.println("CREATE TABLE \"departamentos\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"codigo\" integer, \"sigla\" varchar, \"nome\" varchar, \"campu_id\" integer);");
@@ -76,7 +77,6 @@ public class GetDB {
         try (PrintWriter writer = new PrintWriter(new FileWriter(file, true))) {
             //Finalizando
         	/*
-        	writer.println("DELETE FROM sqlite_sequence;");
         	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('campus',1);");
         	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('departamentos',1);");
         	writer.println("INSERT OR REPLACE INTO \"sqlite_sequence\" VALUES('disciplinas',2);");

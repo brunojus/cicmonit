@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712164626) do
+ActiveRecord::Schema.define(version: 20160712195902) do
 
   create_table "alunos", force: :cascade do |t|
     t.string  "nome",      limit: 225,               null: false
@@ -96,6 +96,11 @@ ActiveRecord::Schema.define(version: 20160712164626) do
 
   add_index "professors", ["email"], name: "index_professors_on_email", unique: true
   add_index "professors", ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true
+
+  create_table "total_de_bolsas", force: :cascade do |t|
+    t.integer "QTE"
+    t.integer "QTE_alocadas"
+  end
 
   create_table "turmas", force: :cascade do |t|
     t.string  "nome"
