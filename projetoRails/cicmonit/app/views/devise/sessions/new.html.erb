@@ -4,22 +4,22 @@
 <div class="form">
 
   <div class="field">
-    <%= f.label :Matricula %><br />
+    <%= f.label :Email %><br />
     <%= f.text_field :email,value: formata_email(@user.email) %>
-     
+
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :senha %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
-  <% if devise_mapping.rememberable? -%>
+  <!-- <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :"Lembrar-me" %>
     </div>
-  <% end -%>
+  <% end -%> -->
 
   <div class="actions">
     <%= f.submit "Entrar", class: "btn-submit" %>
