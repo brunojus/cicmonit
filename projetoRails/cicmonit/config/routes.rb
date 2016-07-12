@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'docentes/listar'
 
+  get 'docentes/listarPorIRA'
+
   get 'docentes/listarTurmas'
 
   get 'docentes/show'

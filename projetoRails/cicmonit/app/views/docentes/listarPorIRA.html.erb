@@ -11,7 +11,7 @@
 </tr>
 
 <% candidato = @turma.candidatos %>
-<% candidato.order(mencao: :desc).joins(:aluno).merge(Aluno.order(ira: :desc)).each do|candidato| %>
+<% candidato.joins(:aluno).merge(Aluno.order(ira: :desc)).order(mencao: :desc).each do|candidato| %>
 <% aluno = Aluno.find(candidato.aluno_id)%>
 <% disciplina = Disciplina.find(@turma.disciplina_id)%>
 
@@ -37,4 +37,4 @@
 </table>
 </body>
 
-<br/><%=link_to "Listar por IRA/menção", controller: "docentes", action: "listarPorIRA", id: @turma.id%></li>
+<br/><%=link_to "Listar por menção/IRA", controller: "docentes", action: "listar", id: @turma.id%></li>

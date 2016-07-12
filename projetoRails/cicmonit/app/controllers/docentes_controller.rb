@@ -21,6 +21,11 @@ class DocentesController < ApplicationController
     @turma = Turma.find(params[:id])
     #@docentes = current_user.docentes
   end
+
+  def listarPorIRA
+    @turma = Turma.find(params[:id])
+    #@docentes = current_user.docentes
+  end
   # GET /docentes/1
   # GET /docentes/1.json
 
