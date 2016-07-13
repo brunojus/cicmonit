@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   get 'configuracoes/index'
   get 'configuracoes/rungetdb'
   get 'configuracoes/runalocabolsas'
+  get 'configuracoes/setbolsas'
 
 
   # resources :dicentes

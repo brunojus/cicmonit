@@ -2,7 +2,7 @@ class ConfiguracoesController < ApplicationController
   def index
   end
 
-  def rungetdb
+  def setbolsas
 
     @total_de_bolsas = Configuracoe.all.first
 
@@ -10,7 +10,12 @@ class ConfiguracoesController < ApplicationController
 
     #flash[:notice] = "QTE = #{@total_de_bolsas.QTE}"
 
-  system "sqlite3 db/development.sqlite3 \"REPLACE INTO \"total_de_bolsas\" VALUES(1,#{@total_de_bolsas.QTE},0);\""
+    system "sqlite3 db/development.sqlite3 \"REPLACE INTO \"total_de_bolsas\" VALUES(1,#{@total_de_bolsas.QTE},0);\""
+    flash[:notice] = 'Numero de bolsas alterado com sucesso'
+
+  end
+
+  def rungetdb
 
 	system "java -jar GetDB.jar"
 	system "sqlite3 db/development.sqlite3 < db/db.sql"
