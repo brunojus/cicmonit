@@ -14,13 +14,10 @@ public class Turma {
 	private List<Candidato> candidatos;
 	private int bolsasRequeridas;
 	private int bolsasAlocadas;
-	private int prioridade;
 	private static int obrigatorias = 0;
 	private static int optativas = 0;
 	private boolean alocado;
 	public static final String TURMAS = "\"turmas\"";
-	public static final String TABLE = "CREATE TABLE \"turmas\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-			+ " \"nome\" varchar, \"disciplina_id\" integer, \"QtdeAlunos\" integer, \"obrigatoria\" integer);";
 	public static final int TURMAS_LENGTH = 28;
 	
 	
@@ -37,13 +34,6 @@ public class Turma {
 		this.disciplinaId = disciplinaId;
 		this.alunosMatriculados = alunosMatriculados;
 		this.obrigatoria = obrigatoria;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if(o instanceof Turma)
-			return ((Turma) o).getId() == this.getId();
-		return false;
 	}
 
 	public int getId() {
@@ -116,23 +106,16 @@ public class Turma {
 	
 	public Candidato fetchMelhorOpcao() {
 		Candidato OP = null;
+		String mencao = "MM";
 		
 		for(Candidato c : candidatos) {
-			if(OP == null && c != null)
+			if(!c.isBolsista() && c.getMencao().compareTo(mencao) >= 0) {
+				mencao = c.getMencao();
 				OP = c;
-			else if((c.getMencao().compareTo(OP.getMencao()) > 0) && !c.isBolsista())
-				OP = c;
+			}
 		}
 		
 		return OP;
-	}
-
-	public int getPrioridade() {
-		return prioridade;
-	}
-
-	public void setPrioridade(int prioridade) {
-		this.prioridade = prioridade;
 	}
 
 	public static int getObrigatorias() {

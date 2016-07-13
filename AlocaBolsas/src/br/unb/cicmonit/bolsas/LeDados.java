@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -30,11 +31,7 @@ public class LeDados {
 	
 	public HashMap<Integer, Turma> inicializa() {
 		try {
-			readLinhas();
-			fetchTurmas();
-			fetchCandidatos();
-			fetchEloCandTurmas();
-			fetchTotalBolsas();
+			fetchEloCandTurmas(readLinhas());
 			
 			for(Turma t : turmas.values()) {
 				t.setBolsasRequeridas();
@@ -51,91 +48,90 @@ public class LeDados {
 	public List<String> readLinhas() throws IOException {
 		Path path = Paths.get(TEMP);
 		linhas = Files.readAllLines(path);
+		List<String> candidatosETurmas = new ArrayList<String>();
+		
 		for(int s = linhas.size()-1; s >= 0; s--) {
 			if(!linhas.get(s).contains("INSERT INTO ")) {
+//				linhas.remove(s);
+			}
+			else if(linhas.get(s).contains(Turma.TURMAS)) {
+				fetchTurmas(linhas.get(s));
+				linhas.remove(s);
+			}
+			else if(linhas.get(s).contains(Candidato.CANDIDATOS)) {
+				fetchCandidatos(linhas.get(s));
+				linhas.remove(s);
+			}
+			else if(linhas.get(s).contains(Candidato.CANDIDATOS_TURMAS)) {
+				candidatosETurmas.add(linhas.get(s));
+			}
+			else if(linhas.get(s).contains(Bolsas.TOTAL_BOLSAS)) {
+				fetchTotalBolsas(linhas.get(s));
 				linhas.remove(s);
 			}
 		}
-		return linhas;
+		return candidatosETurmas;
 	}
 	
-	public HashMap<Integer, Turma> fetchTurmas() {
-		Turma t;
-
-		if(linhas != null && linhas.size() > 0)
-			for(int s = linhas.size()-1; s >= 0; s--) {
-				if(linhas.get(s).contains(Turma.TURMAS)) {
-					t = new Turma();
-					string = linhas.get(s).substring(Turma.TURMAS_LENGTH).replace(')', ',').replace(", ", ",");
-					scanner = new Scanner(string);
-					scanner.useDelimiter(",");
-					t.setId(scanner.nextInt());
-					t.setNome(scanner.next());
-					t.setDisciplinaId(scanner.nextInt());
-					t.setAlunosMatriculados(scanner.nextInt());
-					t.setObrigatoria(scanner.nextInt() == 1);
-					if(t.isObrigatoria())
-						Turma.addObrigatorias();
-					else
-						Turma.addOptativas();
-					turmas.put(t.getId(), t);
-					linhas.remove(s);
-					scanner.close();
-				}
-			}
+	public void fetchTurmas(String string) {
+		Turma t = new Turma();
 		
-		return turmas;
+		string = string.substring(Turma.TURMAS_LENGTH).replace(')', ',').replace(", ", ",");
+		scanner = new Scanner(string);
+		scanner.useDelimiter(",");
+		t.setId(scanner.nextInt());
+		t.setNome(scanner.next());
+		t.setDisciplinaId(scanner.nextInt());
+		t.setAlunosMatriculados(scanner.nextInt());
+		t.setObrigatoria(scanner.nextInt() == 1);
+		if(t.isObrigatoria())
+			Turma.addObrigatorias();
+		else
+			Turma.addOptativas();
+		turmas.put(t.getId(), t);
+		scanner.close();
 	}
 	
 	public Turma fetchTurmaPriority(boolean obrigatoria) {
 		Turma turma = null;
+		int qtd = 0;
 		
 		for(Turma t : turmas.values()) {
 			if(t.isObrigatoria() == obrigatoria) {
-				if(turma == null && t != null)
+				
+				if(t.getAlunosMatriculados() >= qtd && !t.isAlocado() && (t.getBolsasRequeridas() > 0)) {
+					qtd = t.getAlunosMatriculados();
 					turma = t;
-				else if((turma.getAlunosMatriculados() < t.getAlunosMatriculados())
-						&& t.getBolsasAlocadas() < t.getBolsasRequeridas()
-						&& !t.isAlocado())
-					turma = t;
+				}
 			}
 		}
 		
 		return turma;
 	}
 	
-	public HashMap<Integer, Turma> fetchCandidatos() {
-		Candidato c;
-
-		if(linhas != null && linhas.size() > 0)
-			for(int s = linhas.size()-1; s >= 0; s--) {
-				if(linhas.get(s).contains(Candidato.CANDIDATOS)) {
-					c = new Candidato();
-					string = linhas.get(s).substring(Candidato.CANDIDATOS_LENGTH).replace(')', ',');
-					scanner = new Scanner(string);
-					scanner.useDelimiter(",");
-					c.setId(scanner.nextInt());
-					c.setMencao(scanner.next().substring(1, 3));
-					c.setAlunoId(scanner.nextInt());
-					c.setAvaliacao(scanner.nextInt());
-					candidatos.put(c.getId(), c);
-					linhas.remove(s);
-					scanner.close();
-				}
-			}
+	public void fetchCandidatos(String string) {
+		Candidato c = new Candidato();
 		
-		return turmas;
+		string = string.substring(Candidato.CANDIDATOS_LENGTH).replace(')', ',');
+		scanner = new Scanner(string);
+		scanner.useDelimiter(",");
+		c.setId(scanner.nextInt());
+		c.setMencao(scanner.next().substring(1, 3));
+		c.setAlunoId(scanner.nextInt());
+		c.setAvaliacao(scanner.nextInt());
+		candidatos.put(c.getId(), c);
+		scanner.close();
 	}
 	
-	public void fetchEloCandTurmas() {
-		if(linhas != null && linhas.size() > 0)
-			for(int s = linhas.size()-1; s >= 0; s--) {
-				if(linhas.get(s).contains(Candidato.CANDIDATOS_TURMAS)) {
-					string = linhas.get(s).substring(Candidato.CANDIDATOS_TURMAS_LENGTH).replace(')', ',');
+	public void fetchEloCandTurmas(List<String> candETurmas) {
+		if(candETurmas != null && candETurmas.size() > 0)
+			for(int s = candETurmas.size()-1; s >= 0; s--) {
+				if(candETurmas.get(s).contains(Candidato.CANDIDATOS_TURMAS)) {
+					string = candETurmas.get(s).substring(Candidato.CANDIDATOS_TURMAS_LENGTH).replace(')', ',');
 					scanner = new Scanner(string);
 					scanner.useDelimiter(",");
 					ligaCandidatoTurmas(scanner.nextInt(), scanner.nextInt());
-					linhas.remove(s);
+					candETurmas.remove(s);
 					scanner.close();
 				}
 			}
@@ -150,22 +146,14 @@ public class LeDados {
 		}
 	}
 	
-	public void fetchTotalBolsas() {
-		if(linhas != null && linhas.size() > 0)
-			for(int s = linhas.size()-1; s >= 0; s--) {
-				if(linhas.get(s).contains(Bolsas.TOTAL_BOLSAS)) {
-					string = linhas.get(s).substring(Bolsas.TOTAL_BOLSAS_LENGTH).replace(')', ',');
-					scanner = new Scanner(string);
-					scanner.useDelimiter(",");
-					bolsas.setId(scanner.nextInt());
-					bolsas.setTotalBolsas(scanner.nextInt());
-					bolsas.setBolsasAlocadas(scanner.nextInt());
-					linhas.remove(s);
-					scanner.close();
-					return;
-				}
-				else System.out.println("Nao vi nada u.u");
-			}
+	public void fetchTotalBolsas(String string) {
+		string = string.substring(Bolsas.TOTAL_BOLSAS_LENGTH).replace(')', ',');
+		scanner = new Scanner(string);
+		scanner.useDelimiter(",");
+		bolsas.setId(scanner.nextInt());
+		bolsas.setTotalBolsas(scanner.nextInt());
+		bolsas.setBolsasAlocadas(scanner.nextInt());
+		scanner.close();
 	}
 
 	public static HashMap<Integer, Turma> getTurmas() {
@@ -183,7 +171,5 @@ public class LeDados {
 	public static Bolsas getBolsas() {
 		return bolsas;
 	}
-
-	
 	
 }
