@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
          has_many :docentes
 
-         VALID_EMAIL_FORMAT= /\A(?:[-0-9]+)@((?:[-a-u]+\.)+[a-z]{2,})\Z/i
+        VALID_EMAIL_FORMAT= /\A(?:[-0-9]+)@((?:[-a-u]+\.)+[a-z]{2,})\Z/i
         validates :email,  length: {maximum: 260}, uniqueness: {case_sensitive: false}
 
 end

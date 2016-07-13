@@ -4,16 +4,24 @@
 				<%if user_signed_in?%>
 					<li><%=link_to "Campus",disciplinas_showCampus_path %></li>
 
-					<% se = User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count %>
 
-					<% if se == 1 %>
-					<li><%= link_to "Perfil", alunos_path %></li>
-					<li><%=link_to "Lista", controller: "alunos", action: "listar"%></li>
-					<%else%>
-					<li><%= link_to "Perfil", docentes_path %></li>
-					<li><%=link_to "Lista", controller: "docentes", action: "listarTurmas"%></li>
+
+					<% se1 = User.where("email = ? and id = ?",'unbmonitoria@gmail.com', current_user.id).count %>
+
+					<% if se1 == 1 %>
+						<li><%=link_to "Configurações", controller: "configuracoes", action: "index"%></li>
+
+					<%else %>
+								<% se = User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count %>
+
+								<% if se == 1 %>
+								<li><%= link_to "Perfil", alunos_path %></li>
+								<li><%=link_to "Lista", controller: "alunos", action: "listar"%></li>
+								<%else %>
+								<li><%= link_to "Perfil", docentes_path %></li>
+								<li><%=link_to "Lista", controller: "docentes", action: "listarTurmas"%></li>
+								<% end %>
 					<% end %>
-
 
 					<li><%= link_to "Informações", info_page_index_path %></li>
 			 		<li><%=link_to "Sair", destroy_user_session_path, method: "delete" %> </li>

@@ -3,8 +3,15 @@ class ConfiguracoesController < ApplicationController
   end
 
   def rungetdb
-	system "java -jar GetDB.jar"	
+
+  @total_de_bolsas = TotalDeBolsa.all.first
+
+  flash[:notice] = "Total de bolsas = #{@total_de_bolsas.nome}."
+
+	system "java -jar GetDB.jar"
 	system "sqlite3 db/development.sqlite3 < db/db.sql"
+  flash[:notice] = 'Banco de dados obtido com sucesso.'
+
   end
 
   def runalocabolsas
@@ -15,5 +22,6 @@ class ConfiguracoesController < ApplicationController
 	system "cat db/AlocaBolsas/turmas.sql db/AlocaBolsas/candidatos.sql db/AlocaBolsas/candidatos_turmas.sql db/AlocaBolsas/total_de_bolsas.sql > db/AlocaBolsas/temp.sql"
 	system "java -jar AlocaBolsas.jar"
 	system "sqlite3 db/development.sqlite3 < db/AlocaBolsas/result.sql"
+  flash[:notice] = 'Bolsas alocadas com sucesso'
   end
 end
