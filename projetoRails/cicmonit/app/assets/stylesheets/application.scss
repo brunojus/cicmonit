@@ -14,10 +14,6 @@ body {
 
  }
 
-.table_candidatos{
-   text-align: center;
- }
-
  table, th, td {
     margin-top: 50px;
      border: 1px solid rgba(0,0,0,0.21);
@@ -33,6 +29,7 @@ body {
 .iconeUNB{
 	position:relative;
 	margin-bottom: 10px;
+  float: right;
 }
 
 .container {

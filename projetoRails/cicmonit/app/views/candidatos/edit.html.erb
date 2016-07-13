@@ -1,6 +1,8 @@
 <h1>Editar candidato</h1>
 
-Nome: <%= @candidato.aluno.nome %>
+<p>
+  Nome: <%= @candidato.aluno.nome %>
+</p>
 <%= render 'form' %>
 
 <% se = User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count %>

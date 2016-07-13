@@ -1,11 +1,11 @@
 <h1>Lista de candidatura</h1>
 <table>
-<tr>
-  <th align="center">Aluno</th>
-  <th align="center">Avaliação</th>
-  <th align="center">Disciplina</th>
-  <th align="center">Menção na Disciplina</th>
-  <th align="center">Turma</th>
+<tr bgcolor="6B9A8C">
+  <th >Aluno</th>
+  <th>Avaliação</th>
+  <th>Disciplina</th>
+  <th>Menção na Disciplina</th>
+  <th>Turma</th>
 
 </tr>
 <% @aluno.each do|aluno| %>
@@ -19,19 +19,19 @@
         <% disciplina = Disciplina.find(turma.disciplina_id)%>
 
                 <tr>
-                  <td align="center"><%= aluno.nome %></td>
+                  <td><%= aluno.nome %></td>
                   <% if candidato.avaliacao == 0%>
-                  <td align="center"><%= "INDEFERIDA"%></td>
+                  <td><%= "INDEFERIDA"%></td>
                   <% elsif candidato.avaliacao == 1%>
-                  <td align="center"><%= "VOLUNTARIO"%></td>
+                  <td><%= "VOLUNTARIO"%></td>
                   <% elsif candidato.avaliacao == 2%>
-                  <td align="center"><%= "REMUNERADO"%></td>
+                  <td><%= "REMUNERADO"%></td>
                   <%else%>
-                  <td align="center"><%= "AMBAS"%></td>
+                  <td><%= "AMBAS"%></td>
                   <%end%>
-                  <td align="center"><%= disciplina.nome %></td>
-                  <td align="center"><%= candidato.mencao %></td>
-                  <td align="center"><%= turma.nome %></td>
+                  <td><%= disciplina.nome %></td>
+                  <td><%= candidato.mencao %></td>
+                  <td><%= turma.nome %></td>
 
                   <td><%= link_to image_tag("delete.png"), candidato, method: :delete, data: { confirm: "Você tem certeza que deseja excluir sua candidatura na turma #{turma.nome} de #{disciplina.nome}" } %></td>
 
