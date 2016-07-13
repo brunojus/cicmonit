@@ -6,6 +6,8 @@ public class Bolsas {
 	private int totalBolsas;
 	private int bolsasAlocadas;
 	public final static String TOTAL_BOLSAS = "\"total_de_bolsas\"";
+	public final static String TABLE = "CREATE TABLE \"total_de_bolsas\" (\"id\""
+			+ " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"QTE\" integer, \"QTE_alocadas\" integer)";
 	public final static int TOTAL_BOLSAS_LENGTH = 37;
 	
 	public Bolsas() {}

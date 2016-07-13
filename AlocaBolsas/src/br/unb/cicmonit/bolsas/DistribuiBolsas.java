@@ -9,6 +9,8 @@ public class DistribuiBolsas {
 		dados.inicializa();
 		
 		distribui();
+		
+		
 	}
 	
 	
@@ -19,7 +21,7 @@ public class DistribuiBolsas {
 	private static void distribuiBolsas(boolean obrigatoria) {
 		Turma t = dados.fetchTurmaPriority(obrigatoria);
 		
-		if(dados.getBolsas().bolsasRestantes() == 0)
+		if(LeDados.getBolsas().bolsasRestantes() == 0)
 			return;
 		if(t == null)
 			distribuiBolsas(!obrigatoria);
@@ -34,7 +36,7 @@ public class DistribuiBolsas {
 	private static void alocaBolsa(Candidato c, Turma t) {
 		c.setBolsista();
 		t.alocaBolsa();
-		dados.getBolsas().alocaBolsa();
+		LeDados.getBolsas().alocaBolsa();
 	}
 	
 }

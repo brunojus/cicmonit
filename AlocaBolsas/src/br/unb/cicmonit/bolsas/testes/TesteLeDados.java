@@ -20,11 +20,11 @@ public class TesteLeDados {
 
 		Assert.assertNotNull(turma);
 		Assert.assertEquals(4, turma.size());
-		Assert.assertEquals(4, ab.getTurmas().size());
-		Assert.assertEquals(4, ab.getCandidatos().size());
-		Assert.assertEquals(2, ab.getTurmas().get(2).getCandidatos().size());
-		Assert.assertEquals(0, ab.getBolsas().getBolsasAlocadas());
-		Assert.assertEquals(2, ab.getBolsas().getTotalBolsas());
+		Assert.assertEquals(4, LeDados.getTurmas().size());
+		Assert.assertEquals(4, LeDados.getCandidatos().size());
+		Assert.assertEquals(2, LeDados.getTurmas().get(2).getCandidatos().size());
+		Assert.assertEquals(0, LeDados.getBolsas().getBolsasAlocadas());
+		Assert.assertEquals(2, LeDados.getBolsas().getTotalBolsas());
 		
 	}
 	
@@ -33,10 +33,10 @@ public class TesteLeDados {
 		LeDados dados = new LeDados();
 		dados.inicializa();
 		
-		Assert.assertEquals(0, dados.getTurmas().get(1).getBolsasRequeridas());
-		Assert.assertEquals(2, dados.getTurmas().get(2).getBolsasRequeridas());
-		Assert.assertEquals(1, dados.getTurmas().get(3).getBolsasRequeridas());
-		Assert.assertEquals(1, dados.getTurmas().get(4).getBolsasRequeridas());
+		Assert.assertEquals(0, LeDados.getTurmas().get(1).getBolsasRequeridas());
+		Assert.assertEquals(2, LeDados.getTurmas().get(2).getBolsasRequeridas());
+		Assert.assertEquals(1, LeDados.getTurmas().get(3).getBolsasRequeridas());
+		Assert.assertEquals(1, LeDados.getTurmas().get(4).getBolsasRequeridas());
 		
 		Assert.assertEquals(2, Turma.getOptativas());		
 		Assert.assertEquals(2, Turma.getObrigatorias());

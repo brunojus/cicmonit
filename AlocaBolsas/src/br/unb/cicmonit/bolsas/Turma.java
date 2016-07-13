@@ -19,6 +19,8 @@ public class Turma {
 	private static int optativas = 0;
 	private boolean alocado;
 	public static final String TURMAS = "\"turmas\"";
+	public static final String TABLE = "CREATE TABLE \"turmas\" (\"id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+			+ " \"nome\" varchar, \"disciplina_id\" integer, \"QtdeAlunos\" integer, \"obrigatoria\" integer);";
 	public static final int TURMAS_LENGTH = 28;
 	
 	

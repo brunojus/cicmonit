@@ -168,7 +168,7 @@ public class LeDados {
 			}
 	}
 
-	public HashMap<Integer, Turma> getTurmas() {
+	public static HashMap<Integer, Turma> getTurmas() {
 		return turmas;
 	}
 	
@@ -176,11 +176,11 @@ public class LeDados {
 		return turmas.get(index);
 	}
 
-	public HashMap<Integer, Candidato> getCandidatos() {
+	public static HashMap<Integer, Candidato> getCandidatos() {
 		return candidatos;
 	}
 
-	public Bolsas getBolsas() {
+	public static Bolsas getBolsas() {
 		return bolsas;
 	}
 
