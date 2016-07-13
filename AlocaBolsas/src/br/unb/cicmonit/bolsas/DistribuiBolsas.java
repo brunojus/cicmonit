@@ -4,12 +4,13 @@ public class DistribuiBolsas {
 
 	private static LeDados dados;
 	
-	public static void Main() {
+	public static void main(String[] args) {
 		dados = new LeDados();
 		dados.inicializa();
 		
 		distribui();
-		
+		EscreveResultado out = new EscreveResultado(dados);
+		out.Escrever();
 		
 	}
 	

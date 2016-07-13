@@ -1,0 +1,7 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+REPLACE INTO "candidatos" VALUES(1,SS,1,3);
+REPLACE INTO "candidatos" VALUES(2,MS,2,2);
+REPLACE INTO "candidatos" VALUES(3,MS,3,2);
+REPLACE INTO "candidatos" VALUES(4,MS,4,2);
+COMMIT;
