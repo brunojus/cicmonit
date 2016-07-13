@@ -18,17 +18,17 @@ public class EscreveResultado {
 	public void Escrever (){
 		String tobewritten = "";
 		HashMap<Integer, Candidato> candidatos;
-		File file = new File("AlocaBolsas/result.sql");
+		File file = new File("db/AlocaBolsas/result.sql");
 		if(!file.exists())
             file.mkdir();
-        file = new File("AlocaBolsas/result.sql");
-        File fileold = new File("AlocaBolsas/result-backup"+System.nanoTime()+".sql");
+        file = new File("db/AlocaBolsas/result.sql");
+        File fileold = new File("db/AlocaBolsas/result-backup"+System.nanoTime()+".sql");
         try {
             if(!file.exists()) {
                 file.createNewFile();
             }else{
                 file.renameTo(fileold);
-                file = new File("AlocaBolsas/result.sql");
+                file = new File("db/AlocaBolsas/result.sql");
                     file.createNewFile();
             }
         } catch (IOException ex) {
