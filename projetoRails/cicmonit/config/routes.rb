@@ -63,6 +63,10 @@ Rails.application.routes.draw do
 
 	resources:disciplina
 	# root to:"disciplinas#showCampus"
+  get 'configuracoes/index'
+  get 'configuracoes/rungetdb'
+  get 'configuracoes/runalocabolsas'
+
 
   # resources :dicentes
   # get    'sign_in'   => 'sessions#new'
