@@ -16,7 +16,7 @@ public class LeDados {
 	private static HashMap<Integer, Turma> turmas;
 	private static HashMap<Integer, Candidato> candidatos;
 	private static Bolsas bolsas;
-	private final String TEMP = "temp.sql";
+	private final String TEMP = "AlocaBolsas/temp.sql";
 	
 	private String string;
 	private Scanner scanner;

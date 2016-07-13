@@ -1,0 +1,12 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "candidatos_turmas" ("candidato_id" integer NOT NULL, "turma_id" integer NOT NULL);
+INSERT INTO "candidatos_turmas" VALUES(1,5);
+INSERT INTO "candidatos_turmas" VALUES(2,5);
+INSERT INTO "candidatos_turmas" VALUES(3,5);
+INSERT INTO "candidatos_turmas" VALUES(4,5);
+INSERT INTO "candidatos_turmas" VALUES(6,5);
+INSERT INTO "candidatos_turmas" VALUES(9,5);
+CREATE INDEX "index_candidatos_turmas_on_candidato_id" ON "candidatos_turmas" ("candidato_id");
+CREATE INDEX "index_candidatos_turmas_on_turma_id" ON "candidatos_turmas" ("turma_id");
+COMMIT;

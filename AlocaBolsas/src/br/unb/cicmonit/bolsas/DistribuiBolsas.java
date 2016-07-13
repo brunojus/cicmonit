@@ -9,6 +9,9 @@ public class DistribuiBolsas {
 	private static List<Turma> turmasAlocadas;
 	
 	public static void main(String[] args) {
+
+		LimpaArquivo limpar = new LimpaArquivo();
+		limpar.limpar("AlocaBolsas/temp.sql");
 		dados = new LeDados();
 		turmasAlocadas = new ArrayList<Turma>();
 		dados.inicializa();

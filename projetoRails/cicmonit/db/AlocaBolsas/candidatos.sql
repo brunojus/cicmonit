@@ -1,0 +1,11 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "candidatos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mencao" varchar, "aluno_id" integer, "avaliacao" integer);
+INSERT INTO "candidatos" VALUES(1,'MS',1,2);
+INSERT INTO "candidatos" VALUES(2,'SS',2,2);
+INSERT INTO "candidatos" VALUES(3,'SS',3,2);
+INSERT INTO "candidatos" VALUES(4,'MS',4,3);
+INSERT INTO "candidatos" VALUES(6,'MS',5,2);
+INSERT INTO "candidatos" VALUES(9,'MS',6,1);
+CREATE INDEX "index_candidatos_on_aluno_id" ON "candidatos" ("aluno_id");
+COMMIT;
