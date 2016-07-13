@@ -1,12 +1,12 @@
 <h1>Lista de candidatura</h1>
-<table>
+<table class="table_candidatos">
 <tr>
-  <th align="center">Aluno</th>
-  <th align="center">Avaliação</th>
-  <th align="center">Disciplina</th>
-  <th align="center">Menção na Disciplina</th>
-  <th align="center">IRA</th>
-  <th align="center">Turma</th>
+  <th> Aluno </th>
+  <th> Avaliação </th>
+  <th> Disciplina </th>
+  <th> Menção na Disciplina </th>
+  <th> IRA </th>
+  <th> Turma </th>
 
 </tr>
 
@@ -16,20 +16,20 @@
 <% disciplina = Disciplina.find(@turma.disciplina_id)%>
 
       <tr>
-        <td align="center"><%=link_to aluno.nome, edit_candidato_path(candidato) %></td>
+        <td><%=link_to aluno.nome, edit_candidato_path(candidato) %></td>
         <% if candidato.avaliacao == 0%>
-        <td align="center"><%= "INDEFERIDA"%></td>
+        <td class="indeferido"><%="INDEFERIDA"%></td>
         <% elsif candidato.avaliacao == 1%>
-        <td align="center"><%= "VOLUNTARIO"%></td>
+        <td class="voluntario"><%="VOLUNTARIO"%></td>
         <% elsif candidato.avaliacao == 2%>
-        <td align="center"><%= "REMUNERADO"%></td>
+        <td class="remurado"><%="REMUNERADO"%></td>
         <%else%>
-        <td align="center"><%= "AMBAS"%></td>
+        <td class="ambas"><%="AMBAS"%></td>
         <%end%>
-        <td align="center"><%= disciplina.nome %></td>
-        <td align="center"><%= candidato.mencao %></td>
-        <td align="center"><%= aluno.IRA %></td>
-        <td align="center"><%= @turma.nome %></td>
+        <td><%= disciplina.nome %></td>
+        <td><%= candidato.mencao %></td>
+        <td><%= aluno.IRA %></td>
+        <td><%= @turma.nome %></td>
 
       </tr>
 <% end %>

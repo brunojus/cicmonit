@@ -9,10 +9,10 @@
 <%if user_signed_in?%>
 
 		<% if User.where("email like ? and id = ?",'%@aluno.unb.br', current_user.id).count == 1%>
-		<th>	Turma: <%= link_to turma.nome, action: 'showTurma', id: turma.id %>
+		<th>	 <%= link_to 'Candidatar-se na turma: ', action: 'showTurma', id: turma.id %><%= link_to turma.nome, action: 'showTurma', id: turma.id %></th>
 			<%else%>
 			<tr bgcolor="E7F3D6" >
-				<th>	Turma: <%= turma.nome%></td>
+				<th>	Turma: <%= turma.nome%></th>
 				</tr>
 		<%end%>
 <%end%>
@@ -43,7 +43,7 @@
 		<tr bgcolor="FFF7F7" >
 	<% end %>
 	<td><%= docente.nome %></td>
-	</tr>
+		</tr>
 	<% end %>
 	</table>
 		</tr>

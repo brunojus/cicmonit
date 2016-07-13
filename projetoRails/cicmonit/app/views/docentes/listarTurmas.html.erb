@@ -8,11 +8,11 @@
 
     <tr>
 
-    <th>	 <%= Disciplina.find(turma.disciplina_id).nome %> - TURMA: <%= link_to turma.nome, controller: "docentes", action: 'listar', id: turma.id %>
+    <th>	 <%= Disciplina.find(turma.disciplina_id).nome %>  <%= link_to 'Turma: ', controller: "docentes", action: 'listar', id: turma.id %><%= link_to turma.nome, controller: "docentes", action: 'listar', id: turma.id %>
 
     </tr>
     </table>
-    
+
     <% end %>
 <% end %>
 </body>

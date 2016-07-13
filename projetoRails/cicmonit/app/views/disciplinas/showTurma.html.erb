@@ -6,10 +6,10 @@
 	<table STYLE="border: 1px solid #E7E7E7" cellpadding="5" cellspacing="0">
 
 	<tr bgcolor="E7F3D6" >
-		<th>	Turma: <%= @turma.nome%></td>
+		<th>	Turma: <%= @turma.nome%></th>
 		</tr>
 	<tr bgcolor="6B9A8C" >
-		<th>Horarios & Local</td>
+		<th>Horarios & Local</th>
 	</tr>
 	<% horario = @turma.horarios %>
 	<% horario.each do|horario| %>
@@ -42,7 +42,7 @@
 </body>
 
 <%= form_for(Candidato.new) do |f| %>
-
+<div class="form">
 <div>
 	<font color="red"><%= f.label :mencao %><br></font>
 	<% if @aluno != nil %>
@@ -53,22 +53,20 @@
 </div>
 
 <div>
-	<font color="red"><%= f.label :avaliacao, "Digite a sua opcao de Inscrição (1-Voluntária,2-Remunerada,3 -Ambas)" %><br></font>
+	<font color="red"><%= f.label :avaliacao, "Digite a sua opção de Inscrição: 1-Voluntária 2-Remunerada 3-Ambas" %></font>
 	<%if @aluno != nil%>
 		<%= f.number_field :avaliacao, placeholder: @candidato.avaliacao%>
 	<%else%>
 		<%= f.number_field :avaliacao, placeholder: 1%>
 	<%end%>
 </div>
+<div class="actions">
+	<%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
+	<%= f.hidden_field :turma_id, :value => @turma.id, :index => @turma.id, :name => :turma_id %>
+	<%= f.submit "candidatar", class: "btn-submit"%>
+	<!-- , :style => "display: none;" %> -->
+	<%= link_to 'voltar', action: 'showTurmas', id: @turma.disciplina_id %>
 
-
-
-	<div class="actions">
-		<%= f.hidden_field :aluno_id, value: Aluno.where(user_id: current_user.id).first.id%>
-		<%= f.hidden_field :turma_id, :value => @turma.id, :index => @turma.id, :name => :turma_id %>
-		<%= f.submit "candidatar"%>
-		<!-- , :style => "display: none;" %> -->
-		<%= link_to 'voltar', action: 'showTurmas', id: @turma.disciplina_id %>
-
-  </div>
+</div>
+</div>
 <% end %>
