@@ -39,7 +39,7 @@ public class EscreveResultado {
             writer.println("PRAGMA foreign_keys=OFF;");
             writer.println("BEGIN TRANSACTION;");
 	        tobewritten = "REPLACE INTO \"candidatos\" VALUES(";
-	        candidatos = dados.getCandidatos();
+	        candidatos = LeDados.getCandidatos();
 	        for(int i = 1; i<= candidatos.size();i++){
 	        	 	writer.println(tobewritten+candidatos.get(i).getId()+","+
 	             			candidatos.get(i).getMencao()+","+candidatos.get(i).getAlunoId()+","+

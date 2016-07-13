@@ -10,11 +10,7 @@ public class Candidato {
 	private int turmaId;
 	private boolean bolsista;
 	public final static String CANDIDATOS = "\"candidatos\"";
-	public final static String TABLE = "CREATE TABLE \"candidatos\" (\"id\" INTEGER "
-			+ "PRIMARY KEY AUTOINCREMENT NOT NULL, \"mencao\" varchar, \"aluno_id\" integer, \"avaliacao\" integer);";
 	public final static String CANDIDATOS_TURMAS = "\"candidatos_turmas\"";
-	public final static String TABLE_CT = "CREATE TABLE \"candidatos_turmas\" "
-			+ "(\"candidato_id\" integer NOT NULL, \"turma_id\" integer NOT NULL);";
 	public final static int CANDIDATOS_LENGTH = 32;
 	public final static int CANDIDATOS_TURMAS_LENGTH = 39;
 	
@@ -27,13 +23,6 @@ public class Candidato {
 		this.mencao = mencao;
 		this.alunoId = alunoId;
 		this.avaliacao = avaliacao;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if(o instanceof Candidato)
-			return ((Turma) o).getId() == this.getId();
-		return false;
 	}
 
 	public int getId() {
