@@ -41,8 +41,8 @@ public class EscreveResultado {
 	        tobewritten = "REPLACE INTO \"candidatos\" VALUES(";
 	        candidatos = LeDados.getCandidatos();
 	        for(int i = 1; i<= candidatos.size();i++){
-	        	 	writer.println(tobewritten+candidatos.get(i).getId()+","+
-	             			candidatos.get(i).getMencao()+","+candidatos.get(i).getAlunoId()+","+
+	        	 	writer.println(tobewritten+candidatos.get(i).getId()+",'"+
+	             			candidatos.get(i).getMencao()+"',"+candidatos.get(i).getAlunoId()+","+
 	             			candidatos.get(i).getAvaliacao()+");");
 	        }
             //Finalizando
