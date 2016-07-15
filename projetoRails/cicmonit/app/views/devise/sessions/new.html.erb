@@ -12,6 +12,7 @@
   <div class="field">
     <%= f.label :senha %><br />
     <%= f.password_field :password, autocomplete: "off" %>
+    <% $pass = :password %>
   </div>
 
   <!-- <% if devise_mapping.rememberable? -%>

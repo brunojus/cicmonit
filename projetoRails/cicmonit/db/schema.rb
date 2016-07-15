@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20160712195902) do
     t.integer "user_id"
   end
 
+  add_index "alunos", ["matricula"], name: "index_alunos_on_matricula", unique: true
+
   create_table "campus", force: :cascade do |t|
     t.integer "codigo"
     t.string  "nome"

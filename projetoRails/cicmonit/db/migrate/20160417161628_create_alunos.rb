@@ -6,5 +6,6 @@ class CreateAlunos < ActiveRecord::Migration
       t.integer :semestre, null: false
       t.float :IRA, null: false, default: 5.0
     end
+    add_index :alunos, :matricula, :unique => true
   end
 end

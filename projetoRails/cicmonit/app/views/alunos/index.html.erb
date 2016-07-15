@@ -34,5 +34,5 @@
 <% se = Aluno.where(user_id: current_user.id).count %>
 
 <% if se == 0 %>
-<%= link_to image_tag("new.png"), new_aluno_path %>
+<%=link_to image_tag("new.png"), :controller => "alunos", :action => "insere"%>
 <% end %>

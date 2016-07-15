@@ -28,6 +28,15 @@ class AlunosController < ApplicationController
     @aluno = Aluno.new
   end
 
+  def insere
+    @use = User.find(current_user.id)
+
+    matricula = @use.email[0..8]
+
+    system "python python.py #{matricula} #{$pass} #{@use.id}"
+
+  end
+
   # GET /alunos/1/edit
   def edit
   end

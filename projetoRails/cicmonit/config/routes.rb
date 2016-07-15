@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'docentes/show'
 
+  get 'alunos/insere'
+
   get 'alunos/listar'
 
   resources :alunos
